@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form method="POST" action="{% url 'register' %}">
+<form method="POST" action="{% url 'user_register' %}">
 	{% csrf_token %}
 
 	{{ form.as_p }}
