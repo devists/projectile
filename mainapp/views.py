@@ -1,11 +1,17 @@
 from django.contrib import messages
 from .forms import RegistrationForm, ProfileForm
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url="login/")
+def home(request):
+    return render(request, "home.html")
+
+
 def user_register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST) #This will be used in POST request
@@ -22,7 +28,7 @@ def user_register(request):
             profile.user = user
             user.save()
             profile.save()
-            return HttpResponse("Successfull")
+            return redirect('/login')
         else:
             messages.error(request, "Error")
 
@@ -30,20 +36,5 @@ def user_register(request):
 
         form = RegistrationForm()
         form_pro = ProfileForm()
-    return render(request, 'mainapp/user_reg.html', {'form': form, 'form_pro': form_pro})
+    return render(request, 'user_reg.html', {'form': form, 'form_pro': form_pro})
 
-"""
-def user_login(request):
-    if request.method == "POST":
-        username = request.POST.get("username")
-        passwd = request.POST.get("password")
-        user = authenticate(username=username, password=passwd)
-        if user is not None:
-            HttpResponse("Login Successfull")
-        else:
-            messages.error(request, "username and password did not match")
-            return render(request, "mainapp/tempo.html")
-
-    # for a GET request
-    else:
-        return render(request, "mainapp/tempo.html")"""

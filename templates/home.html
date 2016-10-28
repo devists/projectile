@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LoggedIn</title>
+
+</head>
+<body>
+
+            <h1>Hello</h1>
+            <p>{{ request.user.username }}</p>
+
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+
+    <input type="submit" value="LogOut" />
+</form>
+
+</body>
