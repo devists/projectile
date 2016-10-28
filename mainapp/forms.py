@@ -1,7 +1,14 @@
 from django import forms
 from django.contrib.auth.models import User
 from .models import Student
-from django.contrib.admin.widgets import AdminDateWidget
+from django.contrib.auth.forms import AuthenticationForm
+
+
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(label="Username", max_length=30,initial='',
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+    password = forms.CharField(label="Password", max_length=30,initial='',
+                               widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
 
 
 class RegistrationForm(forms.ModelForm):

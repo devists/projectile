@@ -1,19 +1,15 @@
-from django.shortcuts import get_object_or_404
-from django.utils import timezone
-from django.contrib import auth
-from django.contrib.auth import authenticate, login, logout
-from django.views import generic
-from django.views.generic import View
-from django.shortcuts import redirect, render
-from django.http import HttpResponse
 from django.contrib import messages
 from .forms import RegistrationForm, ProfileForm
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-def initiate(request):
-    return render(request,'mainapp/start.html',{})
+@login_required(login_url="login/")
+def home(request):
+    return render(request, "home.html")
 
 
 def user_register(request):
@@ -32,7 +28,7 @@ def user_register(request):
             profile.user = user
             user.save()
             profile.save()
-            return render(request,'mainapp/user_login.html',{})
+            return redirect('/login')
         else:
             messages.error(request, "Error")
 
@@ -40,28 +36,5 @@ def user_register(request):
 
         form = RegistrationForm()
         form_pro = ProfileForm()
-    return render(request, 'mainapp/user_reg.html', {'form': form, 'form_pro': form_pro})
-
-
-def user_login(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-
-        if user is not None:
-            if user.is_active:
-                login(request,user)
-                return render(request,'mainapp/user_logout.html',{})
-
-        else:
-            return HttpResponse("You dont have an account on this, Please sign up first")
-    else:
-        return render(request, 'mainapp/user_login.html', {})
-
-
-def user_logout(request):
-    logout(request)
-    if request.method == 'POST':
-        return redirect(user_login)
+    return render(request, 'user_reg.html', {'form': form, 'form_pro': form_pro})
 
