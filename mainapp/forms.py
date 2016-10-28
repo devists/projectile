@@ -33,6 +33,15 @@ class RegistrationForm(forms.ModelForm):
         raise forms.ValidationError(
             "Email Already Exists")
 
+    def clean_username(self):
+        username = self.cleaned_data['username']
+        try:
+            User.objects.get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise forms.ValidationError(
+            "Username has been Taken, Try other one")
+
     def clean(self):
         if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data and self.cleaned_data['password1'] != self.cleaned_data['password2']:
             raise forms.ValidationError("The password does not match ")
@@ -49,7 +58,7 @@ class ProfileForm(forms.ModelForm):
          ('F', 'Female')]
 
     u_gender = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.RadioSelect())
-    u_dob = forms.DateField(label='Date Of Birth', widget=DateInput())
+    u_dob = forms.CharField(label='Date Of Birth', widget=DateInput())
 
     class Meta:
         model = Student
