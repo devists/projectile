@@ -1,14 +1,19 @@
-{% if form.errors %}
-    {% for field in form %}
-        {% for error in field.errors %}
-            <div class="alert alert-danger">
-                <strong>{{ error|escape }}</strong>
-            </div>
-        {% endfor %}
-    {% endfor %}
-    {% for error in form.non_field_errors %}
-        <div class="alert alert-danger">
-            <strong>{{ error|escape }}</strong>
-        </div>
-    {% endfor %}
-{% endif %}
+
+<html>
+
+
+<form method="POST" action="{% url 'post_project' %}">
+    {% csrf_token %}
+
+{{ p_form.as_p }}
+
+<p>Skills Required:
+
+    <input type="text" name="skill">
+
+    <br>
+    <input type="submit" value="Submit" />
+
+</form>
+
+</html>

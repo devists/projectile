@@ -1,13 +1,13 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Student
 from django.contrib.auth.forms import AuthenticationForm
+from .models import Project, ProjectSkills, Student
 
 
 class LoginForm(AuthenticationForm):
-    username = forms.CharField(label="Username", max_length=30,initial='',
+    username = forms.CharField(label="Username", max_length=30,
                                widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
-    password = forms.CharField(label="Password", max_length=30,initial='',
+    password = forms.CharField(label="Password", max_length=30,
                                widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
 
 
@@ -23,14 +23,6 @@ class RegistrationForm(forms.ModelForm):
         model = User
         fields = ['first_name', 'last_name', 'username', 'password1', 'password2', 'email']
 
-    """def clean_username(self):
-        username = self.cleaned_data['username']
-        try:
-            User.objects.get(username=username)
-        except User.DoesNotExist:
-            return username
-        raise forms.ValidationError(
-            "UserName has been Taken")"""
     def clean_email(self):
         email = self.cleaned_data['email']
         try:
@@ -50,7 +42,8 @@ class RegistrationForm(forms.ModelForm):
             "Username has been Taken, Try other one")
 
     def clean(self):
-        if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data and self.cleaned_data['password1'] != self.cleaned_data['password2']:
+        if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data and self.cleaned_data['password1'] != \
+                self.cleaned_data['password2']:
             raise forms.ValidationError("The password does not match ")
         return self.cleaned_data
 
@@ -60,9 +53,8 @@ class DateInput(forms.DateInput):
 
 
 class ProfileForm(forms.ModelForm):
-
     CHOICES = [('M', 'Male'),
-         ('F', 'Female')]
+               ('F', 'Female')]
 
     u_gender = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.RadioSelect())
     u_dob = forms.CharField(label='Date Of Birth', widget=DateInput())
@@ -72,4 +64,22 @@ class ProfileForm(forms.ModelForm):
         fields = ['u_gender', 'u_dob']
 
 
+class ProjectForm(forms.ModelForm):
+    CHOICES = [('B', 'Beginner'),
+               ('I', 'Intermediate'),
+               ('A', 'Advanced')]
+
+    p_title = forms.CharField(label='Title', widget=forms.TextInput(attrs={'name': 'title'}))
+    p_category = forms.CharField(label='Category', widget=forms.TextInput(attrs={'name': 'category'}))
+    diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
+                                   widget=forms.RadioSelect(attrs={'name': 'level'}))
+    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description'}))
+    no_of_contrib = forms.CharField(label='No. of Contributors Needed',
+                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib'}))
+    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status'}))
+    p_privacy = forms.BooleanField(label='Privacy',required=False, widget=forms.CheckboxInput(attrs={'name': 'privacy'}))
+
+    class Meta:
+        model = Project
+        fields = ['p_title', 'p_category', 'diff_level', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
 
