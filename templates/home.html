@@ -9,6 +9,7 @@
             <h1>Hello</h1>
             <p>{{ request.user.username }}</p>
 
+
 <form method="get" action="{% url 'prev_posts' %}">
     {% csrf_token %}
 
