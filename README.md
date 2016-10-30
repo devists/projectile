@@ -11,7 +11,6 @@ It also gives them the feasibility for requesting a mentor who could guide them 
 * virtualenv -p $(which python3) venv
 * source venv/bin/activate
 * pip install -r requirements.txt
-* cp config_example.py config.py
 * ./manage.py migrate
 * ./manage.py runserver
 * point your browser to [http://localhost:8000/](http://localhost:8000/)
