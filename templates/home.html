@@ -9,6 +9,23 @@
             <h1>Hello</h1>
             <p>{{ request.user.username }}</p>
 
+
+<form method="get" action="{% url 'prev_posts' %}">
+    {% csrf_token %}
+
+    <input type="submit" value="Posted Projects " />
+</form>
+
+
+<form method="get" action="{% url 'post_project' %}">
+    {% csrf_token %}
+
+    <input type="submit" value="Post Project" />
+</form>
+
+
+
+
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
 
