@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%extends "base.html" %}
 
-{% for project in projects %}
+{% block content %}
+    {% for project in projects %}
 
     <a href="{% url 'project_detail' project_id=project.pk %} ">{{ project }}</a>
 
     <br>
 {% endfor %}
-
-</body>
-</html>
+{% endblock content %}
