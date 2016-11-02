@@ -10,21 +10,25 @@
             <p>{{ request.user.username }}</p>
 
 
-<form method="get" action="{% url 'prev_posts' %}">
+<form method="post" action="{% url 'prev_posts' %}">
     {% csrf_token %}
 
     <input type="submit" value="Posted Projects " />
 </form>
 
 
-<form method="get" action="{% url 'post_project' %}">
+<form method="post" action="{% url 'post_project' %}">
     {% csrf_token %}
 
     <input type="submit" value="Post Project" />
 </form>
 
 
+<form method="get" action = "{% url 'profile_edit'%}">
+    {% csrf_token %}
 
+    <input type="submit" value="Edit Profile"/>
+</form>
 
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}

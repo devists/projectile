@@ -10,5 +10,11 @@
  Project Category :  {{ project.p_category }}<br>
  Project Description :  {{ project.p_description }}<br>
 
+<form method = "get" action="{% url 'project_edit' project_id=project.pk %}">
+     {% csrf_token %}
+
+     <input type="submit" value = "Edit Project"/>
+ </form>
+
 </body>
 </html>

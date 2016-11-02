@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Your Project</title>
+
+</head>
+<body>
+<h1>Edit Project Details</h1>
+<form	method="POST" {% url 'project_edit' project_id=project.pk %}>{% csrf_token	%}
+        {{e_form.as_p}}
+        <button	type="submit">Save</button>
+    </form>
+
+</body>
+</html>
