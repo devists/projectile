@@ -19,6 +19,12 @@
 </form>
 
 
+<form method="get" action = "{% url 'profile_edit'%}">
+    {% csrf_token %}
+
+    <input type="submit" value="Edit Profile"/>
+</form>
+
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
 

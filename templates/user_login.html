@@ -30,8 +30,11 @@
                 <td>{{ form.password }}</td>
             </tr>
         </table>
-
-        <input class="btn btn-success btn-sm" type="submit" value="login"/>
+     <input class="btn btn-success btn-sm" type="submit" value="login"/>
+    </form>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <input type="submit" value="register"/>
     </form>
 {% endblock content %}
 
