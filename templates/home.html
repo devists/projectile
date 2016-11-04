@@ -1,26 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>LoggedIn</title>
+{%extends "base.html" %}
 
-</head>
-<body>
-
-            <h1>Hello</h1>
-            <p>{{ request.user.username }}</p>
+{%block content %}
+<h1>Hello</h1>
+<p>{{ request.user.username }}</p>
 
 
-<form method="post" action="{% url 'prev_posts' %}">
+<form method="get" action="{% url 'prev_posts' %}">
     {% csrf_token %}
 
-    <input type="submit" value="Posted Projects " />
+    <input type="submit" value="Posted Projects "/>
 </form>
 
 
-<form method="post" action="{% url 'post_project' %}">
+<form method="get" action="{% url 'post_project' %}">
     {% csrf_token %}
 
-    <input type="submit" value="Post Project" />
+    <input type="submit" value="Post Project"/>
 </form>
 
 
@@ -33,7 +28,6 @@
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
 
-    <input type="submit" value="LogOut" />
+    <input type="submit" value="LogOut"/>
 </form>
-
-</body>
+{% endblock content %}

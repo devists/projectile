@@ -1,40 +1,41 @@
+{%extends "base.html" %}
 
-{% if form.errors %}
+{% block content %}
+    {% if form.errors %}
 
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
 
-{% if next %}
+    {% if next %}
     {% if user.is_authenticated %}
 
-<p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+    <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
     {% else %}
 
-<p>Please login to see this page.</p>
+    <p>Please login to see this page.</p>
     {% endif %}
-{% endif %}
-            <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
 
 
-                    <table>
-                        <tr>
-                            <td>{{ form.username.label_tag }}</td>
-                            <td>{{ form.username }}</td>
-                        </tr>
-                        <tr>
-                            <td>{{ form.password.label_tag }}</td>
-                            <td>{{ form.password }}</td>
-                        </tr>
-                    </table>
-
-                        <input class="btn btn-success btn-sm" type="submit" value="login" />
-            </form>
-            <form method="post" action="{% url 'register' %}">
-                {% csrf_token %}
-                <input type="submit" value="register"/>
-            </form>
-
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+        </table>
+     <input class="btn btn-success btn-sm" type="submit" value="login"/>
+    </form>
+    <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+        <input type="submit" value="register"/>
+    </form>
+{% endblock content %}
 
 
