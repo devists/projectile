@@ -13,12 +13,12 @@ class LoginForm(AuthenticationForm):
 
 
 class RegistrationForm(forms.ModelForm):
-    first_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'First_Name'}))
+    first_name = forms.CharField(label='',required=True, widget=forms.TextInput(attrs={'placeholder': 'First_Name'}))
     last_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Last_Name'}))
     username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'UserName'}))
     password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Re-Enter Password'}))
-    email = forms.EmailField(label='', required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
 
     class Meta:
         model = User
