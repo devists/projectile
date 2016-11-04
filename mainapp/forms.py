@@ -13,12 +13,12 @@ class LoginForm(AuthenticationForm):
 
 
 class RegistrationForm(forms.ModelForm):
-    first_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'First_Name'}))
+    first_name = forms.CharField(label='',required=True, widget=forms.TextInput(attrs={'placeholder': 'First_Name'}))
     last_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Last_Name'}))
     username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'UserName'}))
     password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Re-Enter Password'}))
-    email = forms.EmailField(label='', required=True, widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
 
     class Meta:
         model = User
@@ -121,3 +121,13 @@ class UserProfileForm(forms.ModelForm):
         fields = ['u_github', 'u_linkedin', 'u_contact_no', 'u_prof_title', 'u_location', 'u_bio',
                   'u_current_qualification',  'u_current_degree', 'u_current_college', 'u_education_start_year',
                   'u_education_end_year']
+
+class SearchForm(forms.Form):
+
+    CATEGORIES = (
+    ('Project', 'Project'),
+    ('Student', 'Users'),
+
+)
+    search_item = forms.CharField(label='Keyword Search', max_length=30,widget=forms.TextInput(attrs={'name': 'title'}))
+    category = forms.ChoiceField(choices=CATEGORIES, required=True)
