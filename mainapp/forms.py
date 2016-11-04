@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Project, ProjectSkills, Student
+from .models import Project, ProjectSkills, Student, UserProfile
+import datetime
 
 
 class LoginForm(AuthenticationForm):
@@ -83,6 +84,43 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ['p_title', 'p_category', 'diff_level', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
 
+
+class UserProfileForm(forms.ModelForm):
+    #username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
+    YEAR_CHOICES = []
+    for r in range(1980, (datetime.datetime.now().year + 1)):
+        YEAR_CHOICES.append((r, r))
+
+    u_github = forms.CharField(label='Github', widget=forms.TextInput(attrs={'name': 'github'}),required=True)
+    u_linkedin = forms.CharField(label='Linkedin', widget=forms.TextInput(attrs={'name': 'linkedin'}),required=True)
+    u_contact_no = forms.CharField(label='Contact_no',
+                                   widget=forms.NumberInput(attrs={'name': 'contact_no'}), required=True)
+    u_prof_title = forms.CharField(label='Professional_title',
+                                   widget=forms.TextInput(attrs={'name': 'prof_title'}), required=True)
+
+    u_location = forms.CharField(label='Location', widget=forms.TextInput(attrs={'name': 'location'}), required=True)
+    u_bio = forms.TextInput()
+    u_current_qualification = forms.CharField(label='Current_qualification',
+                                              widget=forms.TextInput(attrs={'name': 'current_qualification'}),
+                                              required=True)
+
+    u_current_degree = forms.CharField(label='Current_degree',
+                                       widget=forms.TextInput(attrs={'name': 'current_degree'}), required=True)
+
+    u_current_college = forms.CharField(label='Current_college',
+                                        widget=forms.TextInput(attrs={'name': 'current_college'}), required=True)
+
+    u_education_start_year = forms.ChoiceField(label='Education_start_year', choices=YEAR_CHOICES,
+                                               widget=forms.TextInput(attrs={'name': 'education_start_year'}),
+                                               required=True)
+    u_education_end_year = forms.ChoiceField(label='Education_end_year', choices=YEAR_CHOICES,
+                                             widget=forms.TextInput(attrs={'name': 'education_end_year'}), required=True)
+
+    class Meta:
+        model = UserProfile
+        fields = ['u_github', 'u_linkedin', 'u_contact_no', 'u_prof_title', 'u_location', 'u_bio',
+                  'u_current_qualification',  'u_current_degree', 'u_current_college', 'u_education_start_year',
+                  'u_education_end_year']
 
 class SearchForm(forms.Form):
 

@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>LoggedIn</title>
+{%extends "base.html" %}
 
-    <script>
-    {% if messages %}
-        {% for message in messages %}
-            alert(message);
-        {% endfor %}
-    {% endif %}
-    </script>
-
-</head>
-<body>
-
-            <h1>Hello</h1>
-            <p>{{ request.user.username }}</p>
+{%block content %}
+<h1>Hello</h1>
+<p>{{ request.user.username }}</p>
 
 
 <form method="post" action="{% url 'home' %}">
@@ -32,28 +19,26 @@
 <form method="get" action="{% url 'prev_posts' %}">
     {% csrf_token %}
 
-    <input type="submit" value="Posted Projects " />
+    <input type="submit" value="Posted Projects "/>
 </form>
-
-<br>
-
 
 
 <form method="get" action="{% url 'post_project' %}">
     {% csrf_token %}
 
-    <input type="submit" value="Post Project" />
+    <input type="submit" value="Post Project"/>
 </form>
 
 
+<form method="get" action = "{% url 'profile_edit'%}">
+    {% csrf_token %}
 
-<br>
-
+    <input type="submit" value="Edit Profile"/>
+</form>
 
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
 
-    <input type="submit" value="LogOut" />
+    <input type="submit" value="LogOut"/>
 </form>
-
-</body>
+{% endblock content %}

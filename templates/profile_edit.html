@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Your Profile</title>
+
+</head>
+<body>
+
+<h1>Edit Your Profile Details</h1>
+<form	method="POST" {% url 'profile_edit' %}>{% csrf_token	%}
+        Username:<input type="text" value="{{ profile.user.username }}"/>
+        {{u_form.as_p}}
+        <button	type="submit">Save</button>
+    </form>
+</body>
+</html>

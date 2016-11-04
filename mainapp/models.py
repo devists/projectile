@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -36,4 +37,20 @@ class ProjectSkills(models.Model):
         return self.project.p_title
 
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    u_github = models.URLField(max_length=500)
+    u_linkedin = models.URLField(max_length=500)
+    u_contact_no = models.CharField(max_length=50, blank=True, default='')
+    u_prof_title = models.CharField(max_length=500)
+    #u_mentor = models.BooleanField(default=False)
+    u_location = models.CharField(max_length=1000)
+    u_bio = models.TextField(default='', blank=True,max_length=2000)
+    u_current_qualification = models.CharField(max_length=500)
+    u_current_degree = models.CharField(max_length=500)
+    u_current_college = models.CharField(max_length=1000)
+    u_education_start_year = models.CharField(max_length=4)
+    u_education_end_year = models.CharField(max_length=4)
 
+    def __str__(self):
+        return self.user.username

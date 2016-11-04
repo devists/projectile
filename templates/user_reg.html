@@ -1,18 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>User Sign up</title>
-    <script>
-    {% if messages %}
-        {% for message in messages %}
-            alert(message);
-        {% endfor %}
-    {% endif %}
-    </script>
-</head>
-<body>
+{%extends "base.html" %}
 
-<form method="POST" action="{% url 'register' %}">
+{% block content %}
+    <form method="POST" action="{% url 'register' %}">
 	{% csrf_token %}
 
 	{{ form.as_p }}
@@ -20,6 +9,4 @@
 
     <input type="submit" value="Submit" />
 </form>
-
-</body>
-</html>
+{% endblock content %}
