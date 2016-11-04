@@ -3,6 +3,14 @@
 <head>
 	<title>LoggedIn</title>
 
+    <script>
+    {% if messages %}
+        {% for message in messages %}
+            alert(message);
+        {% endfor %}
+    {% endif %}
+    </script>
+
 </head>
 <body>
 
@@ -10,11 +18,25 @@
             <p>{{ request.user.username }}</p>
 
 
+<form method="post" action="{% url 'home' %}">
+    {% csrf_token %}
+    {{ search_form }}
+    <input type="submit" value="Search" />
+</form>
+
+
+
+
+<br>
+
 <form method="get" action="{% url 'prev_posts' %}">
     {% csrf_token %}
 
     <input type="submit" value="Posted Projects " />
 </form>
+
+<br>
+
 
 
 <form method="get" action="{% url 'post_project' %}">
@@ -24,6 +46,8 @@
 </form>
 
 
+
+<br>
 
 
 <form method="post" action="{% url 'logout' %}">

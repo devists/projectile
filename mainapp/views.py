@@ -1,21 +1,53 @@
 from django.contrib import messages
-from .forms import RegistrationForm, ProfileForm, ProjectForm
+from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import ProjectSkills,Project
+from .models import ProjectSkills, Project
 from django.utils import timezone
+import re
+from django.db.models import Q
 
 # Create your views here.
+
+
 @login_required(login_url="login/")
 def home(request):
-    return render(request, "home.html")
+    if request.method == 'POST':
+        search_form = SearchForm(request.POST)
+        if search_form.is_valid():
+            query_string = search_form.cleaned_data['search_item']
+            domain = search_form.cleaned_data['category']
+
+            queries = re.split(',| ',query_string)
+            #return render(request, "search_result.html", {'terms': terms})
+            q=Q()
+            if domain == 'Student':
+                for query in queries:
+                    q = q | Q(username__icontains=query)
+                results_p= User.objects.filter(q)
+                return render(request, "search_result.html", {'results_p': results_p})
+
+            elif domain == 'Project':
+                q1=Q()
+                q2=Q()
+
+                for query in queries:
+                    q1 = q1 | Q(skills__icontains=query)
+                    q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query)
+                results=ProjectSkills.objects.filter(q1)
+                results_p=Project.objects.filter(q2)
+            return render(request, "search_result.html", {'results': results,'results_p':results_p})
+
+    else:
+        search_form = SearchForm()
+    return render(request, "home.html", {'search_form': search_form})
 
 
 def user_register(request):
     if request.method == 'POST':
-        form = RegistrationForm(request.POST) #This will be used in POST request
+        form = RegistrationForm(request.POST)  # This will be used in POST request
         form_pro = ProfileForm(request.POST)
         if form.is_valid() and form_pro.is_valid():
             user = User.objects.create_user(
@@ -66,23 +98,44 @@ def post_project(request):
 
     return render(request, 'tempo.html', {'p_form': p_form})
 
-def prev_posts(request):
 
-    user=request.user
+def prev_posts(request):
+    user = request.user
 
     projects = user.project_set.all()
 
     if projects:
 
-        return render(request, 'prev_projects.html', {'projects':projects})
+        return render(request, 'prev_projects.html', {'projects': projects})
 
     else:
         return HttpResponse("You havent posted any projects yet")
 
-
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'project_detail.html', {'project': project})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

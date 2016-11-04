@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -35,4 +34,6 @@ class ProjectSkills(models.Model):
 
     def __str__(self):
         return self.project.p_title
+
+
 

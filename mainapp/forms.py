@@ -83,3 +83,13 @@ class ProjectForm(forms.ModelForm):
         model = Project
         fields = ['p_title', 'p_category', 'diff_level', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
 
+
+class SearchForm(forms.Form):
+
+    CATEGORIES = (
+    ('Project', 'Project'),
+    ('Student', 'Users'),
+
+)
+    search_item = forms.CharField(label='Keyword Search', max_length=30,widget=forms.TextInput(attrs={'name': 'title'}))
+    category = forms.ChoiceField(choices=CATEGORIES, required=True)
