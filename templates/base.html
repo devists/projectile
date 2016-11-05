@@ -1,16 +1,84 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Projectile</title>
-        <meta name="viewport"
+    <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Styles-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="{% static "lib/semantic/dist/semantic.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
     <title>Document</title>
 </head>
 <body>
+{#Header Starts#}
+<header>
+    <nav>
+        <div class="ui menu menu--cust">
+            <div class="ui container">
+                <div class="header item">Projectile</div>
+
+                <a href="#!" class="item">Browse</a>
+                <div class="item">
+                    <a href="#!" class="ui button green">New Project</a>
+                </div>
+
+                {% comment %}<a class="active item">Link</a>
+                <a class="item">Link</a>
+                <div class="ui dropdown item">
+                    Dropdown
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="item">Action</div>
+                        <div class="item">Another Action</div>
+                        <div class="item">Something else here</div>
+                        <div class="divider"></div>
+                        <div class="item">Separated Link</div>
+                        <div class="divider"></div>
+                        <div class="item">One more separated link</div>
+                    </div>
+                </div>{% endcomment %}
+
+
+                <div class="right menu">
+                    <div class="item">
+                        <div class="ui search left-select">
+                            <div class="ui icon input">
+                                {% comment %}<div class="ui basic floating dropdown button">
+                                <div class="text">This Page</div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    <div class="item">This Organization</div>
+                                    <div class="item">Entire Site</div>
+                                </div>
+                            </div>{% endcomment %}
+                                <select class="ui compact selection dropdown">
+                                    <option value="all">All</option>
+                                    <option selected="" value="articles">Articles</option>
+                                    <option value="products">Products</option>
+                                </select>
+                                <input class="" type="text" placeholder="Search countries...">
+                                <i class="inverted circular search link icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </div>
+                        {% comment %}<div class="ui action left icon input">
+                        <i class="search icon"></i>
+                        <input type="text" placeholder="Search">
+                        <button class="ui button">Submit</button>
+                    </div>{% endcomment %}
+                    </div>
+                    <span class="user-auth d-flex">
+                        <a href="#" class="item">Login</a>
+                        <a href="#" class="item">Register</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
 <div class="main-wrapper">
     <div class="content">
         {% block content %}
@@ -20,9 +88,8 @@
 
 <!--Scripts-->
 <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+        src="{% static "lib/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "lib/semantic/dist/semantic.min.js" %}"></script>
+<script src="{% static "js/main.js" %}"></script>
 </body>
 </html>
