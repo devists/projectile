@@ -8,7 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Styles-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+    <link rel="stylesheet" href="{% static "lib/semantic/dist/semantic.min.css" %}">
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <title>Document</title>
 </head>
@@ -22,9 +22,7 @@
 
 <!--Scripts-->
 <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.js"></script>
+  src="{% static "lib/jquery/dist/jquery.min.js" %}"></script>
+<script src="{% static "lib/semantic/dist/semantic.min.js" %}"></script>
 </body>
 </html>
