@@ -1,5 +1,6 @@
 /*Primary Color:rgb(76, 175, 80)*/
 /*Secondary Color:rgb(57, 66, 78)*/
+/*Gradient: linear-gradient(130deg, rgb(93, 191, 140) 0%, rgb(142, 203, 132) 25%, rgb(185, 217, 122) 50%, rgb(218, 179, 112) 75%, rgb(240, 144, 103) 100%)*/
 
 body {
     background-color: #DADADA;
@@ -11,70 +12,76 @@ body > .grid {
 
 /*Helpers*/
 
-.color-primary{
-	color: rgb(76, 175, 80) !important;
+.color-primary {
+    color: rgb(76, 175, 80) !important;
 }
 
 .color-grey {
     color: rgba(255, 255, 255, 0.51);
 }
 
-.white-space{
-	display: block;
-	width: 100%;
+.white-space {
+    display: block;
+    width: 100%;
 }
 
-.space-sm{
-	padding: 15px 0;
+.space-sm {
+    padding: 15px 0;
 }
 
-.space-mini{
-	padding: 8px 0;
+.space-mini {
+    padding: 8px 0;
 }
 
-.space-xm{
-	padding: 5px 0;
+.space-xm {
+    padding: 5px 0;
 }
 
-.space-md{
-	padding: 30px 0;
-}
-.space-lg{
-	padding: 45px 0;
+.space-md {
+    padding: 30px 0;
 }
 
-.bg-color-primary{
-	background-color: rgb(76, 175, 80);
+.space-lg {
+    padding: 45px 0;
+}
+
+.bg-color-primary {
+    background-color: rgb(76, 175, 80);
 }
 
 .title-deco {
-	line-height: 2 !important;
+    line-height: 2 !important;
 }
 
-.title-deco:before{
-	content: "";
-	background-color: rgba(76, 175, 80,0.75);
-	height: 2px;
-	display: block;
-	width: 50px;
-	box-sizing: border-box;
+.title-deco:before {
+    content: "";
+    background-color: rgba(76, 175, 80, 0.75);
+    height: 2px;
+    display: block;
+    width: 50px;
+    box-sizing: border-box;
 }
 
-.title-deco--sm:after{
-	width: 30px;
+.title-deco--sm:after {
+    width: 30px;
 }
 
-.text-center.title-deco:after{
-	margin: 0 auto;
+.text-center.title-deco:after {
+    margin: 0 auto;
 }
 
 .text-justify {
     text-align: justify;
 }
 
+.border-gradient {
+    border-image: linear-gradient(130deg, rgb(93, 191, 140) 0%, rgb(142, 203, 132) 25%, rgb(185, 217, 122) 50%, rgb(218, 179, 112) 75%, rgb(240, 144, 103) 100%) !important;
+
+    border-image-slice: 1 !important;
+}
 
 /*Semantic Rewrite*/
-.ui.menu:not(.vertical) .item>.button {
+.ui.menu:not(.vertical) .item > .button {
     font-size: .78571429rem;
 }
 
@@ -82,11 +89,11 @@ body > .grid {
     margin-top: -100px;
 }
 
-.login >.column {
+.login > .column {
     max-width: 450px;
 }
 
-.h-vh{
+.h-vh {
     height: 100vh;
 }
 
@@ -101,12 +108,14 @@ body > .grid {
     display: flex;
 }
 
-.ui.menu.menu--cust:not(.secondary):not(.text):not(.tabular):not(.borderless)>.container>.item:not(.right):not(.borderless):first-child {
+.ui.menu.menu--cust:not(.secondary):not(.text):not(.tabular):not(.borderless) > .container > .item:not(.right):not(.borderless):first-child {
     border-left: 0;
 }
 
 .ui.menu.menu--cust {
     border-radius: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    position: relative;
 }
 
 .ui.menu.menu--cust .item:before {
@@ -116,7 +125,7 @@ body > .grid {
     right: 0;
     height: 100%;
     width: 0;
-    background: rgba(34,36,38,.1);
+    background: rgba(34, 36, 38, .1);
 }
 
 .ui.menu.menu--cust .item {
@@ -127,7 +136,7 @@ body > .grid {
     /*margin-left: initial !important;*/
 }
 
-.ui.menu.menu--cust>.container, .ui.menu.menu--cust>.grid {
+.ui.menu.menu--cust > .container, .ui.menu.menu--cust > .grid {
     /*justify-content: space-between;*/
 }
 
@@ -135,7 +144,7 @@ body > .grid {
     font-size: .78571429rem;
 }
 
-.ui.search.left-select .ui.input input{
+.ui.search.left-select .ui.input input {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     color: rgb(76, 175, 80);
@@ -152,16 +161,16 @@ body > .grid {
     margin-right: 2rem;
 }
 
-.ui.menu.menu--cust i.inverted.bordered.icon, i.inverted.circular.icon{
+.ui.menu.menu--cust i.inverted.bordered.icon, i.inverted.circular.icon {
     /*background-color: rgb(76, 175, 80) !important;*/
 }
 
-.ui.menu.menu--cust .ui.icon.input>input:focus~i.icon {
+.ui.menu.menu--cust .ui.icon.input > input:focus ~ i.icon {
     background-color: rgb(76, 175, 80) !important;
     transition: all 0.3s;
 }
 
-.ui.menu.menu--cust .ui.icon.input>i.icon {
+.ui.menu.menu--cust .ui.icon.input > i.icon {
     transition: all 0.3s;
 }
 
@@ -169,7 +178,7 @@ body > .grid {
     border-color: rgb(76, 175, 80);
 }
 
-.ui.menu.menu--cust .ui.input input:focus,.ui.menu.menu--cust .ui.input.focus input ,.ui.menu.menu--cust .ui.selection.active.dropdown:hover,.ui.menu.menu--cust .ui.selection.active.dropdown:hover .menu{
+.ui.menu.menu--cust .ui.input input:focus, .ui.menu.menu--cust .ui.input.focus input, .ui.menu.menu--cust .ui.selection.active.dropdown:hover, .ui.menu.menu--cust .ui.selection.active.dropdown:hover .menu {
     border-color: rgb(76, 175, 80);
 }
 
@@ -189,8 +198,66 @@ body > .grid {
     margin: 0 0.1rem;
 }
 
-.ui.main-footer .ui.list>.item:after, .ui.main-footer .ui.list>.list>.item, .ui.main-footer ol.ui.list>li:first-child:after, .ui.main-footer ul.ui.list>li:first-child:after {
+.ui.main-footer .ui.list > .item:after, .ui.main-footer .ui.list > .list > .item, .ui.main-footer ol.ui.list > li:first-child:after, .ui.main-footer ul.ui.list > li:first-child:after {
     visibility: visible;
+}
+
+.ui.login {
+    background-image: url("/static/img/login-hero.jpg");
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    height: calc(100vh - 64px);
+}
+
+.login--cust .ui.segment {
+    background: transparent;
+}
+
+.ui.grid > .column:not(.row).login__card {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 4.5rem;
+}
+
+.login__card .ui.form input:not([type]), .ui.form input[type=text], .ui.form input[type=email], .ui.form input[type=search], .ui.form input[type=password], .ui.form input[type=date], .ui.form input[type=datetime-local], .ui.form input[type=tel], .ui.form input[type=time], .ui.form input[type=file], .ui.form input[type=url], .ui.form input[type=number] {
+    background: transparent;
+    color: rgb(125, 125, 125);
+}
+
+.login__card .ui.form input:not([type]):focus, .ui.form input[type=text]:focus, .ui.form input[type=email]:focus, .ui.form input[type=search]:focus, .ui.form input[type=password]:focus, .ui.form input[type=date]:focus, .ui.form input[type=datetime-local]:focus, .ui.form input[type=tel]:focus, .ui.form input[type=time]:focus, .ui.form input[type=file]:focus, .ui.form input[type=url]:focus, .ui.form input[type=number]:focus {
+    background: transparent;
+    color: rgb(100, 100, 100);;
+}
+
+/*.login__card .ui.form .field .ui.input input ~ i{
+    opacity: 1;
+}*/
+
+.login__card .ui.icon.input > input ~ i.icon{
+    /*font-size: 4rem;*/
+    /*background-color: #0d71bb;*/
+}
+
+.login__card .ui.icon.input > input:focus + i.icon{
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.login__card .ui.button {
+    line-height: 1.45em;
+    border-radius: 0;
+}
+
+.login__card .ui.form .field {
+    margin: 0 0 2em;
+}
+
+.login__card .ui.input {
+    color: rgb(76, 175, 80);
+}
+
+.login__card .ui.icon.input > i.icon:not(.link) {
+    opacity: 0.8;
 }
 
 footer.main-footer {
