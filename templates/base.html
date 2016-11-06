@@ -24,51 +24,19 @@
                 <div class="item">
                     <a href="#!" class="ui button green">New Project</a>
                 </div>
-
-                {% comment %}<a class="active item">Link</a>
-                <a class="item">Link</a>
-                <div class="ui dropdown item">
-                    Dropdown
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item">Action</div>
-                        <div class="item">Another Action</div>
-                        <div class="item">Something else here</div>
-                        <div class="divider"></div>
-                        <div class="item">Separated Link</div>
-                        <div class="divider"></div>
-                        <div class="item">One more separated link</div>
-                    </div>
-                </div>{% endcomment %}
-
-
                 <div class="right menu">
                     <div class="item">
                         <div class="ui search left-select">
                             <div class="ui icon input">
-                                {% comment %}<div class="ui basic floating dropdown button">
-                                <div class="text">This Page</div>
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    <div class="item">This Organization</div>
-                                    <div class="item">Entire Site</div>
-                                </div>
-                            </div>{% endcomment %}
                                 <select class="ui compact selection dropdown">
-                                    <option value="all">All</option>
-                                    <option selected="" value="articles">Articles</option>
-                                    <option value="products">Products</option>
+                                    <option selected="" value="project">Project</option>
+                                    <option value="student">Student</option>
                                 </select>
                                 <input class="" type="text" placeholder="Search countries...">
                                 <i class="inverted circular search link icon"></i>
                             </div>
                             <div class="results"></div>
                         </div>
-                        {% comment %}<div class="ui action left icon input">
-                        <i class="search icon"></i>
-                        <input type="text" placeholder="Search">
-                        <button class="ui button">Submit</button>
-                    </div>{% endcomment %}
                     </div>
                     <span class="user-auth d-flex">
                         <a href="#" class="item">Login</a>
@@ -86,6 +54,45 @@
     </div>
 </div>
 
+<footer class="main-footer">
+    <div class="white-space space-md"></div>
+    <div class="ui vertical footer segment">
+        <div class="ui container">
+            <div class="ui three column grid">
+                <div class="column">
+                    <h2 class="ui inverted header title-deco"><span>About</span></h2>
+                    <div class="ui color-grey list text-justify">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere id iure nihil perspiciatis suscipit, totam voluptatum? Ab accusantium ducimus eligendi enim iure modi nesciunt sunt? Adipisci aliquam corporis delectus dolores eligendi enim explicabo laboriosam maxime minus molestias nisi perferendis perspiciatis quidem recusandae repellat sit, temporibus!
+                    </div>
+                </div>
+                <div class="column">
+                    <h2 class="ui inverted header title-deco">SiteMap</h2>
+                    <div class="ui inverted link list link-sitemap">
+                        <a href="#" class="item">Home</a>
+                        <a href="#" class="item">Dashboard</a>
+                        <a href="#" class="item">Login</a>
+                        <a href="#" class="item">Register</a>
+                        <a href="#" class="item">Browse Project</a>
+                        <a href="#" class="item">Browse Students</a>
+                        <a href="#" class="item">New Projects</a>
+                    </div>
+                </div>
+                <div class="column">
+                    <h2 class="ui inverted header title-deco">Contact</h2>
+                    <p class="color-grey">c/o Block No.9, IIIT Vadodara, Government Engineering College, Sector-28, Gandhinagar, Gujarat - 382028</p>
+                    <div class="white-space space-mini"></div>
+                    <div class="phone color-grey">
+                        <i class="call icon color-primary"></i>+91 70 48382917
+                    </div>
+                    <div class="mail color-grey ui inverted link list">
+                        <a class="item" href="mailto:ansarimofid@gmail.com"><i class="mail outline icon color-primary"></i> info@projectile.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="white-space space-md"></div>
+</footer>
 <!--Scripts-->
 <script
         src="{% static "lib/jquery/dist/jquery.min.js" %}"></script>
