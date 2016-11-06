@@ -24,6 +24,11 @@
                     Log-in to your account
                 </div>{% endcomment %}
             </h2>
+            <div class="login__card-header-circle">
+                <div class="ui login__card-header">
+                <i class="user icon"></i>
+            </div>
+            </div>
             <form method="post" class="ui large form" action="{% url 'login' %}">
                 {% csrf_token %}
                 <div class="ui">
