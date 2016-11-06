@@ -7,9 +7,9 @@ import datetime
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+                               widget=forms.TextInput(attrs={'class': 'border-gradient', 'name': 'username','placeholder':'Username'}))
     password = forms.CharField(label="Password", max_length=30,
-                               widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
+                               widget=forms.PasswordInput(attrs={'class': 'border-gradient', 'name': 'password','placeholder':'Password'}))
 
 
 class RegistrationForm(forms.ModelForm):
