@@ -4,10 +4,16 @@
 
 body {
     background-color: #DADADA;
+    display: flex;
+    flex-direction: column;
 }
 
 body > .grid {
     height: 100%;
+}
+
+.main-wrapper {
+    flex: 1;
 }
 
 /*Helpers*/
@@ -159,6 +165,14 @@ body > .grid {
 
 .ui.menu.menu--cust .header.item, .ui.vertical.menu .header.item {
     margin-right: 2rem;
+}
+
+.ui.menu.menu--cust .header.item a {
+    color: rgba(0,0,0,.8);
+}
+
+.ui.menu.menu--cust .header.item a:hover {
+    color: rgb(0, 0, 0);
 }
 
 .ui.menu.menu--cust i.inverted.bordered.icon, i.inverted.circular.icon {
