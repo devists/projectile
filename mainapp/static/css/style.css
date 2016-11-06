@@ -3,6 +3,7 @@
 /*Gradient: linear-gradient(130deg, rgb(46, 185, 113) 0%, rgb(96, 202, 79) 25%, rgb(168, 216, 74) 50%, rgb(218, 159, 59) 75%, rgb(239, 107, 51) 100%)*/
 
 body {
+    font-family: 'Roboto Slab', serif;
     background-color: #DADADA;
     display: flex;
     flex-direction: column;
@@ -16,6 +17,18 @@ body > .grid {
     flex: 1;
 }
 
+.ui.menu {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ui.header {
+    font-family: 'Roboto', sans-serif;
+}
+
+.ui.button {
+    font-family: 'Roboto Slab', serif;
+}
+
 /*Helpers*/
 
 .color-primary {
@@ -24,6 +37,13 @@ body > .grid {
 
 .color-grey {
     color: rgba(255, 255, 255, 0.51);
+}
+
+.fw-100 {
+    font-weight: 100 !important;
+}
+.fw-300 {
+    font-weight: 300 !important;
 }
 
 .white-space {
@@ -236,6 +256,8 @@ body > .grid {
 .login__card .ui.form input:not([type]), .ui.form input[type=text], .ui.form input[type=email], .ui.form input[type=search], .ui.form input[type=password], .ui.form input[type=date], .ui.form input[type=datetime-local], .ui.form input[type=tel], .ui.form input[type=time], .ui.form input[type=file], .ui.form input[type=url], .ui.form input[type=number] {
     background: transparent;
     color: rgb(125, 125, 125);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 100;
 }
 
 .login__card .ui.form input:not([type]):focus, .ui.form input[type=text]:focus, .ui.form input[type=email]:focus, .ui.form input[type=search]:focus, .ui.form input[type=password]:focus, .ui.form input[type=date]:focus, .ui.form input[type=datetime-local]:focus, .ui.form input[type=tel]:focus, .ui.form input[type=time]:focus, .ui.form input[type=file]:focus, .ui.form input[type=url]:focus, .ui.form input[type=number]:focus {
@@ -309,6 +331,29 @@ body > .grid {
     margin-left: -91px;
     margin-top: 75px;
     color: rgb(245, 250, 245);
+}
+
+.login-extras {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.75rem;
+    font-weight: 300;
+}
+
+.login-extras > a {
+    color: rgb(125, 125, 125);
+}
+
+.login-extras > a:hover {
+    color: rgb(90, 90, 90);
+}
+
+a.color-orange {
+    color: rgba(239, 107, 51, 0.81) !important;
+}
+
+a.color-orange:hover {
+    color: rgba(239, 107, 51, 1) !important;
 }
 
 footer.main-footer {

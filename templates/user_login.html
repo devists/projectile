@@ -2,20 +2,6 @@
 
 {% block content %}
 
-    {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
-
-    {% if next %}
-        {% if user.is_authenticated %}
-
-            <p>Your account doesn't have access to this page. To proceed,
-                please login with an account that has access.</p>
-        {% else %}
-
-            <p>Please login to see this page.</p>
-        {% endif %}
-    {% endif %}
     <div class="ui middle aligned center aligned grid h-vh login login--cust">
         <div class="column login__card">
             <h2 class="ui teal image header">
@@ -26,12 +12,29 @@
             </h2>
             <div class="login__card-header-circle">
                 <div class="ui login__card-header">
-                <i class="user icon"></i>
+                    <i class="user icon"></i>
+                </div>
             </div>
-            </div>
-            <form method="post" class="ui large form" action="{% url 'login' %}">
+            <form method="post" class="ui large form {% if form.errors or next %}error{% endif %}"
+                  action="{% url 'login' %}">
                 {% csrf_token %}
                 <div class="ui">
+                    <div class="ui error message">
+                        {% if form.errors %}
+                            <p>Username and password didn't match. Try again.</p>
+                        {% endif %}
+
+                        {% if next %}
+                            {% if user.is_authenticated %}
+
+                                <p>Your account doesn't have access to this page. To proceed,
+                                    please login with an account that has access.</p>
+                            {% else %}
+
+                                <p>Please login to see this page.</p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
                     <div class="field">
                         <div class="ui huge left icon input">
                             {{ form.username }}
@@ -42,13 +45,15 @@
                         <div class="ui huge left icon input">
 
                             {{ form.password }}
-                            <i class="lock icon"></i>
+                            <i class="privacy icon"></i>
                         </div>
                     </div>
-                    <input class="ui fluid huge green submit button" type="submit" value="Login"/>
+                    <input class="ui fluid huge green submit button fw-100" type="submit" value="Login"/>
+                    <div class="login-extras">
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                        <a href="{% url 'register' %}" class="register color-orange">Register</a>
+                    </div>
                 </div>
-
-                <div class="ui error message"></div>
 
             </form>
 
