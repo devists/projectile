@@ -4,7 +4,7 @@
 
 body {
     font-family: 'Roboto Slab', serif;
-    background-color: #DADADA;
+    background-color: #f5f5f5;
     display: flex;
     flex-direction: column;
 }
@@ -29,7 +29,25 @@ body > .grid {
     font-family: 'Roboto Slab', serif;
 }
 
+.ui.card>.content>.header, .ui.cards>.card>.content>.header {
+    font-family: 'Roboto', sans-serif;
+}
+
 /*Helpers*/
+
+
+.h-vh {
+    height: 100vh;
+}
+
+.d-flex {
+    display: flex;
+}
+
+
+.float-left {
+    float: left;
+}
 
 .color-primary {
     color: rgb(76, 175, 80) !important;
@@ -116,6 +134,15 @@ body > .grid {
 }
 
 /*Semantic Rewrite*/
+
+.ui.toggle.checkbox input:checked~.box:before, .ui.toggle.checkbox input:checked~label:before {
+    background-color: rgb(76, 175, 80) !important;
+}
+
+.ui.toggle.checkbox input:focus:checked~.box:before, .ui.toggle.checkbox input:focus:checked~label:before {
+    background-color: rgb(76, 175, 80) !important;
+}
+
 .ui.menu:not(.vertical) .item > .button {
     font-size: .78571429rem;
 }
@@ -127,11 +154,6 @@ body > .grid {
 .login > .column {
     max-width: 410px;
 }
-
-.h-vh {
-    height: 100vh;
-}
-
 .ui.green.button, .ui.green.buttons .button {
     background-color: rgb(76, 175, 80);
     color: rgb(255, 255, 255);
@@ -139,8 +161,18 @@ body > .grid {
     background-image: none;
 }
 
-.d-flex {
-    display: flex;
+.ui.basic.green.button, .ui.basic.green.buttons .button {
+    box-shadow: 0 0 0 1px rgb(76, 175, 80) inset!important;
+    color: rgb(76, 175, 80);
+}
+
+.ui.inverted.green.button, .ui.inverted.green.buttons .button {
+    box-shadow: 0 0 0 1px rgb(76, 175, 80) inset!important;
+    color: rgb(76, 175, 80);
+}
+
+.ui.inverted.green.button:hover, .ui.inverted.green.buttons .button:hover {
+    background-color: rgb(76, 175, 80);
 }
 
 .ui.menu.menu--cust:not(.secondary):not(.text):not(.tabular):not(.borderless) > .container > .item:not(.right):not(.borderless):first-child {
@@ -376,14 +408,15 @@ a.color-orange:hover {
 }
 
 .explore-card .explore-card__content {
-    border: 1px solid rgba(34, 36, 38, .15);
+    border-left: 3px solid rgba(34, 36, 38, .15);
     width: calc(100% - 260px);
     padding: 2rem;
 }
 
 .menu.sidebar--cust {
     font-family: 'Roboto Slab', serif;
-    padding: 2rem;
+    padding: 2.5rem;
+    border: 0;
 }
 
 .ui.sidebar.sidebar--cust {
@@ -407,8 +440,29 @@ a.color-orange:hover {
     border-radius: 50%;
 }
 
+.sidebar--cust.ui.menu {
+    border-bottom: 0;
+}
+
 .sidebar__filter {
     line-height: 1.75;
+}
+
+.project-card.ui.card>.content, .project-card.ui.cards>.card>.content {
+    padding: 1.75rem;
+}
+
+.project-card.ui.card:hover, .project-card.ui.cards>.card:hover {
+    box-shadow: 0 1px 3px 0 rgb(76, 175, 80),0 0 0 1px rgb(76, 175, 80);
+}
+
+.project-card .ui.label {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.project-card.ui.card .meta .meta-date {
+    margin-right: 0.5rem;
 }
 
 footer.main-footer {
