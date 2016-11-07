@@ -356,6 +356,20 @@ a.color-orange:hover {
     color: rgba(239, 107, 51, 1) !important;
 }
 
+.explore-card {
+    background-color: white;
+    margin: 2.5rem;
+}
+
+.explore-card .ui.bottom.visible.sidebar, .ui.left.visible.sidebar, .ui.right.visible.sidebar, .ui.top.visible.sidebar {
+    box-shadow: none;
+}
+
+.explore-card .explore-card__content {
+    border: 1px solid rgba(34,36,38,.15);
+    width: calc(100% - 260px);
+}
+
 footer.main-footer {
     background-image: url("/static/img/footer.jpg");
     background-size: cover;

@@ -156,3 +156,6 @@ def profile_edit(request):
     else:
         u_form = UserProfileForm(instance=profile)
     return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
+
+def explore_project(request):
+    return render(request, "explore.html", {})

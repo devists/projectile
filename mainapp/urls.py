@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^profile_update/$', views.profile_update, name='profile_update'),
     url(r'^project_edit/(?P<project_id>\d+)/$', views.project_edit, name='project_edit'),
     url(r'^profile_edit/$', views.profile_edit, name='profile_edit'),
+    url(r'^projects/$', views.explore_project, name='explore_project'),
 ]
