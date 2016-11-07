@@ -39,9 +39,14 @@ body > .grid {
     color: rgba(255, 255, 255, 0.51);
 }
 
+.color-g125 {
+    color: rgb(125, 125, 125)
+}
+
 .fw-100 {
     font-weight: 100 !important;
 }
+
 .fw-300 {
     font-weight: 300 !important;
 }
@@ -88,12 +93,16 @@ body > .grid {
     box-sizing: border-box;
 }
 
-.title-deco--sm:after {
+.title-deco--sm:before {
     width: 30px;
 }
 
-.text-center.title-deco:after {
+.text-center.title-deco:before {
     margin: 0 auto;
+}
+
+.text-center {
+    text-align: center !important;
 }
 
 .text-justify {
@@ -188,7 +197,7 @@ body > .grid {
 }
 
 .ui.menu.menu--cust .header.item a {
-    color: rgba(0,0,0,.8);
+    color: rgba(0, 0, 0, .8);
 }
 
 .ui.menu.menu--cust .header.item a:hover {
@@ -269,12 +278,12 @@ body > .grid {
     opacity: 1;
 }*/
 
-.login__card .ui.icon.input > input ~ i.icon{
+.login__card .ui.icon.input > input ~ i.icon {
     /*font-size: 4rem;*/
     /*background-color: #0d71bb;*/
 }
 
-.login__card .ui.icon.input > input:focus + i.icon{
+.login__card .ui.icon.input > input:focus + i.icon {
     opacity: 1;
     transition: all 0.3s;
 }
@@ -320,7 +329,7 @@ body > .grid {
     text-align: center;
     -webkit-border-radius:;
     -moz-border-radius:;
-    border-radius:50%;
+    border-radius: 50%;
     background-image: linear-gradient(130deg, rgb(46, 185, 113) 0%, rgb(96, 202, 79) 25%, rgb(168, 216, 74) 50%, rgb(218, 159, 59) 75%, rgb(239, 107, 51) 100%);
 }
 
@@ -356,9 +365,10 @@ a.color-orange:hover {
     color: rgba(239, 107, 51, 1) !important;
 }
 
-.explore-card {
+.ui.explore-card {
     background-color: white;
     margin: 2.5rem;
+    display: flex;
 }
 
 .explore-card .ui.bottom.visible.sidebar, .ui.left.visible.sidebar, .ui.right.visible.sidebar, .ui.top.visible.sidebar {
@@ -366,8 +376,39 @@ a.color-orange:hover {
 }
 
 .explore-card .explore-card__content {
-    border: 1px solid rgba(34,36,38,.15);
+    border: 1px solid rgba(34, 36, 38, .15);
     width: calc(100% - 260px);
+    padding: 2rem;
+}
+
+.menu.sidebar--cust {
+    font-family: 'Roboto Slab', serif;
+    padding: 2rem;
+}
+
+.ui.sidebar.sidebar--cust {
+    position: static;
+}
+
+.sidebar--cust .ui.vertical.menu .item:before {
+    width: 0;
+}
+
+.sidebar--cust .ui.header > .icon {
+    font-size: inherit;
+    line-height: 1;
+    margin-right: 0;
+}
+
+.sidebar--cust .sidebar__or span {
+    display: inline-block;
+    padding: 0.5rem;
+    border: 1px solid rgb(125, 125, 125);
+    border-radius: 50%;
+}
+
+.sidebar__filter {
+    line-height: 1.75;
 }
 
 footer.main-footer {
