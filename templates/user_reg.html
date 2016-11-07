@@ -1,12 +1,92 @@
 {%extends "base.html" %}
 
 {% block content %}
-    <form method="POST" action="{% url 'register' %}">
-	{% csrf_token %}
+    <div class="ui middle aligned center aligned grid login h-vh register login--cust">
+        <div class="column login__card">
+            <h2 class="ui teal image header">
+                {#                <img src="assets/images/logo.png" class="image">#}
+                {% comment %}<div class="content">
+                    Create New Account
+                </div>{% endcomment %}
+            </h2>
+            <div class="login__card-header-circle">
+                <div class="ui login__card-header">
+                    <i class="user icon"></i>
+                </div>
+            </div>
+            <form method="post" class="ui large form {% if form.errors or next %}error{% endif %}"
+                  action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="ui form">
+                    <div class="ui error message"></div>
+                    <div class="two fields">
+                        <div class="field">
+                            <div class="ui huge left input">
+                                {{ form.first_name}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui huge left input icom">
+                                {{ form.last_name }}
+                            </div>
+                        </div>
+                    </div>
+                    {% if form.errors.username %}
+                    <div class="ui error message">
+                        {{form.errors.username}}
+                    </div>
+                    {% endif %}
+                    <div class="field">
+                        <div class="ui huge left input">
+                            {{ form.username }}
+                        </div>
+                    </div>
+                    {% if form.errors.email %}
+                    <div class="ui error message">
+                        {{form.errors.email}}
+                    </div>
+                    {% endif %}
+                    <div class="field">
+                        <div class="ui huge left input">
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="field">
+                      {{ form_pro.u_gender }}
+                    </div>
+                    <div class="field">
+                        <div class="ui calendar" id="calender">
+                            <div class="ui huge input left">
+                                {{ form_pro.u_dob }}
+                            </div>
+                        </div>
+                    </div>
+                    {% if form.errors.all %}
+                    <div class="ui error message">
+                        {{form.values.all}}
+                    </div>
+                    {% endif %}
+                    <div class="field">
+                        <div class="ui huge left input">
+                            {{ form.password1 }}
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui huge left input">
+                            {{ form.password2 }}
+                        </div>
+                    </div>
 
-	{{ form.as_p }}
-    {{ form_pro.as_p }}
+                    <input class="ui fluid huge green submit button fw-100" type="submit" value="Register"/>
+                    <div class="login-extras">
+                        Already have account?<a href="{% url 'login' %}" class="register color-orange">Login</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
-    <input type="submit" value="Submit" />
-</form>
 {% endblock content %}
+
+
+

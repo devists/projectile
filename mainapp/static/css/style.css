@@ -361,3 +361,32 @@ footer.main-footer {
     background-size: cover;
     background-position: center;
 }
+.register{
+    height: auto !important;
+}
+.register.ui.grid > .column:not(.row).login__card{
+    align-self: baseline !important;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+.register > .column {
+    max-width: 650px ;
+}
+.register .ui.form .fields{
+    margin: 0 -.5em 0em !important;
+}
+.register .login__card .ui.form .field{
+    margin: 0 0 1em;
+}
+.register .login__card{
+    top:30px;
+}
+.register .ui.form .field>.selection.dropdown{
+    background: transparent;
+    color: rgb(125, 125, 125);
+    font-family: 'Roboto Slab', serif;
+    font-weight: 100;
+    line-height: 1em;
+    padding: .67861429em 1em;
+    font-size: 1.4em;
+}
