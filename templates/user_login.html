@@ -4,12 +4,7 @@
 
     <div class="ui middle aligned center aligned grid h-vh login login--cust">
         <div class="column login__card">
-            <h2 class="ui teal image header">
-                {#                <img src="assets/images/logo.png" class="image">#}
-                {% comment %}<div class="content">
-                    Log-in to your account
-                </div>{% endcomment %}
-            </h2>
+            <h2 class="ui teal image header"></h2>
             <div class="login__card-header-circle">
                 <div class="ui login__card-header">
                     <i class="user icon"></i>
@@ -54,12 +49,7 @@
                         <a href="{% url 'register' %}" class="register color-orange">Register</a>
                     </div>
                 </div>
-
             </form>
-
-            {% comment %}<div class="ui message">
-                New to us? <a href="{% url 'register' %}">Sign Up</a>
-            </div>{% endcomment %}
         </div>
     </div>
 {% endblock content %}
