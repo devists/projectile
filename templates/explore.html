@@ -2,6 +2,7 @@
 {#-----------------------#}
 {% block content %}
     <div class="ui bottom attached container explore-card">
+        {#    Sidebar#}
         <div class="ui visible left vertical sidebar sidebar--cust menu">
             <div class="white-space space-xm"></div>
 
@@ -63,7 +64,7 @@
                     <h4 class="title-deco title-deco--sm"><span>Location</span></h4>
                     <div class="ui search">
                         <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Search Keyword...">
+                            <input class="prompt" type="text" placeholder="Filter by Location...">
                             <i class="search icon"></i>
                         </div>
                         <div class="results"></div>
@@ -133,19 +134,322 @@
             <div class="white-space space-xm"></div>
 
         </div>
+        {#        Explore Content#}
         <div class="explore-card__content">
             <div class="ui basic">
-                <h3 class="ui header">Application Content</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus accusantium aperiam aspernatur
-                    assumenda, blanditiis delectus, esse ex excepturi expedita harum illo illum incidunt inventore iure
-                    magni mollitia natus necessitatibus nemo perferendis possimus quam qui quibusdam similique sint
-                    tempore totam ullam.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus aliquid ea explicabo ipsa. Ad
-                    aliquid aspernatur, at autem dicta esse ipsam, laudantium nemo officiis quia recusandae
-                    reprehenderit sed similique soluta.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus amet asperiores commodi ducimus
-                    esse id illum iure sint tempora tenetur.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe?</p>
+                <div></div>
+                {#                Content Counter#}
+                <h3 class="ui header text-center content-count fw-300">Showing <span
+                        class="content-counter color-primary">all</span> result
+                </h3>
+                <div class="white-space space-mini"></div>
+
+                {#                Results#}
+                <div class="result-container">
+                    {#                    Project Cards#}
+                    <div class="ui three stackable cards">
+
+                        {#                        Project Card#}
+                        <div class="ui card project-card">
+                            {#                            Card Content#}
+                            <div class="content">
+                                <div class="header color-primary fw-300">Mobile Application Develoment</div>
+                                {#                                Card Meta#}
+                                <div class="meta">
+                                    {#                                    Date#}
+                                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                                        2 days ago
+                                    </div>
+                                    {#                                    Level#}
+                                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                                        Beginner
+                                    </div>
+                                    {#                                    Category#}
+                                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                                        Android Development
+
+                                    </div>
+                                    {#                                    Location#}
+                                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                                        Ahmedabad, Gujarat
+
+                                    </div>
+                                </div>
+
+                                {#                                Project Description#}
+                                <div class="description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quos, sint!
+                                        Accusantium architecto aspernatur culpa enim esse est eveniet fugiat harum magni</p>
+                                </div>
+                                <div class="white-space space-xm"></div>
+
+                                {#                                Skill Tags#}
+                                <div class="skills-tag">
+                                    <div class="ui label">Java</div>
+                                    <div class="ui label">Android</div>
+                                    <div class="ui label">Algo</div>
+                                </div>
+                                <div class="white-space space-mini"></div>
+
+                                {#                                Apply on Project Button#}
+                                <div class="view-btn text-center">
+                                    <button class="ui inverted green button fw-300">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {#                        Project Card#}
+                        <div class="ui card project-card">
+                            {#                            Card Content#}
+                            <div class="content">
+                                <div class="header color-primary fw-300">Mobile Application Develoment</div>
+                                {#                                Card Meta#}
+                                <div class="meta">
+                                    {#                                    Date#}
+                                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                                        2 days ago
+                                    </div>
+                                    {#                                    Level#}
+                                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                                        Beginner
+                                    </div>
+                                    {#                                    Category#}
+                                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                                        Android Development
+
+                                    </div>
+                                    {#                                    Location#}
+                                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                                        Ahmedabad, Gujarat
+
+                                    </div>
+                                </div>
+
+                                {#                                Project Description#}
+                                <div class="description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quos, sint!
+                                        Accusantium architecto aspernatur culpa enim esse est eveniet fugiat harum magni</p>
+                                </div>
+                                <div class="white-space space-xm"></div>
+
+                                {#                                Skill Tags#}
+                                <div class="skills-tag">
+                                    <div class="ui label">Java</div>
+                                    <div class="ui label">Android</div>
+                                    <div class="ui label">Algo</div>
+                                </div>
+                                <div class="white-space space-mini"></div>
+
+                                {#                                Apply on Project Button#}
+                                <div class="view-btn text-center">
+                                    <button class="ui inverted green button fw-300">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {#                        Project Card#}
+                        <div class="ui card project-card">
+                            {#                            Card Content#}
+                            <div class="content">
+                                <div class="header color-primary fw-300">Mobile Application Develoment</div>
+                                {#                                Card Meta#}
+                                <div class="meta">
+                                    {#                                    Date#}
+                                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                                        2 days ago
+                                    </div>
+                                    {#                                    Level#}
+                                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                                        Beginner
+                                    </div>
+                                    {#                                    Category#}
+                                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                                        Android Development
+
+                                    </div>
+                                    {#                                    Location#}
+                                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                                        Ahmedabad, Gujarat
+
+                                    </div>
+                                </div>
+
+                                {#                                Project Description#}
+                                <div class="description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quos, sint!
+                                        Accusantium architecto aspernatur culpa enim esse est eveniet fugiat harum magni</p>
+                                </div>
+                                <div class="white-space space-xm"></div>
+
+                                {#                                Skill Tags#}
+                                <div class="skills-tag">
+                                    <div class="ui label">Java</div>
+                                    <div class="ui label">Android</div>
+                                    <div class="ui label">Algo</div>
+                                </div>
+                                <div class="white-space space-mini"></div>
+
+                                {#                                Apply on Project Button#}
+                                <div class="view-btn text-center">
+                                    <button class="ui inverted green button fw-300">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {#                        Project Card#}
+                        <div class="ui card project-card">
+                            {#                            Card Content#}
+                            <div class="content">
+                                <div class="header color-primary fw-300">Mobile Application Develoment</div>
+                                {#                                Card Meta#}
+                                <div class="meta">
+                                    {#                                    Date#}
+                                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                                        2 days ago
+                                    </div>
+                                    {#                                    Level#}
+                                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                                        Beginner
+                                    </div>
+                                    {#                                    Category#}
+                                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                                        Android Development
+
+                                    </div>
+                                    {#                                    Location#}
+                                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                                        Ahmedabad, Gujarat
+
+                                    </div>
+                                </div>
+
+                                {#                                Project Description#}
+                                <div class="description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quos, sint!
+                                        Accusantium architecto aspernatur culpa enim esse est eveniet fugiat harum magni
+                                        nisi obcaecati optio pariatur quae, repellat repellendus sed sequi sit veniam.
+                                        Consequuntur, vitae?</p>
+                                </div>
+                                <div class="white-space space-xm"></div>
+
+                                {#                                Skill Tags#}
+                                <div class="skills-tag">
+                                    <div class="ui label">Java</div>
+                                    <div class="ui label">Android</div>
+                                    <div class="ui label">Algo</div>
+                                </div>
+                                <div class="white-space space-mini"></div>
+
+                                {#                                Apply on Project Button#}
+                                <div class="view-btn text-center">
+                                    <button class="ui inverted green button fw-300">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+                        {#                        Project Card#}
+                        <div class="ui card project-card">
+                            {#                            Card Content#}
+                            <div class="content">
+                                <div class="header color-primary fw-300">Mobile Application Develoment</div>
+                                {#                                Card Meta#}
+                                <div class="meta">
+                                    {#                                    Date#}
+                                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                                        2 days ago
+                                    </div>
+                                    {#                                    Level#}
+                                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                                        Beginner
+                                    </div>
+                                    {#                                    Category#}
+                                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                                        Android Development
+
+                                    </div>
+                                    {#                                    Location#}
+                                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                                        Ahmedabad, Gujarat
+
+                                    </div>
+                                </div>
+
+                                {#                                Project Description#}
+                                <div class="description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quos, sint!
+                                        Accusantium architecto aspernatur culpa enim esse est eveniet fugiat harum magni
+                                        nisi obcaecati optio pariatur quae, repellat repellendus sed sequi sit veniam.
+                                        Consequuntur, vitae?</p>
+                                </div>
+                                <div class="white-space space-xm"></div>
+
+                                {#                                Skill Tags#}
+                                <div class="skills-tag">
+                                    <div class="ui label">Java</div>
+                                    <div class="ui label">Android</div>
+                                    <div class="ui label">Algo</div>
+                                </div>
+                                <div class="white-space space-mini"></div>
+
+                                {#                                Apply on Project Button#}
+                                <div class="view-btn text-center">
+                                    <button class="ui inverted green button fw-300">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {#                        Project Card#}
+                        <div class="ui card project-card">
+                            {#                            Card Content#}
+                            <div class="content">
+                                <div class="header color-primary fw-300">Mobile Application Develoment</div>
+                                {#                                Card Meta#}
+                                <div class="meta">
+                                    {#                                    Date#}
+                                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                                        2 days ago
+                                    </div>
+                                    {#                                    Level#}
+                                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                                        Beginner
+                                    </div>
+                                    {#                                    Category#}
+                                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                                        Android Development
+
+                                    </div>
+                                    {#                                    Location#}
+                                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                                        Ahmedabad, Gujarat
+
+                                    </div>
+                                </div>
+
+                                {#                                Project Description#}
+                                <div class="description">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quos, sint!
+                                        Accusantium architecto aspernatur culpa enim esse est eveniet fugiat harum magni
+                                        nisi obcaecati optio pariatur quae, repellat repellendus sed sequi sit veniam.
+                                        Consequuntur, vitae?</p>
+                                </div>
+                                <div class="white-space space-xm"></div>
+
+                                {#                                Skill Tags#}
+                                <div class="skills-tag">
+                                    <div class="ui label">Java</div>
+                                    <div class="ui label">Android</div>
+                                    <div class="ui label">Algo</div>
+                                </div>
+                                <div class="white-space space-mini"></div>
+
+                                {#                                Apply on Project Button#}
+                                <div class="view-btn text-center">
+                                    <button class="ui inverted green button fw-300">Apply</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
