@@ -53,3 +53,6 @@ docs/_build/
 venv
 .idea
 db.sqlite3
+
+#bower
+mainapp/static/lib
