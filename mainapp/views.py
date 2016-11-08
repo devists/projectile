@@ -123,6 +123,12 @@ def prev_posts(request):
     else:
         return HttpResponse("You haven't posted any projects yet")
 
+def all_projects(request):
+    # projects = Project.objects.all()
+    projects = Project.objects.get(p_title='sdsds')
+
+    if projects:
+        return render(request,'projects.html',{'projects':projects})
 
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
@@ -157,8 +163,12 @@ def profile_edit(request):
         u_form = UserProfileForm(instance=profile)
     return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
 
-def explore_project(request):
-    return render(request, "projects.html", {})
+def explore_projects(request):
+    projects = Project.objects.all()
+    # projects = Project.objects.get(p_title='sdsds')
 
-def explore_profile(request):
-    return render(request, "profiles.html", {})
+    return render(request, "projects.html", {'data':projects})
+
+def explore_profiles(request):
+    profiles = UserProfile.objects.all()
+    return render(request, "profiles.html", {'data':profiles})
