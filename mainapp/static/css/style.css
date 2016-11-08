@@ -29,12 +29,11 @@ body > .grid {
     font-family: 'Roboto Slab', serif;
 }
 
-.ui.card>.content>.header, .ui.cards>.card>.content>.header {
+.ui.card > .content > .header, .ui.cards > .card > .content > .header {
     font-family: 'Roboto', sans-serif;
 }
 
 /*Helpers*/
-
 
 .h-vh {
     height: 100vh;
@@ -43,7 +42,6 @@ body > .grid {
 .d-flex {
     display: flex;
 }
-
 
 .float-left {
     float: left;
@@ -58,7 +56,7 @@ body > .grid {
 }
 
 .color-g125 {
-    color: rgb(125, 125, 125)
+    color: rgb(125, 125, 125) !important;
 }
 
 .fw-100 {
@@ -67,6 +65,22 @@ body > .grid {
 
 .fw-300 {
     font-weight: 300 !important;
+}
+
+.fs-1 {
+    font-size: 1rem !important;
+}
+
+.ff-rs {
+    font-family: 'Roboto Slab', serif !important;
+}
+
+.ff-rr {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+.ff-si {
+    font-style: italic !important;
 }
 
 .white-space {
@@ -131,15 +145,17 @@ body > .grid {
     border-image: linear-gradient(130deg, rgb(46, 185, 113) 0%, rgb(96, 202, 79) 25%, rgb(168, 216, 74) 50%, rgb(218, 159, 59) 75%, rgb(239, 107, 51) 100%) !important;
 
     border-image-slice: 1 !important;
+    box-shadow: none !important;
+    border-style: solid !important;
 }
 
 /*Semantic Rewrite*/
 
-.ui.toggle.checkbox input:checked~.box:before, .ui.toggle.checkbox input:checked~label:before {
+.ui.toggle.checkbox input:checked ~ .box:before, .ui.toggle.checkbox input:checked ~ label:before {
     background-color: rgb(76, 175, 80) !important;
 }
 
-.ui.toggle.checkbox input:focus:checked~.box:before, .ui.toggle.checkbox input:focus:checked~label:before {
+.ui.toggle.checkbox input:focus:checked ~ .box:before, .ui.toggle.checkbox input:focus:checked ~ label:before {
     background-color: rgb(76, 175, 80) !important;
 }
 
@@ -154,6 +170,7 @@ body > .grid {
 .login > .column {
     max-width: 410px;
 }
+
 .ui.green.button, .ui.green.buttons .button {
     background-color: rgb(76, 175, 80);
     color: rgb(255, 255, 255);
@@ -162,12 +179,12 @@ body > .grid {
 }
 
 .ui.basic.green.button, .ui.basic.green.buttons .button {
-    box-shadow: 0 0 0 1px rgb(76, 175, 80) inset!important;
+    box-shadow: 0 0 0 1px rgb(76, 175, 80) inset !important;
     color: rgb(76, 175, 80);
 }
 
 .ui.inverted.green.button, .ui.inverted.green.buttons .button {
-    box-shadow: 0 0 0 1px rgb(76, 175, 80) inset!important;
+    box-shadow: 0 0 0 1px rgb(76, 175, 80) inset !important;
     color: rgb(76, 175, 80);
 }
 
@@ -448,12 +465,12 @@ a.color-orange:hover {
     line-height: 1.75;
 }
 
-.project-card.ui.card>.content, .project-card.ui.cards>.card>.content {
+.project-card.ui.card > .content, .project-card.ui.cards > .card > .content,.profile-card.ui.card > .content, .profile-card.ui.cards > .card > .content {
     padding: 1.75rem;
 }
 
-.project-card.ui.card:hover, .project-card.ui.cards>.card:hover {
-    box-shadow: 0 1px 3px 0 rgb(76, 175, 80),0 0 0 1px rgb(76, 175, 80);
+.project-card.ui.card:hover, .project-card.ui.cards > .card:hover, .profile-card.ui.card:hover, .profile-card.ui.cards > .card:hover {
+    box-shadow: 0 1px 3px 0 rgb(76, 175, 80), 0 0 0 1px rgb(76, 175, 80);
 }
 
 .project-card .ui.label {
@@ -465,32 +482,85 @@ a.color-orange:hover {
     margin-right: 0.5rem;
 }
 
+.profile-card .profile-card__header {
+    background-image: linear-gradient(130deg, rgb(46, 185, 113) 0%, rgb(96, 202, 79) 25%, rgb(168, 216, 74) 50%, rgb(218, 159, 59) 75%, rgb(239, 107, 51) 100%);
+    position: relative;
+}
+
+.profile-card .profile-card__header .profile-img {
+    text-align: center;
+}
+
+.profile-card .profile-card__header .profile-img img {
+    max-width: 110px;
+    border-radius: 50%;
+    position: relative;
+    top: 75px;
+}
+
+.profile-card.ui.card > .content, .profile-card.ui.cards > .card > .content {
+    margin-top: 4rem;
+    border-top: 0;
+}
+
+.profile-card .content .description p::before, .profile-card .content .description p::after {
+    font-family: Icons;
+    display: inline-block;
+    font-size: 1.4rem;
+    color: rgb(239, 107, 51);
+}
+
+.profile-card .content .description p:before {
+    margin-right: 0.5rem;
+    content: "\f10d";
+}
+
+.profile-card .content .description p::after {
+    margin-left: 0.5rem;
+    content: "\f10e";
+}
+
+.profile-card .ui.button {
+    border-width: 1px;
+}
+
+.profile-card .ui.basic.button:focus,.profile-card .ui.basic.button:hover,.profile-card .ui.basic.buttons .button:focus,.profile-card .ui.basic.buttons .button:hover {
+    color: rgb(76, 175, 80) !important;
+}
+
 footer.main-footer {
     background-image: url("/static/img/footer.jpg");
     background-size: cover;
     background-position: center;
 }
-.register{
+
+.register {
     height: auto !important;
 }
-.register.ui.grid > .column:not(.row).login__card{
+
+.register.ui.grid > .column:not(.row).login__card {
     align-self: baseline !important;
     margin-top: 60px;
     margin-bottom: 60px;
 }
+
 .register > .column {
-    max-width: 650px ;
+    max-width: 650px;
 }
-.register .ui.form .fields{
+
+.register .ui.form .fields {
     margin: 0 -.5em 0em !important;
 }
-.register .login__card .ui.form .field{
+
+.register .login__card .ui.form .field {
     margin: 0 0 1em;
 }
-.register .login__card{
-    top:30px;
+
+.register .login__card {
+    top: 30px;
 }
-.register .ui.form .field>.selection.dropdown{
+
+.register .ui.form .field > .selection.dropdown {
     background: transparent;
     color: rgb(125, 125, 125);
     font-family: 'Roboto Slab', serif;

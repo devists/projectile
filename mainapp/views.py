@@ -159,3 +159,6 @@ def profile_edit(request):
 
 def explore_project(request):
     return render(request, "projects.html", {})
+
+def explore_profile(request):
+    return render(request, "profiles.html", {})
