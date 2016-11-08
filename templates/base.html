@@ -8,7 +8,8 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!--Styles-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700|Roboto:100,300,400,400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700|Roboto:100,300,400,400i"
+          rel="stylesheet">
     <link rel="stylesheet" href="{% static "lib/semantic/dist/semantic.min.css" %}">
     <link rel="stylesheet" href="{% static "css/style.css" %}">
     <title>Document</title>
@@ -21,9 +22,16 @@
             <div class="ui container">
                 <div class="header item"><a class="color-" href="/">Projectile</a></div>
 
-                <a href="#!" class="item">Browse</a>
+                <div class="ui dropdown link item">
+                    <span class="text">Browse</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="{% url 'explore_projects' %}" class="item">Projects</a>
+                        <a href="{% url 'explore_profiles' %}" class="item">Users</a>
+                    </div>
+                </div>
                 <div class="item">
-                    <a href="#!" class="ui button green">New Project</a>
+                    <a href="{% url 'post_project' %}" class="ui button green">New Project</a>
                 </div>
                 <div class="right menu">
                     <div class="item">
@@ -33,21 +41,22 @@
                                     <option selected="" value="project">Project</option>
                                     <option value="student">Student</option>
                                 </select>
-                                <input class="" type="text" placeholder="Search countries...">
+                                <input class="" type="text" placeholder="Search...">
                                 <i class="inverted circular search link icon"></i>
                             </div>
                             <div class="results"></div>
                         </div>
                     </div>
                     <span class="user-auth d-flex">
-                        <a href="#" class="item">Login</a>
-                        <a href="#" class="item">Register</a>
+                        <a href="{% url 'login' %}" class="item">Login</a>
+                        <a href="{% url 'register' %}" class="item">Register</a>
                     </span>
                 </div>
             </div>
         </div>
     </nav>
 </header>
+
 <div class="main-wrapper">
     <div class="content">
         {% block content %}
@@ -85,15 +94,15 @@
                     <h2 class="ui inverted header title-deco fw-100">Contact</h2>
                     <div class="ui color-grey fw-300">
                         <p class="color-grey">c/o Block No.9, IIIT Vadodara, Government Engineering College, Sector-28,
-                        Gandhinagar, Gujarat - 382028</p>
-                    <div class="white-space space-mini"></div>
-                    <div class="phone color-grey">
-                        <i class="call icon color-primary"></i>+91 70 48382917
-                    </div>
-                    <div class="mail color-grey ui inverted link list">
-                        <a class="item" href="mailto:ansarimofid@gmail.com"><i
-                                class="mail outline icon color-primary"></i> info@projectile.com</a>
-                    </div>
+                            Gandhinagar, Gujarat - 382028</p>
+                        <div class="white-space space-mini"></div>
+                        <div class="phone color-grey">
+                            <i class="call icon color-primary"></i>+91 70 48382917
+                        </div>
+                        <div class="mail color-grey ui inverted link list">
+                            <a class="item" href="mailto:ansarimofid@gmail.com"><i
+                                    class="mail outline icon color-primary"></i> info@projectile.com</a>
+                        </div>
                     </div>
                 </div>
             </div>
