@@ -2,6 +2,7 @@
 
 {#                        Project Card#}
 {% block explore-card %}
+    {% for profile in data %}
     <div class="ui card profile-card">
         {#    Card Profile img#}
         <div class="profile-card__header">
@@ -15,7 +16,7 @@
         <div class="content">
             <div class="header color-primary fw-300 text-center">Jennifer Aniston</div>
 {#            Profile Designation#}
-            <div class="header fw-300 color-g125 fs-1 text-center profile-designation ff-rs">Web Developer</div>
+            <div class="header fw-300 color-g125 fs-1 text-center profile-designation ff-rs">{{ profile.u_prof_title }}</div>
             {#                                Card Meta#}
             <div class="white-space space-xm"></div>
             <div class="meta">
@@ -23,22 +24,21 @@
                 <div class="meta-level"><i class="battery low icon color-primary"></i>
                     Beginner
                 </div>
-                {#                                    Category#}
+                {#                                    Intitute#}
                 <div class="meta-category"><i class="student low icon color-primary"></i>
-                    IIIT Vadodara
+
                 </div>
                 {#                                    Location#}
                 <div class="meta-location"><i class="marker low icon color-primary"></i>
-                    Ahmedabad, Gujarat
+                    {{ profile.u_location }}
 
                 </div>
             </div>
 
-            {#                                Project Description#}
+            {#                                profile Description#}
             <div class="white-space space-xm"></div>
             <div class="description ff-rr ff-si">
-                <p class="color-g125">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias quos, sint!
-                    Accusantium architecto aspernatur culpa enim esse est eveniet fugiat harum</p>
+                <p class="color-g125">{{ profile.u_bio }}</p>
             </div>
             <div class="white-space space-xm"></div>
 
@@ -57,4 +57,5 @@
             <div class="white-space space-xm"></div>
         </div>
     </div>
+    {%  endfor %}
 {% endblock explore-card %}

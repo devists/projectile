@@ -17,6 +17,11 @@ body > .grid {
     flex: 1;
 }
 
+.main-wrapper > .content {
+    position: relative;
+    z-index: 9;
+}
+
 .ui.menu {
     font-family: 'Roboto', sans-serif;
 }
