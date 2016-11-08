@@ -3,14 +3,17 @@ from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, L
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .models import ProjectSkills, Project
 from django.utils import timezone
 import re
 from django.db.models import Q
 from django.contrib.auth import authenticate, login
-from .models import UserProfile
+from .models import UserProfile,ApplyProject
+from notifications.signals import notify
+
+
 # Create your views here.
 @login_required(login_url="login/")
 def home(request):
@@ -26,8 +29,8 @@ def home(request):
             if domain == 'Student':
                 for query in queries:
                     q = q | Q(username__icontains=query)
-                results_p= User.objects.filter(q)
-                return render(request, "search_result.html", {'results_p': results_p})
+                results= User.objects.filter(q)
+                return render(request, "search_user.html", {'results': results})
 
             elif domain == 'Project':
                 q1=Q()
@@ -36,8 +39,8 @@ def home(request):
                 for query in queries:
                     q1 = q1 | Q(skills__icontains=query)
                     q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query)
-                results=ProjectSkills.objects.filter(q1)
-                results_p=Project.objects.filter(q2)
+                results = ProjectSkills.objects.filter(q1)
+                results_p = Project.objects.filter(q2)
             return render(request, "search_result.html", {'results': results,'results_p':results_p})
 
     else:
@@ -156,3 +159,29 @@ def profile_edit(request):
     else:
         u_form = UserProfileForm(instance=profile)
     return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
+
+
+def apply_project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.method == "POST":
+        apply=ApplyProject()
+        apply.project = project
+        apply.user = request.user
+        apply.apply_date = timezone.now()
+        apply.cover_letter = request.POST.get('cover')
+        apply.save()
+        notify.send(request.user, recipient=project.user, verb='applied', target=project)
+
+        return redirect('home')
+
+
+def notific(request):
+    notice = request.user.notifications.all()
+    return render(request,'notification.html',{'notice': notice})
+
+
+
+
+
+
+
