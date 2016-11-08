@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{#-----------------------#}
+{% block content %}
+    <div class="ui bottom attached container explore-card">
+
+        {% include 'components/sidebar.html' %}
+
+        {#        Explore Content#}
+        <div class="explore-card__content">
+            <div class="ui basic">
+                {#                Content Counter#}
+                <div></div>
+                <h3 class="ui header text-center content-count fw-300">Showing <span
+                        class="content-counter color-primary">all</span> result
+                </h3>
+                <div class="white-space space-mini"></div>
+
+                {#                Results#}
+                <div class="result-container">
+                    {#                    Project Cards#}
+                    <div class="ui three stackable cards">
+                        {% block explore-card %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

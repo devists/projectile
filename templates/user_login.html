@@ -1,41 +1,57 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-    {% if form.errors %}
 
-    <p>Your username and password didn't match. Please try again.</p>
-    {% endif %}
+    <div class="ui middle aligned center aligned grid h-vh login login--cust">
+        <div class="column login__card">
+            <h2 class="ui teal image header"></h2>
+            <div class="login__card-header-circle">
+                <div class="ui login__card-header">
+                    <i class="user icon"></i>
+                </div>
+            </div>
+            <form method="post" class="ui large form {% if form.errors or next %}error{% endif %}"
+                  action="{% url 'login' %}">
+                {% csrf_token %}
+                <div class="ui">
+                    <div class="ui error message">
+                        {% if form.errors %}
+                            <p>Username and password didn't match. Try again.</p>
+                        {% endif %}
 
-    {% if next %}
-    {% if user.is_authenticated %}
+                        {% if next %}
+                            {% if user.is_authenticated %}
 
-    <p>Your account doesn't have access to this page. To proceed,
-        please login with an account that has access.</p>
-    {% else %}
+                                <p>Your account doesn't have access to this page. To proceed,
+                                    please login with an account that has access.</p>
+                            {% else %}
 
-    <p>Please login to see this page.</p>
-    {% endif %}
-    {% endif %}
-    <form method="post" action="{% url 'login' %}">
-        {% csrf_token %}
+                                <p>Please login to see this page.</p>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="field">
+                        <div class="ui huge left icon input">
+                            {{ form.username }}
+                            <i class="user icon"></i>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui huge left icon input">
 
-
-        <table>
-            <tr>
-                <td>{{ form.username.label_tag }}</td>
-                <td>{{ form.username }}</td>
-            </tr>
-            <tr>
-                <td>{{ form.password.label_tag }}</td>
-                <td>{{ form.password }}</td>
-            </tr>
-        </table>
-     <input class="btn btn-success btn-sm" type="submit" value="login"/>
-    </form>
-    <form method="get" action="{% url 'register' %}">
-        {% csrf_token %}
-        <input type="submit" value="register"/>
-    </form>
+                            {{ form.password }}
+                            <i class="privacy icon"></i>
+                        </div>
+                    </div>
+                    <input class="ui fluid huge green submit button fw-100" type="submit" value="Login"/>
+                    <div class="login-extras">
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                        <a href="{% url 'register' %}" class="register color-orange">Register</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 {% endblock content %}
 
 

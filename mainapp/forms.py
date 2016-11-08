@@ -7,18 +7,18 @@ import datetime
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label="Username", max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+                               widget=forms.TextInput(attrs={'class': 'border-gradient', 'name': 'username','placeholder':'Username'}))
     password = forms.CharField(label="Password", max_length=30,
-                               widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
+                               widget=forms.PasswordInput(attrs={'class': 'border-gradient', 'name': 'password','placeholder':'Password'}))
 
 
 class RegistrationForm(forms.ModelForm):
-    first_name = forms.CharField(label='',required=True, widget=forms.TextInput(attrs={'placeholder': 'First_Name'}))
-    last_name = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'Last_Name'}))
-    username = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder': 'UserName'}))
-    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'placeholder': 'Re-Enter Password'}))
-    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+    first_name = forms.CharField(label='',required=True, widget=forms.TextInput(attrs={'class': 'border-gradient','placeholder': 'First_Name'}))
+    last_name = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'border-gradient','placeholder': 'Last_Name'}))
+    username = forms.CharField(label='', widget=forms.TextInput(attrs={'class': 'border-gradient','placeholder': 'UserName'}))
+    password1 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'border-gradient','placeholder': 'Password'}))
+    password2 = forms.CharField(label='', widget=forms.PasswordInput(attrs={'class': 'border-gradient','placeholder': 'Re-Enter Password'}))
+    email = forms.EmailField(label='', widget=forms.EmailInput(attrs={'class': 'border-gradient','placeholder': 'Email'}))
 
     class Meta:
         model = User
@@ -45,20 +45,21 @@ class RegistrationForm(forms.ModelForm):
     def clean(self):
         if 'password1' in self.cleaned_data and 'password2' in self.cleaned_data and self.cleaned_data['password1'] != \
                 self.cleaned_data['password2']:
-            raise forms.ValidationError("The password does not match ")
+            raise forms.ValidationError("The password does not match")
         return self.cleaned_data
 
 
 class DateInput(forms.DateInput):
-    input_type = 'date'
+    data_type = 'date'
 
 
 class ProfileForm(forms.ModelForm):
-    CHOICES = [('M', 'Male'),
+    CHOICES = [('', 'Gender'),
+                ('M', 'Male'),
                ('F', 'Female')]
 
-    u_gender = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.RadioSelect())
-    u_dob = forms.CharField(label='Date Of Birth', widget=DateInput())
+    u_gender = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.Select(attrs={'class':'border-gradient ui dropdown'}))
+    u_dob = forms.CharField(label='Date Of Birth', widget=forms.DateInput(attrs={'type': 'date', 'class': 'border-gradient', 'placeholder': 'DOB'}, format=('%Y-%m-%d')))
 
     class Meta:
         model = Student

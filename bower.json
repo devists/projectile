@@ -1,0 +1,20 @@
+{
+  "name": "projectile",
+  "homepage": "https://github.com/ansarimofid/projectile",
+  "authors": [
+    "ansarimofid <ansarimofid@gmail.com>"
+  ],
+  "description": "",
+  "main": "manage.py",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "semantic": "semantic-ui#^2.2.6"
+  }
+}
