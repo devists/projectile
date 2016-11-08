@@ -158,4 +158,7 @@ def profile_edit(request):
     return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
 
 def explore_project(request):
-    return render(request, "explore.html", {})
+    return render(request, "projects.html", {})
+
+def explore_profile(request):
+    return render(request, "profiles.html", {})
