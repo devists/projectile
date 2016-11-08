@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>Hi Tell us something about Yourself</h1>
-<form	method="POST" action="{% url 'profile_update' %}">{% csrf_token	%}
+<form	method="POST" action="{% url 'profile_update' %}">
+        {% csrf_token	%}
         {{form.as_p}}
         <button	type="submit">Save</button>
     </form>
