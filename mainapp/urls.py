@@ -14,4 +14,7 @@ urlpatterns = [
     url(r'^profile_edit/$', views.profile_edit, name='profile_edit'),
     url(r'^projects/$', views.explore_projects, name='explore_projects'),
     url(r'^profiles/$', views.explore_profiles, name='explore_profiles'),
+    url(r'^apply_project/(?P<project_id>\d+)$', views.apply_project, name='apply_project'),
+    url(r'^notifications/$', views.notific, name='notific'),
+    url(r'^list_of_applied_projects/$', views.list_applied, name='list_applied'),
 ]

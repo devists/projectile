@@ -9,29 +9,18 @@
 
         {% for result in results %}
 
-            {% if result.project.diff_level == 'B' %}
-                Beginner:
-                {{ result }}
+                <a href="{% url 'project_detail' project_id=result.project.pk %} ">{{ result.project }}</a>
 
+                <br>
 
-            {% elif result.project.diff_level == 'I' %}
-                Moderate:
-                {{ result }}
-
-
-
-            {% elif result.project.diff_level == 'A' %}
-                Advanced:
-                {{ result }}
-
-            {% endif %}
-
-
-           <br>
         {% endfor %}
 
         {% for result1 in results_p %}
-           <h1>{{  result1 }}</h1>
+
+            <a href="{% url 'project_detail' project_id=result1.pk %} ">{{ result1 }}</a>
+            <br>
+
+
         {% endfor %}
 
 
