@@ -12,6 +12,8 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login
 from .models import UserProfile,ApplyProject
 from notifications.signals import notify
+from notifications.models import Notification
+from django.contrib.contenttypes.models import ContentType
 
 
 # Create your views here.
@@ -187,14 +189,23 @@ def apply_project(request, project_id):
         apply.apply_date = timezone.now()
         apply.cover_letter = request.POST.get('cover')
         apply.save()
-        notify.send(request.user, recipient=project.user, verb='applied', target=project)
+        desc = request.POST.get('cover')
+        notify.send(request.user, recipient=project.user, verb='applied', target=project, description=desc)
 
         return redirect('home')
 
 
 def notific(request):
     notice = request.user.notifications.all()
-    return render(request,'notification.html',{'notice': notice})
+    return render(request, 'notification.html', {'notice': notice})
+
+
+def list_applied(request):
+    user = request.user
+    ct_supported = ContentType.objects.get_for_model(user)
+    lists = Notification.objects.filter(actor_content_type=ct_supported)
+    return render(request, 'applied_list.html', {'lists' : lists})
+
 
 
 

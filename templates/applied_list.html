@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% for list in lists %}
+
+
+    {% if list.target %}
+    {{ list.target }}
+    {{ list.description }}
+        <br>
+    {% endif %}
+
+
+
+{% endfor %}
+
+</body>
+</html>
