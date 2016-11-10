@@ -6,24 +6,23 @@
         <h2 class="title">Hi, Tell us Something about Yourself</h2>
         <form class="ui form" method="post" action="{% url 'profile_update' %}">
             {% csrf_token %}
-            {% if form.errors %}
-            <div class="ui error message">
-                {{form.errors}}
-            </div>
-            {% endif %}
             <h4 class="ui dividing header">Education Qualification</h4>
+
             <div class="field">
                 <label>{{form.u_current_college.label}}</label>
                {{form.u_current_college}}
             </div>
+
             <div class="field">
                 <label>{{form.u_current_qualification.label}}</label>
                {{form.u_current_qualification}}
             </div>
+
             <div class="field">
                 <label>{{form.u_current_degree.label}}</label>
                {{form.u_current_degree}}
             </div>
+
             <div class="field">
                 <div class="two fields">
                     <div class="field">
@@ -36,31 +35,45 @@
                     </div>
                 </div>
             </div>
+
             <h4 class="ui dividing header">Personal Information</h4>
+
             <div class="field">
                 <label>{{form.u_github.label}}</label>
                 {{form.u_github}}
             </div>
+            {% if form.u_github.errors%}
+                <div class="form_error">{{form.u_github.errors}}</div>
+            {% endif %}
+
             <div class="field">
                 <label>{{form.u_linkedin.label}}</label>
                {{form.u_linkedin}}
             </div>
+            {% if form.u_linkedin.errors%}
+                <div class="form_error">{{form.u_linkedin.errors}}</div>
+            {% endif %}
+
             <div class="field">
                 <label>{{form.u_contact_no.label}}</label>
                {{form.u_contact_no}}
             </div>
+
             <div class="field">
                 <label>{{form.u_prof_title.label}}</label>
                {{form.u_prof_title}}
             </div>
+
              <div class="field">
                 <label>{{form.u_location.label}}</label>
                {{form.u_location}}
             </div>
+
              <div class="field">
                 <label>Biography</label>
                {{form.u_bio}}
             </div>
+
             <button type="submit" class="ui primary button" value="Submit">Save</button>
             <button type="reset" class="ui negative button" value="Reset">Reset</button>
         </form>

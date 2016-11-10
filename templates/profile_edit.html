@@ -1,17 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit Your Profile</title>
 
-</head>
-<body>
 
-<h1>Edit Your Profile Details</h1>
-<form	method="POST" {% url 'profile_edit' %}>{% csrf_token	%}
-        Username:<input type="text" value="{{ profile.user.username }}"/>
-        {{u_form.as_p}}
-        <button	type="submit">Save</button>
-    </form>
-</body>
-</html>
+{%extends "base.html" %}
+
+{% block content %}
+
+<div class="profile_update ui container">
+    <div class="profile_form">
+        <h2 class="title">Edit Your Profile Details</h2>
+        <form class="ui form" method="POST" {% url 'profile_edit' %}">
+            {% csrf_token %}
+            <h4 class="ui dividing header">Education Qualification</h4>
+
+            <div class="field">
+                <label>Usename</label>
+                <input type="text" value="{{ profile.user.username }}"/>
+            </div>
+
+            <div class="field">
+                <label>{{u_form.u_current_college.label}}</label>
+               {{u_form.u_current_college}}
+            </div>
+
+            <div class="field">
+                <label>{{u_form.u_current_qualification.label}}</label>
+               {{u_form.u_current_qualification}}
+            </div>
+
+            <div class="field">
+                <label>{{u_form.u_current_degree.label}}</label>
+               {{u_form.u_current_degree}}
+            </div>
+
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>{{u_form.u_education_start_year.label}}</label>
+                       {{u_form.u_education_start_year}}
+                    </div>
+                    <div class="field">
+                        <label>{{u_form.u_education_end_year.label}}</label>
+                       {{u_form.u_education_end_year}}
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="ui dividing header">Personal Information</h4>
+
+            <div class="field">
+                <label>{{u_form.u_github.label}}</label>
+                {{u_form.u_github}}
+            </div>
+            {% if u_form.u_github.errors%}
+                <div class="form_error">{{u_form.u_github.errors}}</div>
+            {% endif %}
+
+            <div class="field">
+                <label>{{u_form.u_linkedin.label}}</label>
+               {{u_form.u_linkedin}}
+            </div>
+            {% if u_form.u_linkedin.errors%}
+                <div class="form_error">{{u_form.u_linkedin.errors}}</div>
+            {% endif %}
+
+            <div class="field">
+                <label>{{u_form.u_contact_no.label}}</label>
+               {{u_form.u_contact_no}}
+            </div>
+
+            <div class="field">
+                <label>{{u_form.u_prof_title.label}}</label>
+               {{u_form.u_prof_title}}
+            </div>
+
+             <div class="field">
+                <label>{{u_form.u_location.label}}</label>
+               {{u_form.u_location}}
+            </div>
+
+             <div class="field">
+                <label>Biography</label>
+               {{u_form.u_bio}}
+            </div>
+
+            <button type="submit" class="ui primary button" value="Submit">Save</button>
+            <button type="reset" class="ui negative button" value="Reset">Reset</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}

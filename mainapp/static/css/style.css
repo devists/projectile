@@ -593,3 +593,11 @@ footer.main-footer {
 .profile_update .profile_form .form .header{
     padding-top: 30px;
 }
+.profile_update .profile_form .form .form_error ul{
+    padding: 0;
+    list-style:none;
+    line-height:0.1;
+}
+.profile_update .profile_form .form .form_error ul li{
+    color: red;
+}
