@@ -2,7 +2,7 @@
 
 {#                        Project Card#}
 {% block explore-card %}
-    {% for project in data %}
+    {% for project in project_list %}
     <div class="ui card project-card">
         {#                            Card Content#}
         <div class="content">
@@ -50,5 +50,22 @@
             </div>
         </div>
     </div>
+
+
     {% endfor %}
+    <div class="pagination">
+            <span class="step-links">
+                {% if project_list.has_previous %}
+                    <a href="{% url 'explore_projects' %}?page={{ project_list.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ project_list.number }} of {{ project_list.paginator.num_pages }}.
+                </span>
+
+                {% if project_list.has_next %}
+                    <a href="{% url 'explore_projects' %}?page={{ project_list.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
 {% endblock explore-card %}

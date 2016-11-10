@@ -2,7 +2,7 @@
 
 {#                        Project Card#}
 {% block explore-card %}
-    {% for profile in data %}
+    {% for profile in profile_list %}
     <div class="ui card profile-card">
         {#    Card Profile img#}
         <div class="profile-card__header">
@@ -58,4 +58,21 @@
         </div>
     </div>
     {%  endfor %}
+
+    <div class="pagination">
+            <span class="step-links">
+                {% if profile_list.has_previous %}
+                    <a href="{% url 'explore_profiles' %}?page={{ profile_list.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ profile_list.number }} of {{ profile_list.paginator.num_pages }}.
+                </span>
+
+                {% if profile_list.has_next %}
+                    <a href="{% url 'explore_profiles' %}?page={{ profile_list.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+    </div>
+
 {% endblock explore-card %}

@@ -14,6 +14,7 @@ from .models import UserProfile,ApplyProject
 from notifications.signals import notify
 from notifications.models import Notification
 from django.contrib.contenttypes.models import ContentType
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -172,11 +173,36 @@ def explore_projects(request):
     projects = Project.objects.all()
     # projects = Project.objects.get(p_title='sdsds')
 
-    return render(request, "projects.html", {'data':projects})
+    paginator = Paginator(projects, 5) # Show 5 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        project_list = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        project_list = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        project_list = paginator.page(paginator.num_pages)
+
+    return render(request, "projects.html", {'project_list': project_list})
 
 def explore_profiles(request):
     profiles = UserProfile.objects.all()
-    return render(request, "profiles.html", {'data':profiles})
+
+    paginator = Paginator(profiles, 2) # Show 5 contacts per page
+
+    page = request.GET.get('page')
+    try:
+        profile_list = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        profile_list = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        profile_list = paginator.page(paginator.num_pages)
+
+    return render(request, "profiles.html", {'profile_list': profile_list})
 
 
 
