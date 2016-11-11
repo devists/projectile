@@ -56,12 +56,3 @@ class UserProfile(models.Model):
         return self.user.username
 
 
-class ApplyProject(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    approval = models.CharField(max_length=10,default=True)
-    apply_date = models.DateField()
-    cover_letter = models.CharField(max_length= 200)
-
-    def __str__(self):
-        return self.user.username

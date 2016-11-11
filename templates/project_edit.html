@@ -9,6 +9,12 @@
 <h1>Edit Project Details</h1>
 <form	method="POST" {% url 'project_edit' project_id=project.pk %}>{% csrf_token	%}
         {{e_form.as_p}}
+
+            <!--Skills:
+
+    <input type="text" name="skill"  value=" for object in objects %}object.skills}}% endfor %}">-->
+
+
         <button	type="submit">Save</button>
     </form>
 
