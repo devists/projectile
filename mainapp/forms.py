@@ -59,7 +59,7 @@ class ProfileForm(forms.ModelForm):
                ('F', 'Female')]
 
     u_gender = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.Select(attrs={'class':'border-gradient ui dropdown'}))
-    u_dob = forms.CharField(label='Date Of Birth', widget=forms.DateInput(attrs={'type': 'date', 'class': 'border-gradient', 'placeholder': 'DOB'}, format=('%Y-%m-%d')))
+    u_dob = forms.CharField(label='Date Of Birth', widget=forms.DateInput(attrs={'type': 'date', 'class': 'border-gradient', 'placeholder': 'DOB'}))
 
     class Meta:
         model = Student
