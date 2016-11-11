@@ -1,10 +1,62 @@
 {%extends "base.html" %}
 
 {% block content %}
-    {% for project in projects %}
+<div class="project ui container">
+    <h3>Posted Project</h3>
+    <div class="ui four stackable cards">
 
-    <a href="{% url 'project_detail' project_id=project.pk %} ">{{ project }}</a>
+        {% for project in projects %}
+        <div class="ui card project-card">
+            {# Card Content#}
+            <div class="content">
+                <div class="header color-primary fw-300">{{ project.p_title }}</div>
+                {# Card Meta#}
+                <div class="meta">
+                    {# Date#}
+                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                        {{ project.p_category }}
+                    </div>
+                    {# Level#}
+                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                        {{ project.diff_level }}
+                    </div>
+                    {# Category#}
+                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                        {{ project.post_date }}
 
-    <br>
-{% endfor %}
+                    </div>
+                    {# Location#}
+                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                        Ahmedabad, Gujarat
+
+                    </div>
+                </div>
+
+                {# Project Description#}
+                <div class="description">
+                    <p>{{ project.p_description }}</p>
+                </div>
+                <div class="white-space space-xm"></div>
+
+                {# Skill Tags#}
+                <div class="skills-tag">
+                    {% for object in project.projectskills_set.all %}
+                    <div class="ui label">{{ object.skills }}</div>
+                    {% endfor %}
+
+                </div>
+                <div class="white-space space-mini"></div>
+
+                {# Apply on Project Button#}
+                <div class="view-btn text-center">
+                    <a href="{% url 'project_edit' project_id=project.pk %}" class="ui inverted green button fw-300">Edit Project</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+
+
 {% endblock content %}

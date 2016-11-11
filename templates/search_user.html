@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% if results %}
+
+        {% for result in results %}
+           <h1>{{  result }}</h1>
+        {% endfor %}
+
+
+{% else %}
+    <h1>No results Found</h1>
+
+{% endif %}
+
+</body>
+</html>

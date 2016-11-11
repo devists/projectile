@@ -17,6 +17,11 @@ body > .grid {
     flex: 1;
 }
 
+.main-wrapper > .content {
+    position: relative;
+    z-index: 9;
+}
+
 .ui.menu {
     font-family: 'Roboto', sans-serif;
 }
@@ -568,4 +573,36 @@ footer.main-footer {
     line-height: 1em;
     padding: .67861429em 1em;
     font-size: 1.4em;
+}
+
+/*  Profile Update */
+.profile_update.ui.container{
+    margin: 2.5rem;
+    background: #fff;
+}
+.profile_update .profile_form{
+    padding:2.5rem 20%;
+}
+.profile_update .profile_form h2.title{
+    text-align: center;
+}
+.profile_update .profile_form .form input[type="text"],.profile_update .profile_form .form input[type="number"]{
+    color: rgb(25, 25, 25);
+    font-weight: 600 !important;
+}
+.profile_update .profile_form .form .header{
+    padding-top: 2.5rem;
+}
+.profile_update .profile_form .form .form_error ul{
+    padding: 0;
+    list-style:none;
+    line-height:0.1;
+}
+.profile_update .profile_form .form .form_error ul li{
+    color: red;
+}
+.project.ui.container{
+    margin: 2.5rem;
+    background: #fff;
+    padding: 2.5rem;
 }

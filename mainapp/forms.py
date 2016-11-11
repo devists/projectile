@@ -59,7 +59,7 @@ class ProfileForm(forms.ModelForm):
                ('F', 'Female')]
 
     u_gender = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.Select(attrs={'class':'border-gradient ui dropdown'}))
-    u_dob = forms.CharField(label='Date Of Birth', widget=forms.DateInput(attrs={'type': 'date', 'class': 'border-gradient', 'placeholder': 'DOB'}, format=('%Y-%m-%d')))
+    u_dob = forms.CharField(label='Date Of Birth', widget=forms.DateInput(attrs={'type': 'date', 'class': 'border-gradient', 'placeholder': 'DOB'}))
 
     class Meta:
         model = Student
@@ -71,14 +71,14 @@ class ProjectForm(forms.ModelForm):
                ('I', 'Intermediate'),
                ('A', 'Advanced')]
 
-    p_title = forms.CharField(label='Title', widget=forms.TextInput(attrs={'name': 'title'}))
-    p_category = forms.CharField(label='Category', widget=forms.TextInput(attrs={'name': 'category'}))
+    p_title = forms.CharField(label='Project Title', widget=forms.TextInput(attrs={'name': 'title','placeholder': 'Project Title'}))
+    p_category = forms.CharField(label='Project Category', widget=forms.TextInput(attrs={'name': 'category','placeholder': 'Project Category'}))
     diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
                                    widget=forms.RadioSelect(attrs={'name': 'level'}))
-    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description'}))
+    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description',}))
     no_of_contrib = forms.CharField(label='No. of Contributors Needed',
-                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib'}))
-    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status'}))
+                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib','placeholder': 'No. of Contributors Needed'}))
+    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status','placeholder': 'Project Status'}))
     p_privacy = forms.BooleanField(label='Privacy',required=False, widget=forms.CheckboxInput(attrs={'name': 'privacy'}))
 
     class Meta:
@@ -100,30 +100,30 @@ class UserProfileForm(forms.ModelForm):
     for r in range(1980, (datetime.datetime.now().year + 1)):
         YEAR_CHOICES.append((r, r))
 
-    u_github = forms.CharField(label='Github', widget=forms.TextInput(attrs={'name': 'github'}),required=True)
-    u_linkedin = forms.CharField(label='Linkedin', widget=forms.TextInput(attrs={'name': 'linkedin'}),required=True)
-    u_contact_no = forms.CharField(label='Contact_no',
-                                   widget=forms.NumberInput(attrs={'name': 'contact_no'}), required=True)
-    u_prof_title = forms.CharField(label='Professional_title',
-                                   widget=forms.TextInput(attrs={'name': 'prof_title'}), required=True)
+    u_github = forms.CharField(label='Github Account', widget=forms.TextInput(attrs={'name': 'github','placeholder':'GitHub Account'}),required=True)
+    u_linkedin = forms.CharField(label='LinkedIn Account', widget=forms.TextInput(attrs={'name': 'linkedin','placeholder':'LinkedIn Account'}),required=True)
+    u_contact_no = forms.CharField(label='Contact Number',
+                                   widget=forms.NumberInput(attrs={'name': 'contact_no','placeholder':'Contact Number'}), required=True)
+    u_prof_title = forms.CharField(label='Professional Title',
+                                   widget=forms.TextInput(attrs={'name': 'prof_title','placeholder':'Professional Title'}), required=True)
 
-    u_location = forms.CharField(label='Location', widget=forms.TextInput(attrs={'name': 'location'}), required=True)
+    u_location = forms.CharField(label='Location', widget=forms.TextInput(attrs={'name': 'location','placeholder':'Location'}), required=True)
     u_bio = forms.TextInput()
-    u_current_qualification = forms.CharField(label='Current_qualification',
-                                              widget=forms.TextInput(attrs={'name': 'current_qualification'}),
+    u_current_qualification = forms.CharField(label='Qualification',
+                                              widget=forms.TextInput(attrs={'name': 'current_qualification','placeholder':'Qualification'}),
                                               required=True)
 
-    u_current_degree = forms.CharField(label='Current_degree',
-                                       widget=forms.TextInput(attrs={'name': 'current_degree'}), required=True)
+    u_current_degree = forms.CharField(label='Degree',
+                                       widget=forms.TextInput(attrs={'name': 'current_degree','placeholder':'Degree'}), required=True)
 
-    u_current_college = forms.CharField(label='Current_college',
-                                        widget=forms.TextInput(attrs={'name': 'current_college'}), required=True)
+    u_current_college = forms.CharField(label='College Name',
+                                        widget=forms.TextInput(attrs={'name': 'current_college','placeholder':'College Name'}), required=True)
 
-    u_education_start_year = forms.ChoiceField(label='Education_start_year', choices=YEAR_CHOICES,
-                                               widget=forms.TextInput(attrs={'name': 'education_start_year'}),
+    u_education_start_year = forms.ChoiceField(label='Education Start Year', choices=YEAR_CHOICES,
+                                               widget=forms.TextInput(attrs={'name': 'education_start_year','placeholder':'Start Year'}),
                                                required=True)
-    u_education_end_year = forms.ChoiceField(label='Education_end_year', choices=YEAR_CHOICES,
-                                             widget=forms.TextInput(attrs={'name': 'education_end_year'}), required=True)
+    u_education_end_year = forms.ChoiceField(label='Education End Year', choices=YEAR_CHOICES,
+                                             widget=forms.TextInput(attrs={'name': 'education_end_year','placeholder':'End Year'}), required=True)
 
     class Meta:
         model = UserProfile

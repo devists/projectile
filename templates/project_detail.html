@@ -8,9 +8,29 @@
     skills:{{ project.skills }}
 
 
+
+{% if request.user == project.user %}
 <form method = "get" action="{% url 'project_edit' project_id=project.pk %}">
      {% csrf_token %}
 
      <input type="submit" value = "Edit Project"/>
  </form>
+    {% else %}
+
+
+        CoverLetter:<br>
+        <textarea rows="4" cols="50" name="cover" form="usrform"></textarea>
+
+
+
+        <form method="post" action="{% url 'apply_project' project_id=project.pk %}" id="usrform">
+         {% csrf_token %}
+
+
+         <input type="submit" value = "Apply Project"/>
+        </form>
+{% endif %}
+
+
+
 {% endblock content %}

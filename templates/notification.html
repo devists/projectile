@@ -1,0 +1,19 @@
+{% load notifications_tags %}
+
+
+{% notifications_unread as unread_count %}
+
+{% if unread_count %}
+    You have <strong>{{ unread_count }}</strong> unread notifications.
+{% endif %}
+
+<br>
+{% for n in notice %}
+    {{ n.actor }}
+    {{ n.verb }}
+    {% if n.target %}
+      of {{ n.target }}
+    {% endif %}
+
+    <br>
+  {% endfor %}

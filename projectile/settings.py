@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mainapp'
+    'mainapp',
+    'notifications',
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/'
+
+NOTIFICATIONS_SOFT_DELETE = True

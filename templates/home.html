@@ -41,4 +41,18 @@
 
     <input type="submit" value="LogOut"/>
 </form>
+
+
+<form method="get" action="{% url 'notific' %}">
+    {% csrf_token %}
+
+    <input type="submit" value="Notifications"/>
+</form>
+
+<form method="get" action="{% url 'list_applied' %}">
+    {% csrf_token %}
+
+    <input type="submit" value="GetApplied"/>
+</form>
+
 {% endblock content %}
