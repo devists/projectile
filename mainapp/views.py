@@ -5,6 +5,8 @@ import smtplib
 import binascii
 from Crypto.Cipher import XOR
 from django.contrib import messages
+from django.urls import reverse
+
 from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, LoginForm
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
 from django.contrib.auth.models import User
@@ -21,6 +23,14 @@ from notifications.signals import notify
 from notifications.models import Notification
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+
+# encryption key for creating activation key
+secret_key = "12345678"
+# sender's email address in account verification email
+email_address = "goyaldeepu468@gmail.com"
+# sender;s email password
+email_password = "Dkumar%1996"
 
 
 # Create your views here.
