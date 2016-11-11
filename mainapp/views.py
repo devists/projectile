@@ -26,11 +26,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # encryption key for creating activation key
-secret_key = "12345678"
+secret_key = "secret_key"
 # sender's email address in account verification email
-email_address = "goyaldeepu468@gmail.com"
+email_address = "email"
 # sender;s email password
-email_password = "Dkumar%1996"
+email_password = "password"
 
 
 # Create your views here.
