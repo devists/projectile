@@ -86,6 +86,14 @@ class ProjectForm(forms.ModelForm):
         fields = ['p_title', 'p_category', 'diff_level', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
 
 
+class ProjectSkillForm(forms.ModelForm):
+    p_skill = forms.CharField(label='Skill', widget=forms.TextInput(attrs={'name': 'skill'}),required=True)
+
+    class Meta:
+        model = ProjectSkills
+        fields = ['p_skill']
+
+
 class UserProfileForm(forms.ModelForm):
     #username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
     YEAR_CHOICES = []

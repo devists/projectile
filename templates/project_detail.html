@@ -1,10 +1,12 @@
 {%extends "base.html" %}
 
 {% block content %}
-
+    user:{{ project.user.username }}<br>
     Project Title  :  {{ project.p_title }}<br>
     Project Category :  {{ project.p_category }}<br>
     Project Description :  {{ project.p_description }}<br>
+    skills:{{ project.skills }}
+
 
 
 {% if request.user == project.user %}

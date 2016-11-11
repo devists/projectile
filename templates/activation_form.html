@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Activate your account</title>
+</head>
+<body>
+
+{% if messages %}
+    {% for message in messages %}
+        {{ message}}
+    {% endfor %}
+
+{% endif %}
+
+        <h1>Activate your account</h1>
+        <form method="post" action="{% url 'activate' %}">
+            {% csrf_token %}
+            E-mail:<input type="text" name="email" value="" size="50"/>
+            <br>
+            Activation-key:<input type="text" name="activation-key" value="" size="50"/><br>
+            <button type="submit" class="save btn btn-default">Activate</button>
+        </form>
+</body>
+</html>

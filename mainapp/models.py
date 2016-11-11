@@ -64,3 +64,5 @@ class ApplyProject(models.Model):
 
     def __str__(self):
         return self.user.username+" applied to "+self.project.p_title
+
+

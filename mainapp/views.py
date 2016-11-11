@@ -1,4 +1,12 @@
+import base64
+import re
+import smtplib
+
+import binascii
+from Crypto.Cipher import XOR
 from django.contrib import messages
+from django.urls import reverse
+
 from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, LoginForm
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
 from django.contrib.auth.models import User
@@ -17,7 +25,49 @@ from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+# encryption key for creating activation key
+secret_key = "secret_key"
+# sender's email address in account verification email
+email_address = "email"
+# sender;s email password
+email_password = "password"
+
+
 # Create your views here.
+def custom_save(user):
+    user.is_active = False
+    user.save()
+
+    # custom save function for creating non active user checking a user is active or not :param user:
+
+
+def encrypt(key, plaintext):
+    cipher = XOR.new(key)
+    return base64.b64encode(cipher.encrypt(plaintext))
+
+
+# encrypt a string and return :param key:param plaintext: :return: unicode(encryptedtext)
+
+
+def decrypt(key, ciphertext):
+    cipher = XOR.new(key)
+    return cipher.decrypt(base64.b64decode(ciphertext))
+
+
+# decrypt a string with key and return:param key::param ciphertext::return:decrypted text
+
+
+def send_verification_mail(email, activation_key, msg):
+    print("send verificaion mail")
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    print("Helo")
+    server.login(email_address, email_password)
+    print("world")
+    server.sendmail(email_address, email, msg)
+    server.quit()
+
+
 @login_required(login_url="login/")
 def home(request):
     if request.method == 'POST':
@@ -65,18 +115,50 @@ def user_register(request):
             user.last_name = form.cleaned_data['last_name']
             profile = form_pro.save(commit=False)
             profile.user = user
-            user.save()
-            profile.save()
-            login(request, user)
-            return redirect('profile_update')
-        else:
-            messages.error(request, "Error")
+            custom_save(profile)
+            activation_key = encrypt(secret_key, user.email)
+            # sending account verification mail
+            message = "Your email address is" + user.email + "activation key is " + activation_key.decode("utf-8")
+            # message = "Reset link is  Emahere"
+            send_verification_mail(user.email, activation_key, message)
+            return HttpResponseRedirect(reverse("activate"))
 
     else:
 
         form = RegistrationForm()
         form_pro = ProfileForm()
     return render(request, 'user_reg.html', {'form': form, 'form_pro': form_pro})
+
+
+def activate(request):
+    # handle for user account activation:param request::return: httpresponseredirect or rendered html
+
+    if request.method == "POST":
+        email = request.POST.get("email")
+        activation_key = request.POST.get("activation-key")
+        # verifying thw activation key
+        try:
+            decoded = decrypt(secret_key, activation_key)
+            decoded = decoded.decode("utf-8")
+        except binascii.Error:
+            decoded = None
+
+        if email == decoded:
+            user = User.objects.get(email=email)
+            if user is None:
+                messages.error(request, "This email id is not valid")
+                return render(request, 'activation_form.html')
+            # activating the user
+            else:
+                user.is_active = True
+                user.save()
+                messages.success(request, "account activated successfully please Login Now")
+                return HttpResponseRedirect(reverse("profile_update"))
+
+        else:
+            messages.error(request, "Wrong activation key")
+
+    return render(request, 'activation_form.html')
 
 
 def profile_update(request):
@@ -111,10 +193,12 @@ def post_project(request):
 
             return HttpResponse("Project Published")
 
+
     else:
         p_form = ProjectForm()
 
     return render(request, 'tempo.html', {'p_form': p_form})
+
 
 def prev_posts(request):
 
@@ -129,12 +213,14 @@ def prev_posts(request):
     else:
         return HttpResponse("You haven't posted any projects yet")
 
+
 def all_projects(request):
     # projects = Project.objects.all()
     projects = Project.objects.get(p_title='sdsds')
 
     if projects:
         return render(request,'projects.html',{'projects':projects})
+
 
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
