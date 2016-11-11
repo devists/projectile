@@ -71,14 +71,14 @@ class ProjectForm(forms.ModelForm):
                ('I', 'Intermediate'),
                ('A', 'Advanced')]
 
-    p_title = forms.CharField(label='Title', widget=forms.TextInput(attrs={'name': 'title'}))
-    p_category = forms.CharField(label='Category', widget=forms.TextInput(attrs={'name': 'category'}))
+    p_title = forms.CharField(label='Project Title', widget=forms.TextInput(attrs={'name': 'title','placeholder': 'Project Title'}))
+    p_category = forms.CharField(label='Project Category', widget=forms.TextInput(attrs={'name': 'category','placeholder': 'Project Category'}))
     diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
                                    widget=forms.RadioSelect(attrs={'name': 'level'}))
-    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description'}))
+    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description',}))
     no_of_contrib = forms.CharField(label='No. of Contributors Needed',
-                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib'}))
-    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status'}))
+                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib','placeholder': 'No. of Contributors Needed'}))
+    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status','placeholder': 'Project Status'}))
     p_privacy = forms.BooleanField(label='Privacy',required=False, widget=forms.CheckboxInput(attrs={'name': 'privacy'}))
 
     class Meta:
