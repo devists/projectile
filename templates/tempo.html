@@ -1,8 +1,7 @@
+{%extends "base.html" %}
 
-<html>
-
-
-<form method="POST" action="{% url 'post_project' %}">
+{% block content %}
+<!--<form method="POST" action="{% url 'post_project' %}">
     {% csrf_token %}
 
 {{ p_form.as_p }}
@@ -10,10 +9,68 @@
 <p>Skills Required:
 
     <input type="text" name="skill">
-
     <br>
     <input type="submit" value="Submit" />
 
-</form>
+</form>-->
+<div class="profile_update ui container">
+    <div class="profile_form">
+        <h2 class="title">Post Project</h2>
+        <form class="ui form" method="POST" action="{% url 'post_project' %}">
+            {% csrf_token %}
 
-</html>
+            <div class="field">
+                <label>{{p_form.p_title.label}}</label>
+               {{p_form.p_title}}
+            </div>
+
+            <div class="field">
+                <label>{{p_form.p_category.label}}</label>
+               {{p_form.p_category}}
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    {% for choices in p_form.diff_level%}
+                    <div class="field">
+                        <div class="ui radio">
+                            {{choices}}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="field">
+                <label>{{p_form.no_of_contrib.label}}</label>
+               {{p_form.no_of_contrib}}
+            </div>
+
+            <div class="field">
+                <label>{{p_form.p_status.label}}</label>
+               {{p_form.p_status}}
+            </div>
+
+            <div class="field">
+                <label>Skills Required</label>
+                <input type="text" name="skill">
+            </div>
+
+
+            <div class="field">
+                <label>{{p_form.p_privacy.label}}</label>
+               {{p_form.p_privacy}} Privacy
+            </div>
+
+            <div class="field">
+                <label>{{p_form.p_description.label}}</label>
+               {{p_form.p_description}}
+            </div>
+
+
+            <button type="submit" class="ui primary button" value="Submit">Submit</button>
+            <button type="reset" class="ui negative button" value="Reset">Reset</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

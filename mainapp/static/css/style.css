@@ -577,7 +577,7 @@ footer.main-footer {
 
 /*  Profile Update */
 .profile_update.ui.container{
-    margin: 0;
+    margin: 2.5rem;
     background: #fff;
 }
 .profile_update .profile_form{
