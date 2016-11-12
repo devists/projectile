@@ -1,3 +1,4 @@
+import binascii
 from django.contrib import messages
 from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, LoginForm
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
@@ -15,7 +16,6 @@ from notifications.signals import notify
 from notifications.models import Notification
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
 
 # Create your views here.
 @login_required(login_url="login/")
@@ -51,6 +51,30 @@ def home(request):
     return render(request, "home.html", {'search_form': search_form})
 
 
+def activate(request):
+    if request.method=='POST':
+        email = request.POST.get("email")
+        activation_key = request.POST.get("activation_key")
+
+        try:
+            plain_text=decrypt(secret_key,activation_key)
+            decoded=plain_text.decode("utf-8")
+        except binascii.Error:
+            decoded =None
+
+        if email == decoded:
+            user = User.objects.get(email=email)
+            if user is None:
+                messages.error(request, "This email is not valid")
+            else:
+                user.is_active=True
+
+
+
+
+    render(request, 'activation_form.html')
+
+
 def user_register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST) #This will be used in POST request
@@ -65,10 +89,16 @@ def user_register(request):
             user.last_name = form.cleaned_data['last_name']
             profile = form_pro.save(commit=False)
             profile.user = user
-            user.save()
-            profile.save()
-            login(request, user)
-            return redirect('profile_update')
+            # user.save()
+            # profile.save()
+            # login(request, user)
+            custom_save(profile)
+            activation_key = encrypt(secret_key, form.cleaned_data['email'])
+
+            message = " Your Email address is " + form.cleaned_data['email'] + " activation key is " + activation_key.decode("utf-8")
+            send_verification_mail(form.cleaned_data['email'], activation_key, message)
+
+            return redirect('activate')
         else:
             messages.error(request, "Error")
 
@@ -116,6 +146,7 @@ def post_project(request):
 
     return render(request, 'tempo.html', {'p_form': p_form})
 
+
 def prev_posts(request):
 
     user = request.user
@@ -129,12 +160,14 @@ def prev_posts(request):
     else:
         return HttpResponse("You haven't posted any projects yet")
 
+
 def all_projects(request):
     # projects = Project.objects.all()
     projects = Project.objects.get(p_title='sdsds')
 
     if projects:
         return render(request,'projects.html',{'projects':projects})
+
 
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
@@ -169,6 +202,7 @@ def profile_edit(request):
         u_form = UserProfileForm(instance=profile)
     return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
 
+
 def explore_projects(request):
     projects = Project.objects.all()
     # projects = Project.objects.get(p_title='sdsds')
@@ -186,6 +220,7 @@ def explore_projects(request):
         project_list = paginator.page(paginator.num_pages)
 
     return render(request, "projects.html", {'project_list': project_list})
+
 
 def explore_profiles(request):
     profiles = UserProfile.objects.all()

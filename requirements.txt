@@ -1,2 +1,3 @@
+Crypto
 Django==1.10.2
 django-notifications-hq==1.2
