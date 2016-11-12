@@ -59,7 +59,7 @@ class ProfileForm(forms.ModelForm):
                ('F', 'Female')]
 
     u_gender = forms.ChoiceField(label='Gender', choices=CHOICES, widget=forms.Select(attrs={'class':'border-gradient ui dropdown'}))
-    u_dob = forms.CharField(label='Date Of Birth', widget=forms.DateInput(attrs={'type': 'date', 'class': 'border-gradient', 'placeholder': 'DOB'}, format=('%Y-%m-%d')))
+    u_dob = forms.CharField(label='Date Of Birth', widget=forms.DateInput(attrs={'type': 'date', 'class': 'border-gradient', 'placeholder': 'DOB'}))
 
     class Meta:
         model = Student
@@ -71,19 +71,27 @@ class ProjectForm(forms.ModelForm):
                ('I', 'Intermediate'),
                ('A', 'Advanced')]
 
-    p_title = forms.CharField(label='Title', widget=forms.TextInput(attrs={'name': 'title'}))
-    p_category = forms.CharField(label='Category', widget=forms.TextInput(attrs={'name': 'category'}))
+    p_title = forms.CharField(label='Project Title', widget=forms.TextInput(attrs={'name': 'title','placeholder': 'Project Title'}))
+    p_category = forms.CharField(label='Project Category', widget=forms.TextInput(attrs={'name': 'category','placeholder': 'Project Category'}))
     diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
                                    widget=forms.RadioSelect(attrs={'name': 'level'}))
-    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description'}))
+    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description',}))
     no_of_contrib = forms.CharField(label='No. of Contributors Needed',
-                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib'}))
-    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status'}))
+                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib','placeholder': 'No. of Contributors Needed'}))
+    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status','placeholder': 'Project Status'}))
     p_privacy = forms.BooleanField(label='Privacy',required=False, widget=forms.CheckboxInput(attrs={'name': 'privacy'}))
 
     class Meta:
         model = Project
         fields = ['p_title', 'p_category', 'diff_level', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
+
+
+class ProjectSkillForm(forms.ModelForm):
+    p_skill = forms.CharField(label='Skill', widget=forms.TextInput(attrs={'name': 'skill'}),required=True)
+
+    class Meta:
+        model = ProjectSkills
+        fields = ['p_skill']
 
 
 class UserProfileForm(forms.ModelForm):

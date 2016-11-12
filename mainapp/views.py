@@ -1,5 +1,12 @@
+import base64
+import re
+import smtplib
+
 import binascii
+from Crypto.Cipher import XOR
 from django.contrib import messages
+from django.urls import reverse
+
 from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, LoginForm
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
 from django.contrib.auth.models import User
@@ -17,7 +24,49 @@ from notifications.models import Notification
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
+# encryption key for creating activation key
+secret_key = "96587411335"
+# sender's email address in account verification email
+email_address = "jayakishan100@gmail.com"
+# sender;s email password
+email_password = "52701021"
+
+
 # Create your views here.
+def custom_save(user):
+    user.is_active = False
+    user.save()
+
+    # custom save function for creating non active user checking a user is active or not :param user:
+
+
+def encrypt(key, plaintext):
+    cipher = XOR.new(key)
+    return base64.b64encode(cipher.encrypt(plaintext))
+
+# encrypt a string and return :param key:param plaintext: :return: unicode(encryptedtext)
+
+
+def decrypt(key, ciphertext):
+    cipher = XOR.new(key)
+    return cipher.decrypt(base64.b64decode(ciphertext))
+
+
+# decrypt a string with key and return:param key::param ciphertext::return:decrypted text
+
+
+def send_verification_mail(email, activation_key, msg):
+    print("send verificaion mail")
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    print("Helo")
+    server.login(email_address, email_password)
+    print("world")
+    server.sendmail(email_address, email, msg)
+    server.quit()
+
+
 @login_required(login_url="login/")
 def home(request):
     if request.method == 'POST':
@@ -51,30 +100,6 @@ def home(request):
     return render(request, "home.html", {'search_form': search_form})
 
 
-def activate(request):
-    if request.method=='POST':
-        email = request.POST.get("email")
-        activation_key = request.POST.get("activation_key")
-
-        try:
-            plain_text=decrypt(secret_key,activation_key)
-            decoded=plain_text.decode("utf-8")
-        except binascii.Error:
-            decoded =None
-
-        if email == decoded:
-            user = User.objects.get(email=email)
-            if user is None:
-                messages.error(request, "This email is not valid")
-            else:
-                user.is_active=True
-
-
-
-
-    render(request, 'activation_form.html')
-
-
 def user_register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST) #This will be used in POST request
@@ -89,24 +114,54 @@ def user_register(request):
             user.last_name = form.cleaned_data['last_name']
             profile = form_pro.save(commit=False)
             profile.user = user
-            # user.save()
-            # profile.save()
-            # login(request, user)
-            custom_save(profile)
-            activation_key = encrypt(secret_key, form.cleaned_data['email'])
+            custom_save(user)
+            profile.save()
 
-            message = " Your Email address is " + form.cleaned_data['email'] + " activation key is " + activation_key.decode("utf-8")
-            send_verification_mail(form.cleaned_data['email'], activation_key, message)
-
-            return redirect('activate')
-        else:
-            messages.error(request, "Error")
+            activation_key = encrypt(secret_key, user.email)
+            # sending account verification mail
+            message = "Your email address is" + user.email + "activation key is " + activation_key.decode("utf-8")
+            # message = "Reset link is  Emahere"
+            send_verification_mail(user.email, activation_key, message)
+            return HttpResponseRedirect(reverse("activate"))
 
     else:
 
         form = RegistrationForm()
         form_pro = ProfileForm()
     return render(request, 'user_reg.html', {'form': form, 'form_pro': form_pro})
+
+
+def activate(request):
+    # handle for user account activation:param request::return: httpresponseredirect or rendered html
+
+    if request.method == "POST":
+        email = request.POST.get("email")
+        activation_key = request.POST.get("activation-key")
+        # verifying thw activation key
+        try:
+            decoded = decrypt(secret_key, activation_key)
+            decoded = decoded.decode("utf-8")
+        except binascii.Error:
+            decoded = None
+
+        if email == decoded:
+            user = User.objects.get(email=email)
+            if user is None:
+                messages.error(request, "This email id is not valid")
+                return render(request, 'activation_form.html')
+            # activating the user
+            else:
+                user.is_active = True
+                user.save()
+                login(request, user)
+
+                messages.success(request, "Your Account Has been Activated..")
+                return HttpResponseRedirect(reverse("profile_update"))
+
+        else:
+            messages.error(request, "Wrong activation key")
+
+    return render(request, 'activation_form.html')
 
 
 def profile_update(request):
@@ -140,6 +195,7 @@ def post_project(request):
                 project_s.save()
 
             return HttpResponse("Project Published")
+
 
     else:
         p_form = ProjectForm()
@@ -189,8 +245,9 @@ def project_edit(request, project_id):
 
 
 def profile_edit(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
+    profile = UserProfile.objects.filter(user=request.user)
     if request.method == "POST":
+        profile = get_object_or_404(UserProfile,user=request.user)
         u_form = UserProfileForm(request.POST, instance=profile)
         if u_form.is_valid():
             profile = u_form.save(commit=False)
@@ -199,8 +256,12 @@ def profile_edit(request):
             return render(request, 'profile_detail.html', {'profile': profile})
 
     else:
-        u_form = UserProfileForm(instance=profile)
-    return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
+        if profile:
+            profile = get_object_or_404(UserProfile,user=request.user)
+            u_form = UserProfileForm(instance=profile)
+            return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
+        else:
+            return HttpResponseRedirect(reverse('profile_update'))
 
 
 def explore_projects(request):
@@ -238,7 +299,6 @@ def explore_profiles(request):
         profile_list = paginator.page(paginator.num_pages)
 
     return render(request, "profiles.html", {'profile_list': profile_list})
-
 
 
 def apply_project(request, project_id):

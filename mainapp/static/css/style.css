@@ -577,11 +577,11 @@ footer.main-footer {
 
 /*  Profile Update */
 .profile_update.ui.container{
-    margin: 0;
+    margin: 2.5rem;
     background: #fff;
 }
 .profile_update .profile_form{
-    padding:30px 20%;
+    padding:2.5rem 20%;
 }
 .profile_update .profile_form h2.title{
     text-align: center;
@@ -591,7 +591,7 @@ footer.main-footer {
     font-weight: 600 !important;
 }
 .profile_update .profile_form .form .header{
-    padding-top: 30px;
+    padding-top: 2.5rem;
 }
 .profile_update .profile_form .form .form_error ul{
     padding: 0;
@@ -600,4 +600,9 @@ footer.main-footer {
 }
 .profile_update .profile_form .form .form_error ul li{
     color: red;
+}
+.project.ui.container{
+    margin: 2.5rem;
+    background: #fff;
+    padding: 2.5rem;
 }
