@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>
+{% if messages %}
+    {% for message in messages %}
+        {{ message}}
+    {% endfor %}
+
+{% endif %}
+</h1>
+
+
+<a href="{% url 'profile_update' %}">Create Your Profile</a>
+
+</body>
+</html>
