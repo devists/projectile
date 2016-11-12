@@ -156,7 +156,7 @@ def activate(request):
                 login(request, user)
 
                 messages.success(request, "Your Account Has been Activated..")
-                return render(request, 'Succesfull_activation.html', {})
+                return render(request, 'succesfull_activation.html', {})
 
         else:
             messages.error(request, "Wrong activation key")

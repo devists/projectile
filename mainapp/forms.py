@@ -97,7 +97,7 @@ class ProjectSkillForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     #username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
     YEAR_CHOICES = []
-    for r in range(1980, (datetime.datetime.now().year + 1)):
+    for r in range((datetime.datetime.now().year -9), (datetime.datetime.now().year + 5)):
         YEAR_CHOICES.append((r, r))
 
     u_github = forms.CharField(label='Github Account', widget=forms.TextInput(attrs={'name': 'github','placeholder':'GitHub Account'}),required=True)
