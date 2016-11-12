@@ -156,7 +156,7 @@ def activate(request):
                 login(request, user)
 
                 messages.success(request, "Your Account Has been Activated..")
-                return HttpResponseRedirect(reverse("profile_update"))
+                return render(request, 'Succesfull_activation.html', {})
 
         else:
             messages.error(request, "Wrong activation key")
