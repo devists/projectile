@@ -1,5 +1,4 @@
 import base64
-import re
 import smtplib
 
 import binascii

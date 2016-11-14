@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "explore_base.html" %}
+
+{#                        Project Card#}
+{% block explore-card %}
 {% if results or results_p%}
 
         {% for result in results %}
@@ -30,5 +27,4 @@
 
 {% endif %}
 
-</body>
-</html>
+{% endblock explore-card %}
