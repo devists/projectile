@@ -35,17 +35,26 @@
                 </div>
                 <div class="right menu">
                     <div class="item">
-                        <div class="ui search left-select">
+                        <!--<form class="ui search left-select">
                             <div class="ui icon input">
                                 <select class="ui compact selection dropdown">
-                                    <option selected="" value="project">Project</option>
-                                    <option value="student">Student</option>
+                                    <option selected="" value="Project">Project</option>
+                                    <option value="Student">Student</option>
                                 </select>
                                 <input class="" type="text" placeholder="Search...">
                                 <i class="inverted circular search link icon"></i>
                             </div>
                             <div class="results"></div>
-                        </div>
+                        </form>-->
+                        <form class="ui search left-select" method="post" action="{% url 'home' %}">
+                            {% csrf_token %}
+                            <div class="ui icon input">
+                                {{search_form.category }}
+                                {{search_form.search_item}}
+                                <i class="inverted circular search link icon"></i>
+                            </div>
+                            <div class="results"></div>
+                        </form>
                     </div>
                     <span class="user-auth d-flex">
                         <a href="{% url 'login' %}" class="item">Login</a>

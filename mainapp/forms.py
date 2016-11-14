@@ -138,5 +138,5 @@ class SearchForm(forms.Form):
     ('Student', 'Users'),
 
 )
-    search_item = forms.CharField(label='Keyword Search', max_length=30,widget=forms.TextInput(attrs={'name': 'title'}))
-    category = forms.ChoiceField(choices=CATEGORIES, required=True)
+    search_item = forms.CharField(label='Keyword Search', max_length=30,widget=forms.TextInput(attrs={'name': 'title','placeholder': 'search...'}))
+    category = forms.ChoiceField(choices=CATEGORIES, required=True,widget=forms.Select(attrs={'class':'ui compact selection dropdown'}))
