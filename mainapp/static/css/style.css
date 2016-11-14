@@ -606,3 +606,13 @@ footer.main-footer {
     background: #fff;
     padding: 2.5rem;
 }
+
+
+
+/* Home View */
+.home_view.ui.container{
+    margin: 2.5rem;
+    background: #fff;
+    padding: 2.5rem;
+}
+

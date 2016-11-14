@@ -1,60 +1,122 @@
 {%extends "base.html" %}
 
 {%block content %}
-<h1>Hello</h1>
-<p>{{ request.user.username }}</p>
+
+<div class="home_view ui container">
 
 
-<!--
-<form method="post" action="{% url 'home' %}">
-    {% csrf_token %}
-    {{ search_form }}
-    <input type="submit" value="Search" />
-</form>
-
--->
+    <h1>Hello</h1>
+    <p>{{ request.user.username }}</p>
 
 
+    <!--
+    <form method="post" action="{% url 'home' %}">
+        {% csrf_token %}
+        {{ search_form }}
+        <input type="submit" value="Search" />
+    </form>
 
-<br>
+    -->
+    <div class="ui grid">
+        <div class="eight wide column">
+            <div class="ui green segment">
+                <div class="ui statistics">
+                <div class="red statistic">
+                    <div class="value">
+                        27
+                    </div>
+                    <div class="label">
+                        Red
+                    </div>
+                </div>
+                <div class="orange statistic">
+                    <div class="value">
+                      8
+                    </div>
+                    <div class="label">
+                      Orange
+                    </div>
+                    </div>
+                <div class="yellow statistic">
+                    <div class="value">
+                      28
+                    </div>
+                    <div class="label">
+                      Yellow
+                    </div>
+                </div>
+            </div>
+                </div>
+        </div>
+        <div class="eight wide column"><div class="ui green segment"><div class="ui statistics">
+  <div class="red statistic">
+    <div class="value">
+      27
+    </div>
+    <div class="label">
+      Red
+    </div>
+  </div>
+  <div class="orange statistic">
+    <div class="value">
+      8
+    </div>
+    <div class="label">
+      Orange
+    </div>
+  </div>
+  <div class="yellow statistic">
+    <div class="value">
+      28
+    </div>
+    <div class="label">
+      Yellow
+    </div>
+  </div>
+</div>
+</div></div>
+    </div>
 
-<form method="get" action="{% url 'prev_posts' %}">
-    {% csrf_token %}
 
-    <input type="submit" value="Posted Projects "/>
-</form>
+    <br>
 
+    <form method="get" action="{% url 'prev_posts' %}">
+        {% csrf_token %}
 
-<form method="get" action="{% url 'post_project' %}">
-    {% csrf_token %}
-
-    <input type="submit" value="Post Project"/>
-</form>
+        <input type="submit" value="Posted Projects "/>
+    </form>
 
 
-<form method="get" action = "{% url 'profile_edit'%}">
-    {% csrf_token %}
+    <form method="get" action="{% url 'post_project' %}">
+        {% csrf_token %}
 
-    <input type="submit" value="Edit Profile"/>
-</form>
-
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-
-    <input type="submit" value="LogOut"/>
-</form>
+        <input type="submit" value="Post Project"/>
+    </form>
 
 
-<form method="get" action="{% url 'notific' %}">
-    {% csrf_token %}
+    <form method="get" action = "{% url 'profile_edit'%}">
+        {% csrf_token %}
 
-    <input type="submit" value="Notifications"/>
-</form>
+        <input type="submit" value="Edit Profile"/>
+    </form>
 
-<form method="get" action="{% url 'list_applied' %}">
-    {% csrf_token %}
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
 
-    <input type="submit" value="GetApplied"/>
-</form>
+        <input type="submit" value="LogOut"/>
+    </form>
 
+
+    <form method="get" action="{% url 'notific' %}">
+        {% csrf_token %}
+
+        <input type="submit" value="Notifications"/>
+    </form>
+
+    <form method="get" action="{% url 'list_applied' %}">
+        {% csrf_token %}
+
+        <input type="submit" value="GetApplied"/>
+    </form>
+</div>
 {% endblock content %}
