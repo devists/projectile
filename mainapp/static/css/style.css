@@ -40,6 +40,18 @@ body > .grid {
 
 /*Helpers*/
 
+.m-t-0 {
+  margin-top: 0;
+}
+
+.m-b-0 {
+    margin-bottom: 0;
+}
+
+.m-b-05x {
+    margin-bottom: 0.5rem;
+}
+
 .h-vh {
     height: 100vh;
 }
@@ -62,6 +74,13 @@ body > .grid {
 
 .color-g125 {
     color: rgb(125, 125, 125) !important;
+}
+.color-g158 {
+    color: rgb(158, 158, 158) !important;
+}
+
+.color-g97 {
+    color: rgb(97, 97, 97) !important;
 }
 
 .fw-100 {
@@ -153,6 +172,9 @@ body > .grid {
     box-shadow: none !important;
     border-style: solid !important;
 }
+
+
+
 
 /*Semantic Rewrite*/
 
@@ -497,10 +519,11 @@ a.color-orange:hover {
     box-shadow: 0 1px 3px 0 rgb(76, 175, 80), 0 0 0 1px rgb(76, 175, 80);
 }
 
-.project-card .ui.label {
+.ui.label {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
 }
+
 
 .project-card.ui.card .meta .meta-date {
     margin-right: 0.5rem;
@@ -633,5 +656,9 @@ footer.main-footer {
     margin: 2.5rem;
     background: #fff;
     padding: 2.5rem;
+}
+
+.contacts a:hover{
+    color: #333333 !important;
 }
 
