@@ -3,6 +3,7 @@
 {#                        Project Card#}
 {% block explore-card %}
 {% for profile in profile_list %}
+    {% if not profile.user == request.user %}
 <div class="ui card profile-card">
     {# Card Profile img#}
     <div class="profile-card__header">
@@ -58,6 +59,7 @@
         <div class="white-space space-xm"></div>
     </div>
 </div>
+    {% endif %}
 {%  endfor %}
 
 <div class="pagination">
