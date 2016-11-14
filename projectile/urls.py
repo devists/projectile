@@ -18,11 +18,15 @@ from django.contrib import admin
 from mainapp.forms import LoginForm
 from django.contrib.auth import views
 import notifications.urls
+from django.contrib.auth.decorators import user_passes_test
+
+
+login_forbidden = user_passes_test(lambda u: u.is_anonymous(), '/')
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('mainapp.urls')),
-    url(r'^login/$', views.login, {'template_name': 'user_login.html', 'authentication_form': LoginForm}, name='login'),
+    url(r'^login/$', login_forbidden(views.login), {'template_name': 'user_login.html', 'authentication_form': LoginForm}, name='login',),
     url(r'^logout/$', views.logout, {'next_page': '/login'}, name='logout'),
     url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 

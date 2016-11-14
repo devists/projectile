@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="ui container view-card">
+        <div class="view__content">
+            <div class="ui basic">
+                {% block details %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <div class="white-space space-md"></div>
+{% endblock content %}

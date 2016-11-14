@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "explore_base.html" %}
 
+{#                        Project Card#}
+{% block explore-card %}
 {% if results %}
 
         {% for result in results %}
@@ -17,6 +13,4 @@
     <h1>No results Found</h1>
 
 {% endif %}
-
-</body>
-</html>
+{% endblock explore-card %}

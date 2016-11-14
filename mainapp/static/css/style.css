@@ -40,6 +40,22 @@ body > .grid {
 
 /*Helpers*/
 
+.m-t-0 {
+  margin-top: 0;
+}
+
+.m-a-0 {
+    margin: 0 !important;
+}
+
+.m-b-0 {
+    margin-bottom: 0;
+}
+
+.m-b-05x {
+    margin-bottom: 0.5rem;
+}
+
 .h-vh {
     height: 100vh;
 }
@@ -62,6 +78,13 @@ body > .grid {
 
 .color-g125 {
     color: rgb(125, 125, 125) !important;
+}
+.color-g158 {
+    color: rgb(158, 158, 158) !important;
+}
+
+.color-g97 {
+    color: rgb(97, 97, 97) !important;
 }
 
 .fw-100 {
@@ -154,6 +177,9 @@ body > .grid {
     border-style: solid !important;
 }
 
+
+
+
 /*Semantic Rewrite*/
 
 .ui.toggle.checkbox input:checked ~ .box:before, .ui.toggle.checkbox input:checked ~ label:before {
@@ -229,9 +255,9 @@ body > .grid {
     /*justify-content: space-between;*/
 }
 
-.user-auth {
-    font-size: .78571429rem;
-}
+/*.user-auth {
+    font-size: 1rem;
+}*/
 
 .ui.search.left-select .ui.input input {
     border-top-left-radius: 0;
@@ -250,8 +276,15 @@ body > .grid {
     margin-right: 2rem;
 }
 
+.ui.dropdown > .text a{
+    color: rgb(0, 0, 0);
+}
+
 .ui.menu.menu--cust .header.item a {
     color: rgba(0, 0, 0, .8);
+}
+.ui.menu .ui.dropdown .menu > .item a{
+    color: rgb(0, 0, 0);
 }
 
 .ui.menu.menu--cust .header.item a:hover {
@@ -425,6 +458,18 @@ a.color-orange:hover {
     display: flex;
 }
 
+.ui.view-card {
+    margin-top: 2.5rem;
+}
+
+.view-card .view__content{
+    background-color: white;
+    padding: 3rem;
+    width: calc(100% - 260px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .explore-card .ui.bottom.visible.sidebar, .ui.left.visible.sidebar, .ui.right.visible.sidebar, .ui.top.visible.sidebar {
     box-shadow: none;
 }
@@ -478,10 +523,11 @@ a.color-orange:hover {
     box-shadow: 0 1px 3px 0 rgb(76, 175, 80), 0 0 0 1px rgb(76, 175, 80);
 }
 
-.project-card .ui.label {
+.ui.label {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
 }
+
 
 .project-card.ui.card .meta .meta-date {
     margin-right: 0.5rem;
@@ -606,3 +652,17 @@ footer.main-footer {
     background: #fff;
     padding: 2.5rem;
 }
+
+
+
+/* Home View */
+.home_view.ui.container{
+    margin: 2.5rem;
+    background: #fff;
+    padding: 2.5rem;
+}
+
+.contacts a:hover{
+    color: #333333 !important;
+}
+

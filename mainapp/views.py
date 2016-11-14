@@ -1,5 +1,4 @@
 import base64
-import re
 import smtplib
 
 import binascii
@@ -216,18 +215,23 @@ def prev_posts(request):
     else:
         return HttpResponse("You haven't posted any projects yet")
 
-
-def all_projects(request):
-    # projects = Project.objects.all()
-    projects = Project.objects.get(p_title='sdsds')
-
-    if projects:
-        return render(request,'projects.html',{'projects':projects})
+#
+# def all_projects(request):
+#     # projects = Project.objects.all()
+#     projects = Project.objects.get(p_title='sdsds')
+#
+#     if projects:
+#         return render(request,'projects.html',{'projects':projects})
+#
 
 
 def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'project_detail.html', {'project': project})
+
+def profile_detail(request, profile_id):
+    profile = get_object_or_404(UserProfile, pk=profile_id)
+    return render(request, 'profile_detail.html', {'profile': profile})
 
 
 def project_edit(request, project_id):
@@ -325,7 +329,7 @@ def list_applied(request):
     user = request.user
     ct_supported = ContentType.objects.get_for_model(user)
     lists = Notification.objects.filter(actor_content_type=ct_supported)
-    return render(request, 'applied_list.html', {'lists' : lists})
+    return render(request, 'applied_list.html', {'lists': lists})
 
 
 
