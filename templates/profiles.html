@@ -54,7 +54,7 @@
 
         {# Apply on Project Button#}
         <div class="view-btn text-center">
-            <button class="color-primary ui basic button fw-300 border-gradient">View</button>
+            <a href="{% url 'profile_detail' profile_id=profile.pk %}" class="color-primary ui basic button fw-300 border-gradient">View</a>
         </div>
         <div class="white-space space-xm"></div>
     </div>
