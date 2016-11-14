@@ -1,7 +1,62 @@
 {% extends "view_container.html" %}
 {% block details %}
-    Username:{{ profile.user.username }}<br>
+    {% comment %}Username:{{ profile.user.username }}<br>
     Github  :{{ profile.u_github }}<br>
     Linkedin:{{ profile.u_linkedin }}<br>
-    Contact no.:{{ profile.u_contact_no }}<br>
+    Contact no.:{{ profile.u_contact_no }}<br>{% endcomment %}
+    <div class="details-view">
+        <h1 class="name color-primary m-b-05x">{{ profile.user.username }}</h1>
+        <h3 class="profile-title color-grey m-t-0 color-g97">{{ profile.u_prof_title}}</h3>
+        <div class="meta fw-300">
+            {# Level#}
+            {% comment %}<div class="meta-level"><i class="battery low icon color-primary"></i>
+                <span class="color-g125"> Beginner</span>
+            </div>{% endcomment %}
+            {# Intitute#}
+            <div class="meta-category"><i class="student low icon color-primary"></i>
+                <span class="color-g125">{{ profile.u_current_college }}</span>
+            </div>
+            {# Location#}
+            <div class="meta-location"><i class="marker low icon color-primary"></i>
+                <span class="color-g125">{{ profile.u_location }}</span>
+            </div>
+        </div>
+        <div class="white-space space-sm"></div>
+        <div class="desc">
+            <h2 class="color-g97">Bio</h2>
+            <p class="color-g97">
+                {{ profile.u_bio }}
+            </p>
+        </div>
+        <div class="white-space space-sm"></div>
+        <div class="skills-tag">
+            <h2 class="color-g97">Skills</h2>
+            <div class="ui label">Java</div>
+            <div class="ui label">Android</div>
+            <div class="ui label">Algo</div>
+        </div>
+        <div class="white-space space-sm"></div>
+        <div class="contacts">
+            <h2 class="color-g97">Contacts</h2>
+            <div class="phone color-g97"><i class="call icon color-primary"></i>
+                {{ profile.u_contact_no }}
+            </div>
+            <div class="github"><i class="gitlab icon color-primary"></i>
+                <a href="{{ profile.u_github }}" class="color-g97">{{ profile.u_github }}</a>
+            </div>
+            <div class="linkedin">
+                <i class="linkedin icon color-primary"></i>
+                <a href="{{ profile.u_linkedin }}" class="color-g97">{{ profile.u_linkedin }}</a>
+            </div>
+        </div>
+        <div class="white-space space-sm"></div>
+        <div class="education color-g97">
+            <h2 class="m-t-0">Education</h2>
+            <h4 class="m-t-0 m-b-0 color-primary">{{ profile.u_current_qualification }}</h4>
+            <div>{{ profile.u_current_degree }}</div>
+            <div>{{ profile.u_current_college  }}</div>
+            <div>Start Year: {{ profile.u_education_start_year }}</div>
+            <div>End Year: {{ profile.u_education_end_year }}</div>
+        </div>
+    </div>
 {% endblock details %}
