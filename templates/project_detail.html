@@ -1,6 +1,6 @@
-{%extends "base.html" %}
+{%extends "view_container.html" %}
 
-{% block content %}
+{% block details %}
     user:{{ project.user.username }}<br>
     Project Title  :  {{ project.p_title }}<br>
     Project Category :  {{ project.p_category }}<br>
@@ -33,4 +33,4 @@
 
 
 
-{% endblock content %}
+{% endblock details %}
