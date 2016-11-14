@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Your Profile Details</title>
-</head>
-<body>
-Username:{{ profile.user.username }}<br>
-Github  :{{ profile.u_github }}<br>
-Linkedin:{{ profile.u_linkedin }}<br>
-Contact no.:{{ profile.u_contact_no }}<br>
-
-</body>
-</html>
+{% extends "view_container.html" %}
+{% block details %}
+    Username:{{ profile.user.username }}<br>
+    Github  :{{ profile.u_github }}<br>
+    Linkedin:{{ profile.u_linkedin }}<br>
+    Contact no.:{{ profile.u_contact_no }}<br>
+{% endblock details %}
