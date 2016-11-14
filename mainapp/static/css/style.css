@@ -425,6 +425,18 @@ a.color-orange:hover {
     display: flex;
 }
 
+.ui.view-card {
+    margin-top: 2.5rem;
+}
+
+.view-card .view__content{
+    background-color: white;
+    padding: 3rem;
+    width: calc(100% - 260px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .explore-card .ui.bottom.visible.sidebar, .ui.left.visible.sidebar, .ui.right.visible.sidebar, .ui.top.visible.sidebar {
     box-shadow: none;
 }
