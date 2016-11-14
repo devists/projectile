@@ -251,9 +251,9 @@ body > .grid {
     /*justify-content: space-between;*/
 }
 
-.user-auth {
-    font-size: .78571429rem;
-}
+/*.user-auth {
+    font-size: 1rem;
+}*/
 
 .ui.search.left-select .ui.input input {
     border-top-left-radius: 0;
@@ -272,8 +272,15 @@ body > .grid {
     margin-right: 2rem;
 }
 
+.ui.dropdown > .text a{
+    color: rgb(0, 0, 0);
+}
+
 .ui.menu.menu--cust .header.item a {
     color: rgba(0, 0, 0, .8);
+}
+.ui.menu .ui.dropdown .menu > .item a{
+    color: rgb(0, 0, 0);
 }
 
 .ui.menu.menu--cust .header.item a:hover {
