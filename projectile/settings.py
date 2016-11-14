@@ -126,7 +126,7 @@ STATIC_URL = '/static/'
 # DISABLE_COLLECTSTATIC=1
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'myappfolder/static'),
+    os.path.join(BASE_DIR, '../myapp/static'),
 )
 
 LOGIN_REDIRECT_URL = '/'
