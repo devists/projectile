@@ -25,11 +25,11 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # encryption key for creating activation key
-secret_key = "secret_key"
+secret_key = "96587411335"
 # sender's email address in account verification email
-email_address = "email"
+email_address = "jayakishan100@gmail.com"
 # sender;s email password
-email_password = "password"
+email_password = "52701021"
 
 
 # Create your views here.
@@ -43,7 +43,6 @@ def custom_save(user):
 def encrypt(key, plaintext):
     cipher = XOR.new(key)
     return base64.b64encode(cipher.encrypt(plaintext))
-
 
 # encrypt a string and return :param key:param plaintext: :return: unicode(encryptedtext)
 
@@ -114,7 +113,9 @@ def user_register(request):
             user.last_name = form.cleaned_data['last_name']
             profile = form_pro.save(commit=False)
             profile.user = user
-            custom_save(profile)
+            custom_save(user)
+            profile.save()
+
             activation_key = encrypt(secret_key, user.email)
             # sending account verification mail
             message = "Your email address is" + user.email + "activation key is " + activation_key.decode("utf-8")
@@ -151,8 +152,10 @@ def activate(request):
             else:
                 user.is_active = True
                 user.save()
-                messages.success(request, "account activated successfully please Login Now")
-                return HttpResponseRedirect(reverse("profile_update"))
+                login(request, user)
+
+                messages.success(request, "Your Account Has been Activated..")
+                return render(request, 'Succesfull_activation.html', {})
 
         else:
             messages.error(request, "Wrong activation key")
@@ -241,8 +244,9 @@ def project_edit(request, project_id):
 
 
 def profile_edit(request):
-    profile = get_object_or_404(UserProfile, user=request.user)
+    profile = UserProfile.objects.filter(user=request.user)
     if request.method == "POST":
+        profile = get_object_or_404(UserProfile,user=request.user)
         u_form = UserProfileForm(request.POST, instance=profile)
         if u_form.is_valid():
             profile = u_form.save(commit=False)
@@ -251,8 +255,13 @@ def profile_edit(request):
             return render(request, 'profile_detail.html', {'profile': profile})
 
     else:
-        u_form = UserProfileForm(instance=profile)
-    return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
+        if profile:
+            profile = get_object_or_404(UserProfile,user=request.user)
+            u_form = UserProfileForm(instance=profile)
+            return render(request, 'profile_edit.html', {'u_form': u_form, 'profile': profile})
+        else:
+            return HttpResponseRedirect(reverse('profile_update'))
+
 
 def explore_projects(request):
     projects = Project.objects.all()
@@ -272,6 +281,7 @@ def explore_projects(request):
 
     return render(request, "projects.html", {'project_list': project_list})
 
+
 def explore_profiles(request):
     profiles = UserProfile.objects.all()
 
@@ -288,7 +298,6 @@ def explore_profiles(request):
         profile_list = paginator.page(paginator.num_pages)
 
     return render(request, "profiles.html", {'profile_list': profile_list})
-
 
 
 def apply_project(request, project_id):
