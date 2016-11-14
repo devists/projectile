@@ -57,23 +57,27 @@
         <div class="apply">
             <div class="cover-letter">
                 <h1 class="color-primary">Apply</h1>
-                <h3 class="color-g97 m-t-0">Cover Letter</h3>
-                {% if request.user == project.user %}
-                    <form method="get" action="{% url 'project_edit' project_id=project.pk %}">
-                        {% csrf_token %}
-                        <input type="submit" value="Edit Project"/>
-                    </form>
-                {% else %}
-                    <form method="post" action="{% url 'apply_project' project_id=project.pk %}" id="usrform">
-                        {% csrf_token %}
-                        <div class="ui form">
-                            <div class="field">
-                                <textarea rows="4" cols="50" name="cover" form="usrform"></textarea>
+                {% if user.is_authenticated %}
+                    <h3 class="color-g97 m-t-0">Cover Letter</h3>
+                    {% if request.user == project.user %}
+                        <form method="get" action="{% url 'project_edit' project_id=project.pk %}">
+                            {% csrf_token %}
+                            <input type="submit" value="Edit Project"/>
+                        </form>
+                    {% else %}
+                        <form method="post" action="{% url 'apply_project' project_id=project.pk %}" id="usrform">
+                            {% csrf_token %}
+                            <div class="ui form">
+                                <div class="field">
+                                    <textarea rows="4" cols="50" name="cover" form="usrform"></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="white-space space-xm"></div>
-                        <input class="ui green button fw-300" type="submit" value="Apply Project"/>
-                    </form>
+                            <div class="white-space space-xm"></div>
+                            <input class="ui green button fw-300" type="submit" value="Apply Project"/>
+                        </form>
+                    {% endif %}
+                {% else %}
+                    <a href="{% url 'login' %}" class="ui green button fw-300" type="submit">Login to Apply</a>
                 {% endif %}
             </div>
         </div>
