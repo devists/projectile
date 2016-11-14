@@ -216,13 +216,14 @@ def prev_posts(request):
     else:
         return HttpResponse("You haven't posted any projects yet")
 
-
-def all_projects(request):
-    # projects = Project.objects.all()
-    projects = Project.objects.get(p_title='sdsds')
-
-    if projects:
-        return render(request,'projects.html',{'projects':projects})
+#
+# def all_projects(request):
+#     # projects = Project.objects.all()
+#     projects = Project.objects.get(p_title='sdsds')
+#
+#     if projects:
+#         return render(request,'projects.html',{'projects':projects})
+#
 
 
 def project_detail(request, project_id):
@@ -325,7 +326,7 @@ def list_applied(request):
     user = request.user
     ct_supported = ContentType.objects.get_for_model(user)
     lists = Notification.objects.filter(actor_content_type=ct_supported)
-    return render(request, 'applied_list.html', {'lists' : lists})
+    return render(request, 'applied_list.html', {'lists': lists})
 
 
 
