@@ -16,7 +16,7 @@ from .models import ProjectSkills, Project
 from django.utils import timezone
 import re
 from django.db.models import Q
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import UserProfile,ApplyProject
 from notifications.signals import notify
 from notifications.models import Notification
@@ -155,7 +155,7 @@ def activate(request):
                 login(request, user)
 
                 messages.success(request, "Your Account Has been Activated..")
-                return render(request, 'succesfull_activation.html', {})
+                return render(request, 'successfull_activation.html', {})
 
         else:
             messages.error(request, "Wrong activation key")

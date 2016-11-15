@@ -21,6 +21,7 @@ class Project(models.Model):
     diff_level = models.CharField(max_length=10)
     no_of_contrib = models.PositiveIntegerField()
     p_status = models.CharField(max_length=100)
+    p_location = models.CharField(max_length=20, null=True)
     p_description = models.TextField(max_length=200)
     p_privacy = models.BooleanField(default=False)
     post_date = models.DateField()
