@@ -22,7 +22,7 @@
             <div class="ui container">
                 <div class="header item"><a class="color-" href="/">Projectile</a></div>
 
-                <div class="ui dropdown link item">
+                <div class="ui dropdown select link item">
                     <span class="text">Browse</span>
                     <i class="dropdown icon"></i>
                     <div class="menu">
@@ -30,35 +30,39 @@
                         <a href="{% url 'explore_profiles' %}" class="item">Users</a>
                     </div>
                 </div>
-                <div class="item">
+                {% if user.is_authenticated %}
+                    <div class="item">
                     <a href="{% url 'post_project' %}" class="ui button green">New Project</a>
                 </div>
+                {% endif %}
                 <div class="right menu">
                     <div class="item">
-                        <!--<form class="ui search left-select">
-                            <div class="ui icon input">
-                                <select class="ui compact selection dropdown">
-                                    <option selected="" value="Project">Project</option>
-                                    <option value="Student">Student</option>
-                                </select>
-                                <input class="" type="text" placeholder="Search...">
-                                <i class="inverted circular search link icon"></i>
-                            </div>
-                            <div class="results"></div>
-                        </form>-->
                         <form class="ui search left-select" method="post" action="{% url 'home' %}">
                             {% csrf_token %}
                             <div class="ui icon input">
-                                {{search_form.category }}
-                                {{search_form.search_item}}
+                                {{ search_form.category }}
+                                {{ search_form.search_item }}
                                 <i class="inverted circular search link icon"></i>
                             </div>
                             <div class="results"></div>
                         </form>
                     </div>
                     <span class="user-auth d-flex">
-                        <a href="{% url 'login' %}" class="item">Login</a>
-                        <a href="{% url 'register' %}" class="item">Register</a>
+                        {% if user.is_authenticated %}
+                            <div class="ui dropdown item">
+                              <div class="text color-g97"><i class="user icon color-g97"></i>{{ request.user.username }}</div>
+                              <i class="dropdown icon"></i>
+                              <div class="menu color-g97">
+                                <div class="item"><a class="color-g97" href="{% url 'notific' %}">Notification</a></div>
+                                <div class="item"><a class="color-g97" href="{% url 'profile_edit' %}">Setting</a></div>
+                                  <div class="divider m-a-0"></div>
+                                <div class="item"><a class="color-g97" href="{% url 'logout' %}">Logout</a></div>
+                              </div>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'login' %}" class="item color-g97">Login</a>
+                            <a href="{% url 'register' %}" class="item color-g97">Register</a>
+                        {% endif %}
                     </span>
                 </div>
             </div>
@@ -90,13 +94,13 @@
                 <div class="column">
                     <h2 class="ui inverted header title-deco fw-100">SiteMap</h2>
                     <div class="ui inverted link list link-sitemap fw-300">
-                        <a href="#" class="item">Home</a>
-                        <a href="#" class="item">Dashboard</a>
-                        <a href="#" class="item">Login</a>
-                        <a href="#" class="item">Register</a>
-                        <a href="#" class="item">Browse Project</a>
-                        <a href="#" class="item">Browse Students</a>
-                        <a href="#" class="item">New Projects</a>
+                        <a href="/" class="item">Home</a>
+                        <a href="/" class="item">Dashboard</a>
+                        <a href="{% url 'login' %}" class="item">Login</a>
+                        <a href="{% url 'register' %}" class="item">Register</a>
+                        <a href="{% url 'explore_projects' %}" class="item">Browse Project</a>
+                        <a href="{% url 'explore_profiles' %}" class="item">Browse Students</a>
+                        <a href="{% url 'post_project' %}" class="item">New Projects</a>
                     </div>
                 </div>
                 <div class="column">

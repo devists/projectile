@@ -23,9 +23,9 @@
         <div class="white-space space-xm"></div>
         <div class="meta">
             {# Level#}
-            <div class="meta-level"><i class="battery low icon color-primary"></i>
+            {% comment %}<div class="meta-level"><i class="battery low icon color-primary"></i>
                 Beginner
-            </div>
+            </div>{% endcomment %}
             {# Intitute#}
             <div class="meta-category"><i class="student low icon color-primary"></i>
 
@@ -54,7 +54,7 @@
 
         {# Apply on Project Button#}
         <div class="view-btn text-center">
-            <button class="color-primary ui basic button fw-300 border-gradient">View</button>
+            <a href="{% url 'profile_detail' profile_id=profile.pk %}" class="color-primary ui basic button fw-300 border-gradient">View</a>
         </div>
         <div class="white-space space-xm"></div>
     </div>
