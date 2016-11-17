@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "semantic": "semantic-ui#^2.2.6"
+    "semantic": "semantic-ui#^2.2.6",
+    "pie-chart": "https://github.com/chenruchang/pie-chart.git"
   }
 }
