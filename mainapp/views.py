@@ -269,7 +269,10 @@ def profile_edit(request):
 
 
 def explore_projects(request):
-    projects = Project.objects.all()
+    if request.user.is_authenticated():
+        projects = Project.objects.exclude(user=request.user)
+    else:
+        projects = Project.objects.all()
     # projects = Project.objects.get(p_title='sdsds')
 
     paginator = Paginator(projects, 5) # Show 5 contacts per page
@@ -287,10 +290,13 @@ def explore_projects(request):
     return render(request, "projects.html", {'project_list': project_list})
 
 
-def explore_profiles(request):
-    profiles = UserProfile.objects.all()
 
-    paginator = Paginator(profiles, 2) # Show 5 contacts per page
+def explore_profiles(request):
+    if request.user.is_authenticated():
+        profiles = UserProfile.objects.exclude(user=request.user)
+    else:
+        profiles = UserProfile.objects.all()
+    paginator = Paginator(profiles, 3) # Show 5 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -327,8 +333,7 @@ def notific(request):
 
 def list_applied(request):
     user = request.user
-    ct_supported = ContentType.objects.get_for_model(user)
-    lists = Notification.objects.filter(actor_content_type=ct_supported)
+    lists = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
     return render(request, 'applied_list.html', {'lists': lists})
 
 
