@@ -30,16 +30,18 @@
                         <a href="{% url 'explore_profiles' %}" class="item">Users</a>
                     </div>
                 </div>
-                <div class="item">
+                {% if user.is_authenticated %}
+                    <div class="item">
                     <a href="{% url 'post_project' %}" class="ui button green">New Project</a>
                 </div>
+                {% endif %}
                 <div class="right menu">
                     <div class="item">
                         <form class="ui search left-select" method="post" action="{% url 'home' %}">
                             {% csrf_token %}
                             <div class="ui icon input">
-                                {{search_form.category }}
-                                {{search_form.search_item}}
+                                {{ search_form.category }}
+                                {{ search_form.search_item }}
                                 <i class="inverted circular search link icon"></i>
                             </div>
                             <div class="results"></div>
@@ -48,18 +50,18 @@
                     <span class="user-auth d-flex">
                         {% if user.is_authenticated %}
                             <div class="ui dropdown item">
-                              <div class="text"><i class="user icon"></i>{{ request.user.username }}</div>
+                              <div class="text color-g97"><i class="user icon color-g97"></i>{{ request.user.username }}</div>
                               <i class="dropdown icon"></i>
-                              <div class="menu">
-                                <div class="item"><a href="{% url 'notific' %}">Notification</a></div>
-                                <div class="item"><a href="{% url 'profile_edit'%}">Setting</a></div>
-                                  <div class="divider"></div>
-                                <div class="item"><a href="{% url 'logout' %}">Logout</a></div>
+                              <div class="menu color-g97">
+                                <div class="item"><a class="color-g97" href="{% url 'notific' %}">Notification</a></div>
+                                <div class="item"><a class="color-g97" href="{% url 'profile_edit' %}">Setting</a></div>
+                                  <div class="divider m-a-0"></div>
+                                <div class="item"><a class="color-g97" href="{% url 'logout' %}">Logout</a></div>
                               </div>
                             </div>
                         {% else %}
-                            <a href="{% url 'login' %}" class="item">Login</a>
-                            <a href="{% url 'register' %}" class="item">Register</a>
+                            <a href="{% url 'login' %}" class="item color-g97">Login</a>
+                            <a href="{% url 'register' %}" class="item color-g97">Register</a>
                         {% endif %}
                     </span>
                 </div>
