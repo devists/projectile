@@ -1,21 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%extends "base.html" %}
 
-{% for list in lists %}
+{% block content %}
+<div class="project ui container">
+    <h1 class="ui header fw-300">Your Applied Projects</h1>
+    <div class="white-space space-sm"></div>
+    <div class="ui four stackable cards">
+
+        {% for project in projects %}
+        <div class="ui card project-card">
+            {# Card Content#}
+            <div class="content">
+                <div class="header color-primary fw-300">{{ project.target.p_title }}</div>
+                {# Card Meta#}
+                <div class="meta">
+                    {# Date#}
+                    <div class="meta-date float-left"><i class="wait low icon color-primary"></i>
+                        {{ project.target.p_category }}
+                    </div>
+                    {# Level#}
+                    <div class="meta-level"><i class="battery low icon color-primary"></i>
+                        {{ project.target.diff_level }}
+                    </div>
+                    {# Category#}
+                    <div class="meta-category"><i class="folder low icon color-primary"></i>
+                        {{ project.target.post_date }}
+
+                    </div>
+                    {# Location#}
+                    <div class="meta-location"><i class="marker low icon color-primary"></i>
+                        Ahmedabad, Gujarat
+
+                    </div>
+                </div>
+
+                {# Project Description#}
+                <div class="description">
+                    <p>{{ project.target.p_description }}</p>
+                </div>
+                <div class="white-space space-xm"></div>
+
+                {# Skill Tags#}
+                <div class="skills-tag">
+                    {% for object in project.projectskills_set.all %}
+                    <div class="ui label">{{ object.skills }}</div>
+                    {% endfor %}
+
+                </div>
+                <div class="white-space space-mini"></div>
+
+                {# Apply on Project Button#}
+                <div class="view-btn text-center">
+                    <a href="{% url 'app_detail' app_id=project.pk %}" class="ui inverted green button fw-300">View Application</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
 
 
-    {% if list.target %}
-    {{ list.target }}
-    {{ list.description }}
-        <br>
-    {% endif %}
-
-{% endfor %}
-
-</body>
-</html>
+{% endblock content %}

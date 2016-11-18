@@ -287,6 +287,10 @@ def profile_detail(request, profile_id):
     profile = get_object_or_404(UserProfile, pk=profile_id)
     return render(request, 'profile_detail.html', {'profile': profile})
 
+def app_detail(request, app_id):
+    project = get_object_or_404(Notification, pk=app_id);
+    return render(request, 'app_detail.html', {'project': project})
+
 
 def project_edit(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
@@ -386,8 +390,8 @@ def notific(request):
 
 def list_applied(request):
     user = request.user
-    lists = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
-    return render(request, 'applied_list.html', {'lists': lists})
+    projects = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
+    return render(request, 'applied_list.html', {'projects': projects})
 
 
 
