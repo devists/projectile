@@ -185,7 +185,6 @@ def reset_password(request):
             user.set_password(new_password)
             user.save()
             send_verification_mail(email, new_password, message)
-            messages.success(request, "new password has been sent to your email please login with given password")
             return HttpResponseRedirect(reverse("login"))
         else:
             messages.error(request, 'Sorry no user exist with this email address')

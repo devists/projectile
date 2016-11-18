@@ -664,8 +664,10 @@ footer.main-footer {
     background: #fff;
     padding: 2.5rem;
 }
-
-.contacts a:hover {
+.home_view .ui.grid > .column{
+    text-align:center;
+}
+.contacts a:hover{
     color: #333333 !important;
 }
 
