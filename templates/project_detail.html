@@ -36,11 +36,13 @@
         <div class="white-space space-sm"></div>
 
         {#         Skill Tags#}
-        <div class="skills-tag">
-            <h3 class="color-g97">Skills</h3>
-            {% for object in project.projectskills_set.all %}
-                <div class="ui label">{{ object.skills }}</div>
-            {% endfor %}
+         <div class="skills-tag">
+         <h2 class="color-g97">Skills</h2>
+         {% for list in project.skills %}
+             <div class="ui label">{{ list }}</div>
+         {% endfor %}
+        </div>
+
 
         </div>
         <div class="white-space space-sm"></div>

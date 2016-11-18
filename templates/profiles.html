@@ -28,7 +28,7 @@
             </div>{% endcomment %}
             {# Intitute#}
             <div class="meta-category"><i class="student low icon color-primary"></i>
-
+                {{ profile.u_current_college }}
             </div>
             {# Location#}
             <div class="meta-location"><i class="marker low icon color-primary"></i>
@@ -46,9 +46,10 @@
 
         {# Skill Tags#}
         <div class="skills-tag">
-            <div class="ui label">Java</div>
-            <div class="ui label">Android</div>
-            <div class="ui label">Algo</div>
+
+         {% for list in profile.skills %}
+             <div class="ui label">{{ list }}</div>
+         {% endfor %}
         </div>
         <div class="white-space space-mini"></div>
 

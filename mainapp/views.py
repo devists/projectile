@@ -5,6 +5,7 @@ import binascii
 from Crypto.Cipher import XOR
 from django.contrib import messages
 from django.urls import reverse
+from random import randint
 
 from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, LoginForm
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
@@ -12,11 +13,11 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import ProjectSkills, Project
+from .models import Project
 from django.utils import timezone
 import re
 from django.db.models import Q
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import UserProfile,ApplyProject
 from notifications.signals import notify
 from notifications.models import Notification
@@ -56,12 +57,12 @@ def decrypt(key, ciphertext):
 
 
 def send_verification_mail(email, activation_key, msg):
-    print("send verificaion mail")
+    #print("send verificaion mail")
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    print("Helo")
+    #print("Helo")
     server.login(email_address, email_password)
-    print("world")
+    #print("world")
     server.sendmail(email_address, email, msg)
     server.quit()
 
@@ -80,19 +81,17 @@ def home(request):
             if domain == 'Student':
                 for query in queries:
                     q = q | Q(username__icontains=query)
-                results= User.objects.filter(q)
-                return render(request, "search_user.html", {'results': results})
+                profile_list= User.objects.filter(q)
+                return render(request, "profiles.html", {'profile_list': profile_list})
 
             elif domain == 'Project':
-                q1=Q()
                 q2=Q()
 
                 for query in queries:
-                    q1 = q1 | Q(skills__icontains=query)
-                    q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query)
-                results = ProjectSkills.objects.filter(q1)
-                results_p = Project.objects.filter(q2)
-            return render(request, "search_result.html", {'results': results,'results_p':results_p})
+                    q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query) | Q(skills__icontains=query)
+                # results = ProjectSkills.objects.filter(q1)
+                project_list = Project.objects.filter(q2)
+            return render(request, "projects.html", {'project_list': project_list})
 
     else:
         search_form = SearchForm()
@@ -118,6 +117,7 @@ def user_register(request):
 
             activation_key = encrypt(secret_key, user.email)
             # sending account verification mail
+            #activation_key =
             message = "Your email address is" + user.email + "activation key is " + activation_key.decode("utf-8")
             # message = "Reset link is  Emahere"
             send_verification_mail(user.email, activation_key, message)
@@ -155,12 +155,61 @@ def activate(request):
                 login(request, user)
 
                 messages.success(request, "Your Account Has been Activated..")
-                return render(request, 'Succesfull_activation.html', {})
+                return render(request, 'successfull_activation.html', {})
 
         else:
             messages.error(request, "Wrong activation key")
 
     return render(request, 'activation_form.html')
+
+
+def reset_password(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        new_password = randint(10000000,99999999)
+
+        message = "Your new password is " + str(new_password)
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            user = None
+        if user is not None:
+            user.set_password(new_password)
+            user.save()
+            send_verification_mail(email, new_password, message)
+            return HttpResponseRedirect(reverse("login"))
+        else:
+            messages.error(request, 'Sorry no user exist with this email address')
+            return render(request, "reset_password.html")
+
+    else:
+        return render(request, "reset_password.html")
+
+
+@login_required(login_url="login/")
+def change_password(request):
+    user = request.user
+    if request.method == 'POST':
+        username = user.username
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        new_password_again = request.POST.get("new_password_again")
+        user = authenticate(username=username, password=old_password)
+        if user is not None:
+            if new_password == new_password_again:
+                user.set_password(new_password)
+                user.save()
+                login(request,user)
+                return HttpResponseRedirect(reverse("home"))
+            else:
+                messages.error(request, "both passwords you entered did not match")
+                return render(request, 'change_password.html', {'user': user})
+        else:
+            messages.error(request, "sorry the password you entered is not correct")
+            return render(request, 'change_password.html', {'user': user})
+    else:
+        return render(request, 'change_password.html', {'user': user})
 
 
 def profile_update(request):
@@ -181,19 +230,23 @@ def profile_update(request):
 def post_project(request):
     if request.method == "POST":
         p_form = ProjectForm(request.POST)
+
         if p_form.is_valid():
+           # project.p_title = form.cleaned_data['p_title']
             project = p_form.save(commit=False)
             project.user = request.user
             project.post_date = timezone.now()
             project.save()
-            ls = request.POST.get('skill')
-            skills = ls.split(",")
+            # ls = request.POST.get('skill')
+            # skills = ls.split(",")
 
-            for skill in skills:
-                project_s = ProjectSkills.objects.create(project=project, skills=skill)
-                project_s.save()
+            # for skill in skills:
+            #     project_s = ProjectSkills.objects.create(project=project, skills=skill)
+            #     project_s.save()
 
             return HttpResponse("Project Published")
+        else:
+            return HttpResponse("Error while Creating")
 
 
     else:
@@ -229,6 +282,7 @@ def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'project_detail.html', {'project': project})
 
+
 def profile_detail(request, profile_id):
     profile = get_object_or_404(UserProfile, pk=profile_id)
     return render(request, 'profile_detail.html', {'profile': profile})
@@ -255,7 +309,7 @@ def project_edit(request, project_id):
 def profile_edit(request):
     profile = UserProfile.objects.filter(user=request.user)
     if request.method == "POST":
-        profile = get_object_or_404(UserProfile,user=request.user)
+        profile = get_object_or_404(UserProfile, user=request.user)
         u_form = UserProfileForm(request.POST, instance=profile)
         if u_form.is_valid():
             profile = u_form.save(commit=False)
@@ -294,7 +348,6 @@ def explore_projects(request):
     return render(request, "projects.html", {'project_list': project_list})
 
 
-
 def explore_profiles(request):
     if request.user.is_authenticated():
         profiles = UserProfile.objects.exclude(user=request.user)
@@ -318,7 +371,7 @@ def explore_profiles(request):
 def apply_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.method == "POST":
-        apply=ApplyProject()
+        apply = ApplyProject()
         apply.project = project
         apply.user = request.user
         apply.apply_date = timezone.now()

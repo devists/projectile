@@ -10,6 +10,7 @@ login_forbidden = user_passes_test(lambda u: u.is_anonymous(), '/')
 urlpatterns = [
     url(r'^register/$',  login_forbidden(views.user_register), name='register'),
     url(r'^$', views.home, name='home'),
+    url(r'^reset_password', views.reset_password, name='reset_password'),
     url(r'^post_project/$', views.post_project, name='post_project'),
     url(r'^prev_posts/$', views.prev_posts, name='prev_posts'),
     url(r'^project_detail/(?P<project_id>\d+)/$', views.project_detail, name='project_detail'),
@@ -24,4 +25,5 @@ urlpatterns = [
     url(r'^notifications/$', views.notific, name='notific'),
     url(r'^list_of_applied_projects/$', views.list_applied, name='list_applied'),
     url(r'^activate', views.activate, name='activate'),
+    url(r'^change_password', views.change_password, name='change_password'),
 ]

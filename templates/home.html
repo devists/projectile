@@ -8,24 +8,33 @@
     <h1>Hello</h1>
     <p>{{ request.user.username }}</p>
 
+    {% if messages %}
+    {% for message in messages %}
+        {{ message}}
+    {% endfor %}
+
+{% endif %}
     <div class="ui two column grid">
         <div class="column">
             <div class="ui green segment">
                 <div class="ui three column grid">
                     <div class="column">
-                        <div id="demo-pie-1" class="pie-title-center" >
+                        <div id="demo-pie-1" class="pie-title-center" data-percent="100" >
                             <span class="pie-value">20</span>
                         </div>
+                        <div><strong>Posted Project</strong></div>
                     </div>
                     <div class="column">
-                        <div id="demo-pie-6" class="pie-title-center" data-percent="70">
-                            <span class="pie-value"></span>
+                        <div id="demo-pie-6" class="pie-title-center" data-percent="100">
+                            <span class="pie-value">40</span>
                         </div>
+                        <div><strong>Application Recived</strong></div>
                     </div>
                     <div class="column">
                         <div id="demo-pie-3" class="pie-title-center" data-percent="35">
-                            <span class="pie-value"></span>
+                            <span class="pie-value">40</span>
                         </div>
+                        <div><strong>Posted Project Rate</strong></div>
                     </div>
                 </div>
             </div>
@@ -34,19 +43,22 @@
             <div class="ui green segment">
                 <div class="ui three column grid">
                     <div class="column">
-                        <div id="demo-pie-4" class="pie-title-center" data-percent="25">
-                            <span class="pie-value"></span>
+                        <div id="demo-pie-4" class="pie-title-center" data-percent="100">
+                            <span class="pie-value">40</span>
                         </div>
+                        <div><strong>Applied Project</strong></div>
                     </div>
                     <div class="column">
-                        <div id="demo-pie-5" class="pie-title-center" data-percent="70">
-                            <span class="pie-value"></span>
+                        <div id="demo-pie-5" class="pie-title-center" data-percent="100">
+                            <span class="pie-value">40</span>
                         </div>
+                        <div><strong>Accepted Pproject</strong></div>
                     </div>
                     <div class="column">
                         <div id="demo-pie-2" class="pie-title-center" data-percent="35">
-                            <span class="pie-value"></span>
+                            <span class="pie-value">40</span>
                         </div>
+                        <div><strong>Acceptence Rate</strong></div>
                     </div>
                 </div>
             </div>
@@ -56,120 +68,51 @@
     <table class="ui striped table">
         <thead>
             <tr>
-                <th colspan="3">Posted Project</th>
-                <!--<th class="right aligned"><button class="ui basic button">View all</button></th>-->
+                <th colspan="4">Posted Project</th>
+                <th class="right aligned"><a href="{% url 'prev_posts' %}"><button type="submit" class="ui basic button" value="Submit">View all</button></a></th>
             </tr>
             <tr>
-              <th>Sr. No</th>
-              <th>Project Name</th>
-              <th>No. of applications</th>
-              <th>None</th>
-              <th>None</th>
+                <th>Project Title</th>
+                <th>Applied On</th>
+                <th>No of Applications</th>
+                <th>Application Status</th>
+                <th>Action</th>
             </tr>
         </thead>
-
-  <tbody>
-    <tr>
-      <td class="collapsing">
-        <i class="folder icon"></i> node_modules
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned collapsing">10 hours ago</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="folder icon"></i> test
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="folder icon"></i> build
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="file outline icon"></i> package.json
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="file outline icon"></i> Gruntfile.js
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-    </tr>
-  </tbody>
-</table>
+        <tbody>
+            <tr>
+                <td>Library</td>
+                <td>12312312</td>
+                <td>12</td>
+                <td>active</td>
+                <td>none</td>
+            </tr>
+        </tbody>
+    </table>
     <table class="ui striped table">
-  <thead>
-    <tr><th colspan="3">
-      Applied Project
-    </th>
-  </tr>
-  <tr>
-      <th>Sr. No</th>
-      <th>Project Name</th>
-      <th>Post Date</th>
-      <th>None</th>
-      <th>None</th>
-  </tr></thead>
-  <tbody>
-    <tr>
-      <td class="collapsing">
-        <i class="folder icon"></i> node_modules
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned collapsing">10 hours ago</td>
-        <td>None</td>
-        <td>None</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="folder icon"></i> test
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-        <td>None</td>
-        <td>None</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="folder icon"></i> build
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-        <td>None</td>
-        <td>None</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="file outline icon"></i> package.json
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-        <td>None</td>
-        <td>None</td>
-    </tr>
-    <tr>
-      <td>
-        <i class="file outline icon"></i> Gruntfile.js
-      </td>
-      <td>Initial commit</td>
-      <td class="right aligned">10 hours ago</td>
-        <td>None</td>
-        <td>None</td>
-    </tr>
-  </tbody>
-</table>
-
-    <br>
-
+        <thead>
+            <tr>
+                <th colspan="4">Apply Project</th>
+                <th class="right aligned"><a href="{% url 'list_applied' %}"><button type="submit" class="ui basic button" value="Submit">View all</button></a></th>
+            </tr>
+            <tr>
+                <th>Project Title</th>
+                <th>Posted On</th>
+                <th>No of applications</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Projectile</td>
+                <td>qweqwreqw</td>
+                <td>10</td>
+                <td>Active</td>
+                <td>none</td>
+            </tr>
+        </tbody>
+    </table>
     <form method="get" action="{% url 'prev_posts' %}">
         {% csrf_token %}
 
