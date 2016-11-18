@@ -41,8 +41,8 @@
 
                 {# Skill Tags#}
                 <div class="skills-tag">
-                    {% for object in project.projectskills_set.all %}
-                    <div class="ui label">{{ object.skills }}</div>
+                    {% for list in project.skills %}
+                        <div class="ui label">{{ list }}</div>
                     {% endfor %}
 
                 </div>
