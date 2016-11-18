@@ -95,7 +95,9 @@ def home(request):
 
     else:
         search_form = SearchForm()
-    return render(request, "home.html", {'search_form': search_form})
+        user = request.user
+        projects = user.project_set.all()
+    return render(request, "home.html", {'search_form': search_form, 'projects': projects})
 
 
 def user_register(request):
@@ -247,7 +249,6 @@ def post_project(request):
             return HttpResponse("Project Published")
         else:
             return HttpResponse("Error while Creating")
-
 
     else:
         p_form = ProjectForm()
