@@ -19,8 +19,9 @@
             <div class="sidebar__or text-center color-g125"><span>OR</span></div>
             <div class="white-space space-mini"></div>
             {#             Sidebar Filter#}
-            <form method="get" action="/"  class="sidebar__filter">
+            <form method="GET" action="{% url 'filter_search' %}"  class="sidebar__filter">
                 {#                Filter Header#}
+                {% csrf_token %}
                 <h3 class="ui header"><i class="filter icon"></i>
                     Filter</h3>
                 <div class="white-space space-xm"></div>
@@ -33,19 +34,19 @@
                             <div class="grouped fields">
                                 <div class="field">
                                     <div class="ui toggle checkbox">
-                                        <input type="checkbox" name="beginner" checked>
+                                        <input type="checkbox" name="level" value="B">
                                         <label>Beginner</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui toggle checkbox">
-                                        <input type="checkbox" name="intermediate">
+                                        <input type="checkbox" name="level" value="I">
                                         <label>Intermediate</label>
                                     </div>
                                 </div>
                                 <div class="field">
                                     <div class="ui toggle checkbox">
-                                        <input type="checkbox" name="advance">
+                                        <input type="checkbox" name="level" value="A">
                                         <label>Advance</label>
                                     </div>
                                 </div>
@@ -75,51 +76,51 @@
                         <div class="ui form color-g125">
                             <div class="grouped fields">
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="android-development">
+                                    <input type="checkbox" name="category" value="android-development" >
                                     <label>Android Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="ios-development">
+                                    <input type="checkbox"  name="category" value="ios-development">
                                     <label>iOS Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="web-development">
+                                    <input type="checkbox"  name="category" value="web-development">
                                     <label>Web Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="frontend-development">
+                                    <input type="checkbox"  name="category" value="frontend-development">
                                     <label>Frontend Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="backend-development">
+                                    <input type="checkbox"  name="category" value="backend-development">
                                     <label>Backend Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="machine-learning">
+                                    <input type="checkbox"  name="category" value="machine-learning">
                                     <label>Machine Learning</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="artificial-intelligence">
+                                    <input type="checkbox"  name="category" value="artificial-intelligence">
                                     <label>Artificial Intelligence</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="fullstack-development">
+                                    <input type="checkbox"  name="category" value="fullstack-development">
                                     <label>Full Stack Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="game-development">
+                                    <input type="checkbox"  name="category" value="game-development">
                                     <label>Game Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="ui-ux-development">
+                                    <input type="checkbox"  name="category" value="ui-ux-development">
                                     <label>UI/UX Development</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="image-processing">
+                                    <input type="checkbox"  name="category" value="image-processing">
                                     <label>Image Processing</label>
                                 </div>
                                 <div class="ui checkbox">
-                                    <input type="checkbox" name="software-development">
+                                    <input type="checkbox"  name="category" value="software-development">
                                     <label>Software Development</label>
                                 </div>
                             </div>

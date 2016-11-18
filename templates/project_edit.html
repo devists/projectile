@@ -1,10 +1,11 @@
-{%extends "base.html" %}
+{%extends "view_container.html" %}
 
-{% block content %}
+{% block details %}
 
 <div class="profile_update ui container">
-    <div class="profile_form">
-        <h2 class="title">Edit Project Details</h2>
+    <div class="">
+        <h2 class="title"><span class="title-deco">Edit Project Details</span></h2>
+    <div class="white-space space-xm"></div>
         <form class="ui form" method="POST" action="{% url 'project_edit' project_id=project.pk %}">
             {% csrf_token %}
 
@@ -51,7 +52,7 @@
 
             <div class="field">
                 <label>{{e_form.p_privacy.label}}</label>
-               {{e_form.p_privacy}} Privacy
+               {{e_form.p_privacy}}
             </div>
 
             <div class="field">
@@ -64,4 +65,4 @@
         </form>
     </div>
 </div>
-{% endblock content %}
+{% endblock details %}

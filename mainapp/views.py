@@ -23,6 +23,7 @@ from notifications.signals import notify
 from notifications.models import Notification
 from django.contrib.contenttypes.models import ContentType
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from itertools import chain
 
 
 # encryption key for creating activation key
@@ -349,7 +350,8 @@ def explore_projects(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         project_list = paginator.page(paginator.num_pages)
 
-    return render(request, "projects.html", {'project_list': project_list})
+
+    return render(request, "projects.html", {'project_list': project_list,'length':len(projects)})
 
 
 def explore_profiles(request):
@@ -369,7 +371,7 @@ def explore_profiles(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         profile_list = paginator.page(paginator.num_pages)
 
-    return render(request, "profiles.html", {'profile_list': profile_list})
+    return render(request, "profiles.html", {'profile_list': profile_list,'length':len(profiles)})
 
 
 def apply_project(request, project_id):
@@ -396,6 +398,39 @@ def list_applied(request):
     user = request.user
     projects = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
     return render(request, 'applied_list.html', {'projects': projects})
+
+
+def filter_search(request):
+    if(request.method == "GET"):
+        lists = request.GET.getlist('level')
+        project_list1 = []
+        project_list2 = []
+        if lists:
+            q = Q()
+            for lis in lists:
+                q = q | Q(diff_level__icontains=lis)
+            project_list1 = Project.objects.filter(q)
+
+        lists2 = request.GET.getlist('category')
+        if lists2:
+            q2 = Q()
+            for li in lists2:
+                q2 = q2 | Q(p_category__icontains=li)
+            project_list2 = Project.objects.filter(q2)
+
+        project_list = list(chain(project_list1,project_list2))
+
+        return render(request, "projects.html", {'project_list': project_list})
+
+
+
+
+        #
+        # q2=Q()
+        # q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query) | Q(skills__icontains=query)
+
+
+
 
 
 
