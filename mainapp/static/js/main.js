@@ -71,8 +71,6 @@ $(document).ready(function () {
 
 
     $.get('/inbox/notifications/api/unread_count/',function (data) {
-        console.log("Notification");
-        console.log(data.unread_count);
         if(data.unread_count) {
             var notify =  $('.notify .label-container');
             $('.notify').addClass('color-primary').removeClass('color-g97');

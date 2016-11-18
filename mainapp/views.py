@@ -333,8 +333,8 @@ def notific(request):
 
 def list_applied(request):
     user = request.user
-    lists = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
-    return render(request, 'applied_list.html', {'lists': lists})
+    projects = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
+    return render(request, 'applied_list.html', {'projects': projects})
 
 
 
