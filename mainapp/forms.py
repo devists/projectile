@@ -131,8 +131,8 @@ class UserProfileForm(forms.ModelForm):
 
     u_location = forms.CharField(label='Location', widget=forms.TextInput(attrs={'name': 'location','placeholder':'Location'}), required=True)
     u_bio = forms.TextInput()
-    u_current_qualification = forms.CharField(label='Qualification', widget=forms.TextInput(
-        attrs={'name': 'current_qualification', 'placeholder': 'Qualification'}), required=True)
+    u_current_qualification = forms.CharField(label='Stream', widget=forms.TextInput(
+        attrs={'name': 'current_qualification', 'placeholder': 'Stream'}), required=True)
 
     u_current_degree = forms.CharField(label='Degree', widget=forms.TextInput(
         attrs={'name': 'current_degree', 'placeholder': 'Degree'}), required=True)
@@ -151,7 +151,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['u_github', 'u_linkedin', 'u_contact_no', 'u_prof_title', 'u_location', 'u_bio',
-                  'u_current_qualification',  'u_current_degree', 'u_current_college', 'u_education_start_year',
+                  'u_current_degree','u_current_qualification', 'u_current_college', 'u_education_start_year',
                   'u_education_end_year','skills']
 
 
