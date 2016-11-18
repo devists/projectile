@@ -93,11 +93,14 @@ def home(request):
                     q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query)
                 # results = ProjectSkills.objects.filter(q1)
                 results_p = Project.objects.filter(q2)
-            return render(request, "search_result.html", {'results_p':results_p})
+            return render(request, "search_result.html", {'results_p': results_p})
 
     else:
         search_form = SearchForm()
-    return render(request, "home.html", {'search_form': search_form})
+        user = request.user
+        projects = user.project_set.all()
+        #projects = projects.filter().order_by('post_date').reverse()
+    return render(request, "home.html", {'search_form': search_form, 'projects': projects})
 
 
 def user_register(request):
@@ -249,7 +252,6 @@ def post_project(request):
             return HttpResponse("Project Published")
         else:
             return HttpResponse("Error while Creating")
-
 
     else:
         p_form = ProjectForm()

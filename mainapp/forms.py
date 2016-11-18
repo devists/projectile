@@ -93,7 +93,6 @@ class ProjectForm(forms.ModelForm):
     p_category = forms.CharField(label='Project Category', widget=forms.TextInput(attrs={'name': 'category','placeholder': 'Project Category'}))
     diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
                                    widget=forms.RadioSelect(attrs={'name': 'level'}))
-    #skills = MultiSelectFormField(choices=Project.OPTIONS)
     skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class':'ui fluid dropdown'}),
                                              choices=Project.OPTIONS)
     p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description',}))
