@@ -182,6 +182,7 @@ def post_project(request):
     if request.method == "POST":
         p_form = ProjectForm(request.POST)
         if p_form.is_valid():
+           # project.p_title = form.cleaned_data['p_title']
             project = p_form.save(commit=False)
             project.user = request.user
             project.post_date = timezone.now()
