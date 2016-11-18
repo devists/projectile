@@ -41,7 +41,7 @@ body > .grid {
 /*Helpers*/
 
 .m-t-0 {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .m-a-0 {
@@ -79,6 +79,7 @@ body > .grid {
 .color-g125 {
     color: rgb(125, 125, 125) !important;
 }
+
 .color-g158 {
     color: rgb(158, 158, 158) !important;
 }
@@ -177,9 +178,6 @@ body > .grid {
     border-style: solid !important;
 }
 
-
-
-
 /*Semantic Rewrite*/
 
 .ui.toggle.checkbox input:checked ~ .box:before, .ui.toggle.checkbox input:checked ~ label:before {
@@ -276,14 +274,15 @@ body > .grid {
     margin-right: 2rem;
 }
 
-.ui.dropdown > .text a{
+.ui.dropdown > .text a {
     color: rgb(0, 0, 0);
 }
 
 .ui.menu.menu--cust .header.item a {
     color: rgba(0, 0, 0, .8);
 }
-.ui.menu .ui.dropdown .menu > .item a{
+
+.ui.menu .ui.dropdown .menu > .item a {
     color: rgb(0, 0, 0);
 }
 
@@ -462,7 +461,7 @@ a.color-orange:hover {
     margin-top: 2.5rem;
 }
 
-.view-card .view__content{
+.view-card .view__content {
     background-color: white;
     padding: 3rem;
     width: calc(100% - 260px);
@@ -515,7 +514,7 @@ a.color-orange:hover {
     line-height: 1.75;
 }
 
-.project-card.ui.card > .content, .project-card.ui.cards > .card > .content,.profile-card.ui.card > .content, .profile-card.ui.cards > .card > .content {
+.project-card.ui.card > .content, .project-card.ui.cards > .card > .content, .profile-card.ui.card > .content, .profile-card.ui.cards > .card > .content {
     padding: 1.75rem;
 }
 
@@ -527,7 +526,6 @@ a.color-orange:hover {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
 }
-
 
 .project-card.ui.card .meta .meta-date {
     margin-right: 0.5rem;
@@ -575,7 +573,7 @@ a.color-orange:hover {
     border-width: 1px;
 }
 
-.profile-card .ui.basic.button:focus,.profile-card .ui.basic.button:hover,.profile-card .ui.basic.buttons .button:focus,.profile-card .ui.basic.buttons .button:hover {
+.profile-card .ui.basic.button:focus, .profile-card .ui.basic.button:hover, .profile-card .ui.basic.buttons .button:focus, .profile-card .ui.basic.buttons .button:hover {
     color: rgb(76, 175, 80) !important;
 }
 
@@ -622,41 +620,46 @@ footer.main-footer {
 }
 
 /*  Profile Update */
-.profile_update.ui.container{
+.profile_update.ui.container {
     margin: 2.5rem;
     background: #fff;
 }
-.profile_update .profile_form{
-    padding:2.5rem 20%;
+
+.profile_update .profile_form {
+    padding: 2.5rem 20%;
 }
-.profile_update .profile_form h2.title{
+
+.profile_update .profile_form h2.title {
     text-align: center;
 }
-.profile_update .profile_form .form input[type="text"],.profile_update .profile_form .form input[type="number"]{
+
+.profile_update .profile_form .form input[type="text"], .profile_update .profile_form .form input[type="number"] {
     color: rgb(25, 25, 25);
     font-weight: 600 !important;
 }
-.profile_update .profile_form .form .header{
+
+.profile_update .profile_form .form .header {
     padding-top: 2.5rem;
 }
-.profile_update .profile_form .form .form_error ul{
+
+.profile_update .profile_form .form .form_error ul {
     padding: 0;
-    list-style:none;
-    line-height:0.1;
+    list-style: none;
+    line-height: 0.1;
 }
-.profile_update .profile_form .form .form_error ul li{
+
+.profile_update .profile_form .form .form_error ul li {
     color: red;
 }
-.project.ui.container{
+
+.project.ui.container {
     margin: 2.5rem;
     background: #fff;
     padding: 2.5rem;
 }
 
-
-
 /* Home View */
-.home_view.ui.container{
+.home_view.ui.container {
     margin: 2.5rem;
     background: #fff;
     padding: 2.5rem;
@@ -684,4 +687,20 @@ footer.main-footer {
     right: 0;
     margin-top: -20px;
     line-height: 40px;
+}
+
+.pagination {
+    width: 100%;
+    text-align: center;
+}
+
+.pagination .step-links {
+    font-size: 1.5rem;
+}
+
+.pagination__nav{
+    color: rgba(76, 175, 80, 0.85);
+}
+.pagination__nav:hover {
+    color: rgb(76, 175, 80);
 }

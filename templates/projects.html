@@ -24,7 +24,7 @@
                 </div>
                 {#                                    Location#}
                 <div class="meta-location"><i class="marker low icon color-primary"></i>
-                    Ahmedabad, Gujarat
+                    {{ project.p_location }}
 
                 </div>
             </div>
@@ -53,18 +53,19 @@
 
 
     {% endfor %}
+    <div class="white-space space-md"></div>
     <div class="pagination">
             <span class="step-links">
                 {% if project_list.has_previous %}
-                    <a href="{% url 'explore_projects' %}?page={{ project_list.previous_page_number }}">previous</a>
+                    <a class="pagination__nav" href="{% url 'explore_projects' %}?page={{ project_list.previous_page_number }}"><i class="chevron left icon"></i>Prev</a>
                 {% endif %}
 
                 <span class="current">
-                    Page {{ project_list.number }} of {{ project_list.paginator.num_pages }}.
+                    Page {{ project_list.number }} of {{ project_list.paginator.num_pages }}
                 </span>
 
                 {% if project_list.has_next %}
-                    <a href="{% url 'explore_projects' %}?page={{ project_list.next_page_number }}">next</a>
+                    <a class="pagination__nav" href="{% url 'explore_projects' %}?page={{ project_list.next_page_number }}">Next<i class="chevron right icon"></i></a>
                 {% endif %}
             </span>
         </div>
