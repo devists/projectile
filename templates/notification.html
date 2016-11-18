@@ -1,24 +1,27 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
 
-{%block content %}
+{% block content %}
 
-{% load notifications_tags %}
+    {% load notifications_tags %}
 
 
-{% notifications_unread as unread_count %}
+    {% notifications_unread as unread_count %}
 
-{% if unread_count %}
-    You have <strong>{{ unread_count }}</strong> unread notifications.
-{% endif %}
-
-<br>
-{% for n in notice %}
-    {{ n.actor }}
-    {{ n.verb }}
-    {% if n.target %}
-      of {{ n.target }}
+    {% if unread_count %}
+        You have <strong>{{ unread_count }}</strong> unread notifications.
     {% endif %}
 
     <br>
-  {% endfor %}
+    {% for n in notice %}
+        {% if n.unread %}
+            {{ n.actor }}
+            {{ n.verb }}
+            <a class="ui button" href="/inbox/notifications/mark-as-read/{{ n.slug }}">Mark as Read</a>
+            {% if n.target %}
+                of {{ n.target }}
+            {% endif %}
+        {% endif %}
+
+        <br>
+    {% endfor %}
 {% endblock content %}
