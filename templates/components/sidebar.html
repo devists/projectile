@@ -19,7 +19,7 @@
             <div class="sidebar__or text-center color-g125"><span>OR</span></div>
             <div class="white-space space-mini"></div>
             {#             Sidebar Filter#}
-            <div class="sidebar__filter">
+            <form method="get" action="/"  class="sidebar__filter">
                 {#                Filter Header#}
                 <h3 class="ui header"><i class="filter icon"></i>
                     Filter</h3>
@@ -126,7 +126,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+                
+                <div class="white-space space-xm"></div>
+                <div class="submit-btn text-center"><input type="submit" class="ui button green"></div>
+            </form>
             <div class="white-space space-xm"></div>
 
         </div>
