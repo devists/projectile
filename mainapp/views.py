@@ -5,6 +5,7 @@ import binascii
 from Crypto.Cipher import XOR
 from django.contrib import messages
 from django.urls import reverse
+from random import randint
 
 from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, LoginForm
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
@@ -56,12 +57,12 @@ def decrypt(key, ciphertext):
 
 
 def send_verification_mail(email, activation_key, msg):
-    print("send verificaion mail")
+    #print("send verificaion mail")
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    print("Helo")
+    #print("Helo")
     server.login(email_address, email_password)
-    print("world")
+    #print("world")
     server.sendmail(email_address, email, msg)
     server.quit()
 
@@ -118,6 +119,7 @@ def user_register(request):
 
             activation_key = encrypt(secret_key, user.email)
             # sending account verification mail
+            #activation_key =
             message = "Your email address is" + user.email + "activation key is " + activation_key.decode("utf-8")
             # message = "Reset link is  Emahere"
             send_verification_mail(user.email, activation_key, message)
@@ -161,6 +163,36 @@ def activate(request):
             messages.error(request, "Wrong activation key")
 
     return render(request, 'activation_form.html')
+
+
+def reset_password(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        #current_time = str(timezone.now())
+        # key_text = current_time
+        # new_password = encrypt(secret_key, key_text).decode("utf-8")
+        # new_password = new_password[10:18]
+
+        new_password = randint(10000000,99999999)
+
+        message = "Your new password is" + str(new_password)
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            user = None
+        if user is not None:
+            user.set_password(new_password)
+            user.save()
+            send_verification_mail(email, new_password, message)
+            messages.success(request, "new password has been sent to your email please login with given password")
+            return HttpResponseRedirect(reverse("login"))
+        else:
+            messages.error(request, 'Sorry no user exist with this email address')
+            return render(request, "reset_password.html")
+
+    else:
+        return render(request, "reset_password.html")
 
 
 def profile_update(request):
@@ -270,7 +302,10 @@ def profile_edit(request):
 
 
 def explore_projects(request):
-    projects = Project.objects.all()
+    if request.user.is_authenticated():
+        projects = Project.objects.exclude(user=request.user)
+    else:
+        projects = Project.objects.all()
     # projects = Project.objects.get(p_title='sdsds')
 
     paginator = Paginator(projects, 5) # Show 5 contacts per page
@@ -288,10 +323,13 @@ def explore_projects(request):
     return render(request, "projects.html", {'project_list': project_list})
 
 
-def explore_profiles(request):
-    profiles = UserProfile.objects.all()
 
-    paginator = Paginator(profiles, 2) # Show 5 contacts per page
+def explore_profiles(request):
+    if request.user.is_authenticated():
+        profiles = UserProfile.objects.exclude(user=request.user)
+    else:
+        profiles = UserProfile.objects.all()
+    paginator = Paginator(profiles, 3) # Show 5 contacts per page
 
     page = request.GET.get('page')
     try:
@@ -309,7 +347,7 @@ def explore_profiles(request):
 def apply_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.method == "POST":
-        apply=ApplyProject()
+        apply = ApplyProject()
         apply.project = project
         apply.user = request.user
         apply.apply_date = timezone.now()
@@ -328,8 +366,7 @@ def notific(request):
 
 def list_applied(request):
     user = request.user
-    ct_supported = ContentType.objects.get_for_model(user)
-    lists = Notification.objects.filter(actor_content_type=ct_supported)
+    lists = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
     return render(request, 'applied_list.html', {'lists': lists})
 
 

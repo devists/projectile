@@ -3,7 +3,6 @@
 {#                        Project Card#}
 {% block explore-card %}
     {% for project in project_list %}
-        {% if not project.user == request.user %}
     <div class="ui card project-card">
         {#                            Card Content#}
         <div class="content">
@@ -52,7 +51,7 @@
         </div>
     </div>
 
-        {% endif %}
+
     {% endfor %}
     <div class="pagination">
             <span class="step-links">
