@@ -8,75 +8,165 @@
     <h1>Hello</h1>
     <p>{{ request.user.username }}</p>
 
-
-    <!--
-    <form method="post" action="{% url 'home' %}">
-        {% csrf_token %}
-        {{ search_form }}
-        <input type="submit" value="Search" />
-    </form>
-
-    -->
-    <div class="ui grid">
-        <div class="eight wide column">
+    <div class="ui two column grid">
+        <div class="column">
             <div class="ui green segment">
-                <div class="ui statistics">
-                <div class="red statistic">
-                    <div class="value">
-                        27
+                <div class="ui three column grid">
+                    <div class="column">
+                        <div id="demo-pie-1" class="pie-title-center" >
+                            <span class="pie-value">20</span>
+                        </div>
                     </div>
-                    <div class="label">
-                        Red
+                    <div class="column">
+                        <div id="demo-pie-6" class="pie-title-center" data-percent="70">
+                            <span class="pie-value"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="orange statistic">
-                    <div class="value">
-                      8
-                    </div>
-                    <div class="label">
-                      Orange
-                    </div>
-                    </div>
-                <div class="yellow statistic">
-                    <div class="value">
-                      28
-                    </div>
-                    <div class="label">
-                      Yellow
+                    <div class="column">
+                        <div id="demo-pie-3" class="pie-title-center" data-percent="35">
+                            <span class="pie-value"></span>
+                        </div>
                     </div>
                 </div>
             </div>
-                </div>
         </div>
-        <div class="eight wide column"><div class="ui green segment"><div class="ui statistics">
-  <div class="red statistic">
-    <div class="value">
-      27
-    </div>
-    <div class="label">
-      Red
-    </div>
-  </div>
-  <div class="orange statistic">
-    <div class="value">
-      8
-    </div>
-    <div class="label">
-      Orange
-    </div>
-  </div>
-  <div class="yellow statistic">
-    <div class="value">
-      28
-    </div>
-    <div class="label">
-      Yellow
-    </div>
-  </div>
-</div>
-</div></div>
+        <div class="column">
+            <div class="ui green segment">
+                <div class="ui three column grid">
+                    <div class="column">
+                        <div id="demo-pie-4" class="pie-title-center" data-percent="25">
+                            <span class="pie-value"></span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="demo-pie-5" class="pie-title-center" data-percent="70">
+                            <span class="pie-value"></span>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div id="demo-pie-2" class="pie-title-center" data-percent="35">
+                            <span class="pie-value"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <table class="ui striped table">
+        <thead>
+            <tr>
+                <th colspan="3">Posted Project</th>
+                <!--<th class="right aligned"><button class="ui basic button">View all</button></th>-->
+            </tr>
+            <tr>
+              <th>Sr. No</th>
+              <th>Project Name</th>
+              <th>No. of applications</th>
+              <th>None</th>
+              <th>None</th>
+            </tr>
+        </thead>
+
+  <tbody>
+    <tr>
+      <td class="collapsing">
+        <i class="folder icon"></i> node_modules
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned collapsing">10 hours ago</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="folder icon"></i> test
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="folder icon"></i> build
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="file outline icon"></i> package.json
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="file outline icon"></i> Gruntfile.js
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+    </tr>
+  </tbody>
+</table>
+    <table class="ui striped table">
+  <thead>
+    <tr><th colspan="3">
+      Applied Project
+    </th>
+  </tr>
+  <tr>
+      <th>Sr. No</th>
+      <th>Project Name</th>
+      <th>Post Date</th>
+      <th>None</th>
+      <th>None</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+      <td class="collapsing">
+        <i class="folder icon"></i> node_modules
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned collapsing">10 hours ago</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="folder icon"></i> test
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="folder icon"></i> build
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="file outline icon"></i> package.json
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+    <tr>
+      <td>
+        <i class="file outline icon"></i> Gruntfile.js
+      </td>
+      <td>Initial commit</td>
+      <td class="right aligned">10 hours ago</td>
+        <td>None</td>
+        <td>None</td>
+    </tr>
+  </tbody>
+</table>
 
     <br>
 
