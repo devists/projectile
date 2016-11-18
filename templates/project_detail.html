@@ -58,15 +58,12 @@
         <div class="white-space space-md"></div>
         <div class="apply">
             <div class="cover-letter">
-                <h1 class="color-primary">Apply</h1>
                 {% if user.is_authenticated %}
-                    <h3 class="color-g97 m-t-0">Cover Letter</h3>
                     {% if request.user == project.user %}
-                        <form method="get" action="{% url 'project_edit' project_id=project.pk %}">
-                            {% csrf_token %}
-                            <input type="submit" value="Edit Project"/>
-                        </form>
+                        <a class="ui button green" href="{% url 'project_edit' project_id=project.pk %}">Edit Project</a>
                     {% else %}
+                        <h1 class="color-primary">Apply</h1>
+                        <h3 class="color-g97 m-t-0">Cover Letter</h3>
                         <form method="post" action="{% url 'apply_project' project_id=project.pk %}" id="usrform">
                             {% csrf_token %}
                             <div class="ui form">
