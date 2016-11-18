@@ -29,6 +29,10 @@
                     {% endfor %}
                 </div>
             </div>
+            <div class="field">
+                <label>{{e_form.skills.label}}</label>
+               {{e_form.skills}}
+            </div>
 
             <div class="field">
                 <label>{{e_form.no_of_contrib.label}}</label>
@@ -49,12 +53,6 @@
                 <label>{{e_form.p_description.label}}</label>
                {{e_form.p_description}}
             </div>
-
-            <div class="field">
-                <label>{{e_form.no_of_contrib.label}}</label>
-               {{e_form.skills}}
-            </div>
-
 
             <button type="submit" class="ui primary button" value="Submit">Submit</button>
             <button type="reset" class="ui negative button" value="Reset">Reset</button>
