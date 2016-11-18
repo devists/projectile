@@ -93,7 +93,6 @@ class ProjectForm(forms.ModelForm):
     p_category = forms.CharField(label='Project Category', widget=forms.TextInput(attrs={'name': 'category','placeholder': 'Project Category'}))
     diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
                                    widget=forms.RadioSelect(attrs={'name': 'level'}))
-    #skills = MultiSelectFormField(choices=Project.OPTIONS)
     skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class':'ui fluid dropdown'}),
                                              choices=Project.OPTIONS)
     p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description',}))
@@ -101,10 +100,12 @@ class ProjectForm(forms.ModelForm):
                                     widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib','placeholder': 'No. of Contributors Needed'}))
     p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status','placeholder': 'Project Status'}))
     p_privacy = forms.BooleanField(label='Privacy',required=False, widget=forms.CheckboxInput(attrs={'name': 'privacy'}))
-
+    p_location = forms.CharField(label='Location',
+                                 widget=forms.TextInput(attrs={'name': 'location', 'placeholder': 'Location'}),
+                                 required=True)
     class Meta:
         model = Project
-        fields = ['p_title', 'p_category', 'diff_level', 'skills', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
+        fields = ['p_title', 'p_category', 'diff_level', 'skills', 'p_description', 'p_location', 'no_of_contrib', 'p_status', 'p_privacy']
 
 
 class UserProfileForm(forms.ModelForm):
