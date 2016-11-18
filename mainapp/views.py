@@ -81,19 +81,17 @@ def home(request):
             if domain == 'Student':
                 for query in queries:
                     q = q | Q(username__icontains=query)
-                results= User.objects.filter(q)
-                return render(request, "search_user.html", {'results': results})
+                profile_list= User.objects.filter(q)
+                return render(request, "profiles.html", {'profile_list': profile_list})
 
             elif domain == 'Project':
-                q1=Q()
                 q2=Q()
 
                 for query in queries:
-                    q1 = q1 | Q(skills__icontains=query)
-                    q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query)
+                    q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query) | Q(skills__icontains=query)
                 # results = ProjectSkills.objects.filter(q1)
-                results_p = Project.objects.filter(q2)
-            return render(request, "search_result.html", {'results_p':results_p})
+                project_list = Project.objects.filter(q2)
+            return render(request, "projects.html", {'project_list': project_list})
 
     else:
         search_form = SearchForm()
