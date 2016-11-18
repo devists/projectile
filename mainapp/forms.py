@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from .models import Project, ProjectSkills, Student, UserProfile
+from .models import Project, Student, UserProfile
 import datetime
+from multiselectfield import MultiSelectFormField
 
 
 class LoginForm(AuthenticationForm):
@@ -81,51 +82,53 @@ class ProjectForm(forms.ModelForm):
                ('I', 'Intermediate'),
                ('A', 'Advanced')]
 
-    p_title = forms.CharField(label='Project Title', widget=forms.TextInput(
-        attrs={'name': 'title', 'placeholder': 'Project Title'}))
-    p_category = forms.CharField(label='Project Category', widget=forms.TextInput(
-        attrs={'name': 'category', 'placeholder': 'Project Category'}))
-    diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES, widget=forms.RadioSelect(
-        attrs={'name': 'level'}))
-    p_description = forms.CharField(label='Description', widget=forms.Textarea(
-        attrs={'name': 'description', }))
-    no_of_contrib = forms.CharField(label='No. of Contributors Needed', widget=forms.TextInput(
-        attrs={'type': 'number', 'name': 'contrib', 'placeholder': 'No. of Contributors Needed'}))
-    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(
-        attrs={'name': 'status', 'placeholder': 'Project Status'}))
-    p_privacy = forms.BooleanField(label='Privacy', required=False, widget=forms.CheckboxInput(
-        attrs={'name': 'privacy'}))
-    p_location = forms.CharField(label='Location', widget=forms.TextInput(
-        attrs={'name': 'location', 'placeholder': 'location'}))
+    OPTIONS = (
+                ("","Skills"),
+                ("python", "Python"),
+                ("django", "Django"),
+                ("java", "Java"),
+                )
+
+    p_title = forms.CharField(label='Project Title', widget=forms.TextInput(attrs={'name': 'title','placeholder': 'Project Title'}))
+    p_category = forms.CharField(label='Project Category', widget=forms.TextInput(attrs={'name': 'category','placeholder': 'Project Category'}))
+    diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
+                                   widget=forms.RadioSelect(attrs={'name': 'level'}))
+    #skills = MultiSelectFormField(choices=Project.OPTIONS)
+    skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class':'ui fluid dropdown'}),
+                                             choices=Project.OPTIONS)
+    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description',}))
+    no_of_contrib = forms.CharField(label='No. of Contributors Needed',
+                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib','placeholder': 'No. of Contributors Needed'}))
+    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status','placeholder': 'Project Status'}))
+    p_privacy = forms.BooleanField(label='Privacy',required=False, widget=forms.CheckboxInput(attrs={'name': 'privacy'}))
 
     class Meta:
         model = Project
-        fields = ['p_title', 'p_category', 'diff_level', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
-
-
-class ProjectSkillForm(forms.ModelForm):
-    p_skill = forms.CharField(label='Skill', widget=forms.TextInput(attrs={'name': 'skill'}), required=True)
-
-    class Meta:
-        model = ProjectSkills
-        fields = ['p_skill']
+        fields = ['p_title', 'p_category', 'diff_level', 'skills', 'p_description', 'no_of_contrib', 'p_status', 'p_privacy']
 
 
 class UserProfileForm(forms.ModelForm):
+    #username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
+    OPTIONS = (
+                ("Python", "Python"),
+                ("Django", "Django"),
+                ("Java", "Java"),
+                )
     YEAR_CHOICES = []
     for r in range((datetime.datetime.now().year - 9), (datetime.datetime.now().year + 5)):
         YEAR_CHOICES.append((r, r))
 
-    u_github = forms.CharField(label='Github Account', widget=forms.TextInput(
-        attrs={'name': 'github', 'placeholder': 'GitHub Account'}), required=True)
-    u_linkedin = forms.CharField(label='LinkedIn Account', widget=forms.TextInput(
-        attrs={'name': 'linkedin', 'placeholder': 'LinkedIn Account'}), required=True)
-    u_contact_no = forms.CharField(label='Contact Number', widget=forms.NumberInput(
-        attrs={'name': 'contact_no', 'placeholder': 'Contact Number'}), required=True)
-    u_prof_title = forms.CharField(label='Professional Title', widget=forms.TextInput(
-        attrs={'name': 'prof_title', 'placeholder': 'Professional Title'}), required=True)
-    u_location = forms.CharField(label='Location', widget=forms.TextInput(
-        attrs={'name': 'location', 'placeholder': 'Location'}), required=True)
+    u_github = forms.CharField(label='Github Account', widget=forms.TextInput(attrs={'name': 'github','placeholder':'GitHub Account'}),required=True)
+    u_linkedin = forms.CharField(label='LinkedIn Account', widget=forms.TextInput(attrs={'name': 'linkedin','placeholder':'LinkedIn Account'}),required=True)
+    u_contact_no = forms.CharField(label='Contact Number',
+                                   widget=forms.NumberInput(attrs={'name': 'contact_no','placeholder':'Contact Number'}), required=True)
+    u_prof_title = forms.CharField(label='Professional Title',
+                                   widget=forms.TextInput(attrs={'name': 'prof_title','placeholder':'Professional Title'}), required=True)
+
+    skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class':'ui fluid dropdown'}),
+                                             choices=UserProfile.OPTIONS)
+
+    u_location = forms.CharField(label='Location', widget=forms.TextInput(attrs={'name': 'location','placeholder':'Location'}), required=True)
     u_bio = forms.TextInput()
     u_current_qualification = forms.CharField(label='Qualification', widget=forms.TextInput(
         attrs={'name': 'current_qualification', 'placeholder': 'Qualification'}), required=True)
@@ -147,8 +150,8 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['u_github', 'u_linkedin', 'u_contact_no', 'u_prof_title', 'u_location', 'u_bio',
-                  'u_current_qualification', 'u_current_degree', 'u_current_college', 'u_education_start_year',
-                  'u_education_end_year']
+                  'u_current_qualification',  'u_current_degree', 'u_current_college', 'u_education_start_year',
+                  'u_education_end_year','skills']
 
 
 class SearchForm(forms.Form):

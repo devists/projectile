@@ -32,8 +32,8 @@
                 </div>
                 {% if user.is_authenticated %}
                     <div class="item">
-                    <a href="{% url 'post_project' %}" class="ui button green">New Project</a>
-                </div>
+                        <a href="{% url 'post_project' %}" class="ui button green">New Project</a>
+                    </div>
                 {% endif %}
                 <div class="right menu">
                     <div class="item">
@@ -47,6 +47,12 @@
                             <div class="results"></div>
                         </form>
                     </div>
+                    <a class="d-flex notify color-g97" href="{% url 'notific' %}">
+                        <i class="alarm outline icon"></i>
+                        <div class="label-container">
+                            <div class="floating ui label">22</div>
+                        </div>
+                    </a>
                     <span class="user-auth d-flex">
                         {% if user.is_authenticated %}
                             <div class="ui dropdown item">

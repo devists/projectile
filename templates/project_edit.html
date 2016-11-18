@@ -18,7 +18,7 @@
                {{e_form.p_category}}
             </div>
             <div class="field">
-                 <label>{{p_form.diff_level.label}}</label>
+                 <label>{{e_form.diff_level.label}}</label>
                 <div class="three fields">
                     {% for choices in e_form.diff_level%}
                     <div class="field">
@@ -48,6 +48,11 @@
             <div class="field">
                 <label>{{e_form.p_description.label}}</label>
                {{e_form.p_description}}
+            </div>
+
+            <div class="field">
+                <label>{{e_form.no_of_contrib.label}}</label>
+               {{e_form.skills}}
             </div>
 
 
