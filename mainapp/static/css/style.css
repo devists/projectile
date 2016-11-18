@@ -733,3 +733,12 @@ footer.main-footer {
 .notify-container {
     margin-top: 3rem;
 }
+
+.ui.menu .ui.dropdown .menu.user-dropdown>.item {
+    padding: 0 !important;
+}
+
+.user-dropdown a{
+    display: block;
+    padding: 0.5rem;
+}

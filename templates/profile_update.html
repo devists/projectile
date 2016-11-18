@@ -1,9 +1,10 @@
-{%extends "base.html" %}
+{%extends "view_container.html" %}
 
-{% block content %}
+{% block details %}
 <div class="profile_update ui container">
-    <div class="profile_form">
-        <h2 class="title">Hi, Tell us Something about Yourself</h2>
+    <div class="">
+        <h2 class="title title-deco"><span>Update Your Profile</span></h2>
+        <div class="white-space space-sm"></div>
         <form class="ui form" method="post" action="{% url 'profile_update' %}">
             {% csrf_token %}
             <h4 class="ui dividing header">Education Qualification</h4>
@@ -36,6 +37,7 @@
                 </div>
             </div>
 
+            <div class="white-space space-sm"></div>
             <h4 class="ui dividing header">Personal Information</h4>
 
             <div class="field">
@@ -85,4 +87,4 @@
         </form>
     </div>
 </div>
-{% endblock content %}
+{% endblock details %}
