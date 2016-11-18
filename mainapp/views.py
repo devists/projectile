@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .models import ProjectSkills, Project
+from .models import Project
 from django.utils import timezone
 import re
 from django.db.models import Q
@@ -91,9 +91,9 @@ def home(request):
                 for query in queries:
                     q1 = q1 | Q(skills__icontains=query)
                     q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query)
-                results = ProjectSkills.objects.filter(q1)
+                # results = ProjectSkills.objects.filter(q1)
                 results_p = Project.objects.filter(q2)
-            return render(request, "search_result.html", {'results': results,'results_p':results_p})
+            return render(request, "search_result.html", {'results_p':results_p})
 
     else:
         search_form = SearchForm()
@@ -212,20 +212,23 @@ def profile_update(request):
 def post_project(request):
     if request.method == "POST":
         p_form = ProjectForm(request.POST)
+
         if p_form.is_valid():
            # project.p_title = form.cleaned_data['p_title']
             project = p_form.save(commit=False)
             project.user = request.user
             project.post_date = timezone.now()
             project.save()
-            ls = request.POST.get('skill')
-            skills = ls.split(",")
+            # ls = request.POST.get('skill')
+            # skills = ls.split(",")
 
-            for skill in skills:
-                project_s = ProjectSkills.objects.create(project=project, skills=skill)
-                project_s.save()
+            # for skill in skills:
+            #     project_s = ProjectSkills.objects.create(project=project, skills=skill)
+            #     project_s.save()
 
             return HttpResponse("Project Published")
+        else:
+            return HttpResponse("Error while Creating")
 
 
     else:
@@ -261,6 +264,7 @@ def project_detail(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'project_detail.html', {'project': project})
 
+
 def profile_detail(request, profile_id):
     profile = get_object_or_404(UserProfile, pk=profile_id)
     return render(request, 'profile_detail.html', {'profile': profile})
@@ -283,7 +287,7 @@ def project_edit(request, project_id):
 def profile_edit(request):
     profile = UserProfile.objects.filter(user=request.user)
     if request.method == "POST":
-        profile = get_object_or_404(UserProfile,user=request.user)
+        profile = get_object_or_404(UserProfile, user=request.user)
         u_form = UserProfileForm(request.POST, instance=profile)
         if u_form.is_valid():
             profile = u_form.save(commit=False)
@@ -320,7 +324,6 @@ def explore_projects(request):
         project_list = paginator.page(paginator.num_pages)
 
     return render(request, "projects.html", {'project_list': project_list})
-
 
 
 def explore_profiles(request):

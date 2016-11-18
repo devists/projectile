@@ -25,12 +25,14 @@
             </p>
         </div>
         <div class="white-space space-sm"></div>
+
         <div class="skills-tag">
-            <h2 class="color-g97">Skills</h2>
-            <div class="ui label">Java</div>
-            <div class="ui label">Android</div>
-            <div class="ui label">Algo</div>
+         <h2 class="color-g97">Skills</h2>
+         {% for list in profile.skills %}
+             <div class="ui label">{{ list }}</div>
+         {% endfor %}
         </div>
+
         <div class="white-space space-sm"></div>
         <div class="contacts">
             <h2 class="color-g97">Contacts</h2>
