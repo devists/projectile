@@ -93,6 +93,7 @@ class ProjectForm(forms.ModelForm):
                 ('Private', 'Private')]
 
     CHOICES2 = [('', 'select'),
+                ('Android Development', 'Android Development')
                 ('Web Development', 'Web Development'),
                 ('iOS Development', 'iOS Development'),
                 ('Frontend Development', 'Frontend Development'),
