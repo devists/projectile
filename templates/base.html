@@ -47,12 +47,14 @@
                             <div class="results"></div>
                         </form>
                     </div>
+                {% if user.is_authenticated %}
                     <a class="d-flex notify color-g97" href="{% url 'notific' %}">
                         <i class="alarm outline icon"></i>
                         <div class="label-container">
                             <div class="floating ui label">22</div>
                         </div>
                     </a>
+                {% endif %}
                     <span class="user-auth d-flex">
                         {% if user.is_authenticated %}
                             <div class="ui dropdown item">

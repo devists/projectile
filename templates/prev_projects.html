@@ -2,7 +2,8 @@
 
 {% block content %}
 <div class="project ui container">
-    <h3>Posted Project</h3>
+    <h1 class="ui header fw-300">Your Posted Projects</h1>
+    <div class="white-space space-sm"></div>
     <div class="ui four stackable cards">
 
         {% for project in projects %}
@@ -40,8 +41,8 @@
 
                 {# Skill Tags#}
                 <div class="skills-tag">
-                    {% for object in project.projectskills_set.all %}
-                    <div class="ui label">{{ object.skills }}</div>
+                    {% for list in project.skills %}
+                        <div class="ui label">{{ list }}</div>
                     {% endfor %}
 
                 </div>

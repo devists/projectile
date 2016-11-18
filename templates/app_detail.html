@@ -1,0 +1,73 @@
+{% extends "view_container.html" %}
+
+{% block details %}
+    <div class="details-view">
+        <h2 class="ui header fw-300">Viewing Your Application</h2>
+        <h1 class="name color-primary m-b-05x">{{ project.target.p_title }}</h1>
+        <h3 class="profile-title color-grey m-t-0 color-g97">{{ profile.target.u_prof_title }}</h3>
+
+        {#                                Card Meta#}
+        <div class="meta fw-300">
+            {#                                    Date#}
+            <div class="meta-date"><i class="wait low icon color-primary"></i>
+                <span class="color-g125">{{ project.target.p_category }}</span>
+            </div>
+            {#                                    Level#}
+            <div class="meta-level"><i class="battery low icon color-primary"></i>
+                <span class="color-g125">{{ project.target.diff_level }}</span>
+            </div>
+            {#                                    Category#}
+            <div class="meta-category"><i class="folder low icon color-primary"></i>
+                <span class="color-g125">{{ project.target.post_date }}</span>
+
+            </div>
+            {#                                    Location#}
+            <div class="meta-location"><i class="marker low icon color-primary"></i>
+                <span class="color-g125"> Ahmedabad, Gujarat</span>
+
+            </div>
+        </div>
+        <div class="white-space space-sm"></div>
+        <div class="desc">
+            <h3 class="color-g97">Desciption</h3>
+            <p class="color-g97">
+                {{ project.target.p_description }}
+            </p>
+        </div>
+        <div class="white-space space-sm"></div>
+
+        {#         Skill Tags#}
+        <div class="skills-tag">
+            <h3 class="color-g97">Skills</h3>
+            {% for list in project.target.skills %}
+                <div class="ui label">{{ list }}</div>
+            {% endfor %}
+
+        </div>
+        <div class="white-space space-sm"></div>
+        <div class="no-of-conributer color-g97">
+            <h3>Capacity</h3>
+            <div>{{ project.target.no_of_contrib }}</div>
+        </div>
+        <div class="white-space space-sm"></div>
+        <div class="no-of-conributer color-g97">
+            <h3>Status</h3>
+            <div>{{ project.target.p_status }}</div>
+        </div>
+        <div class="white-space space-md"></div>
+        <div class="apply">
+            <div class="cover-letter">
+                <h1 class="color-primary">Application</h1>
+                {% if user.is_authenticated %}
+                    <h3 class="color-g97 m-t-0">Your Cover Letter</h3>
+                    <p>{{ project.description }}</p>
+                {% else %}
+                    <a href="{% url 'login' %}" class="ui green button fw-300" type="submit">Login to Apply</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="white-space space-sm"></div>
+    </div>
+
+
+{% endblock details %}

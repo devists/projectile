@@ -81,25 +81,22 @@ def home(request):
             if domain == 'Student':
                 for query in queries:
                     q = q | Q(username__icontains=query)
-                results= User.objects.filter(q)
-                return render(request, "search_user.html", {'results': results})
+                profile_list= User.objects.filter(q)
+                return render(request, "profiles.html", {'profile_list': profile_list})
 
             elif domain == 'Project':
-                q1=Q()
                 q2=Q()
 
                 for query in queries:
-                    q1 = q1 | Q(skills__icontains=query)
-                    q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query)
+                    q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query) | Q(skills__icontains=query)
                 # results = ProjectSkills.objects.filter(q1)
-                results_p = Project.objects.filter(q2)
-            return render(request, "search_result.html", {'results_p': results_p})
+                project_list = Project.objects.filter(q2)
+            return render(request, "projects.html", {'project_list': project_list})
 
     else:
         search_form = SearchForm()
         user = request.user
         projects = user.project_set.all()
-        #projects = projects.filter().order_by('post_date').reverse()
     return render(request, "home.html", {'search_form': search_form, 'projects': projects})
 
 
@@ -291,6 +288,10 @@ def profile_detail(request, profile_id):
     profile = get_object_or_404(UserProfile, pk=profile_id)
     return render(request, 'profile_detail.html', {'profile': profile})
 
+def app_detail(request, app_id):
+    project = get_object_or_404(Notification, pk=app_id);
+    return render(request, 'app_detail.html', {'project': project})
+
 
 def project_edit(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
@@ -390,8 +391,8 @@ def notific(request):
 
 def list_applied(request):
     user = request.user
-    lists = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
-    return render(request, 'applied_list.html', {'lists': lists})
+    projects = Notification.objects.filter(actor_object_id=user.id, actor_content_type=ContentType.objects.get_for_model(user))
+    return render(request, 'applied_list.html', {'projects': projects})
 
 
 
