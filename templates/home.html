@@ -8,6 +8,12 @@
     <h1>Hello</h1>
     <p>{{ request.user.username }}</p>
 
+    {% if messages %}
+    {% for message in messages %}
+        {{ message}}
+    {% endfor %}
+
+{% endif %}
     <div class="ui two column grid">
         <div class="column">
             <div class="ui green segment">

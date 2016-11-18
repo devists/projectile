@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^notifications/$', views.notific, name='notific'),
     url(r'^list_of_applied_projects/$', views.list_applied, name='list_applied'),
     url(r'^activate', views.activate, name='activate'),
+    url(r'^change_password', views.change_password, name='change_password'),
 ]

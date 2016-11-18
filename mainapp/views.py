@@ -168,14 +168,9 @@ def activate(request):
 def reset_password(request):
     if request.method == 'POST':
         email = request.POST.get('email')
-        #current_time = str(timezone.now())
-        # key_text = current_time
-        # new_password = encrypt(secret_key, key_text).decode("utf-8")
-        # new_password = new_password[10:18]
-
         new_password = randint(10000000,99999999)
 
-        message = "Your new password is" + str(new_password)
+        message = "Your new password is " + str(new_password)
 
         try:
             user = User.objects.get(email=email)
@@ -193,6 +188,31 @@ def reset_password(request):
 
     else:
         return render(request, "reset_password.html")
+
+
+@login_required(login_url="login/")
+def change_password(request):
+    user = request.user
+    if request.method == 'POST':
+        username = user.username
+        old_password = request.POST.get("old_password")
+        new_password = request.POST.get("new_password")
+        new_password_again = request.POST.get("new_password_again")
+        user = authenticate(username=username, password=old_password)
+        if user is not None:
+            if new_password == new_password_again:
+                user.set_password(new_password)
+                user.save()
+                login(request,user)
+                return HttpResponseRedirect(reverse("home"))
+            else:
+                messages.error(request, "both passwords you entered did not match")
+                return render(request, 'change_password.html', {'user': user})
+        else:
+            messages.error(request, "sorry the password you entered is not correct")
+            return render(request, 'change_password.html', {'user': user})
+    else:
+        return render(request, 'change_password.html', {'user': user})
 
 
 def profile_update(request):
