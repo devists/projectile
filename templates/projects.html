@@ -54,7 +54,8 @@
 
     {% endfor %}
     <div class="white-space space-md"></div>
-    <div class="pagination">
+    {% if project_list.has_previous or  project_list.has_next%}
+        <div class="pagination">
             <span class="step-links">
                 {% if project_list.has_previous %}
                     <a class="pagination__nav" href="{% url 'explore_projects' %}?page={{ project_list.previous_page_number }}"><i class="chevron left icon"></i>Prev</a>
@@ -69,4 +70,5 @@
                 {% endif %}
             </span>
         </div>
+    {% endif %}
 {% endblock explore-card %}

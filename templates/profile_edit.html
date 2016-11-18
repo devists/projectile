@@ -1,11 +1,10 @@
 
+{%extends "view_container.html" %}
 
-{%extends "base.html" %}
-
-{% block content %}
+{% block details %}
 
 <div class="profile_update ui container">
-    <div class="profile_form">
+    <div class="">
         <h2 class="title">Edit Your Profile Details</h2>
         <form class="ui form" method="POST" action="{% url 'profile_edit'  %}">
             {% csrf_token %}
@@ -92,4 +91,4 @@
         </form>
     </div>
 </div>
-{% endblock content %}
+{% endblock details %}

@@ -83,11 +83,21 @@ class ProjectForm(forms.ModelForm):
                ('A', 'Advanced')]
 
     OPTIONS = (
-        ("", "Skills"),
-        ("python", "Python"),
-        ("django", "Django"),
-        ("java", "Java"),
-    )
+                ("","Skills"),
+                ("python", "Python"),
+                ("django", "Django"),
+                ("java", "Java"),("html", "Html"),("css", "CSS"),("javascript", "JavaScript"),("bootstrap", "Bootstrap"),("php", "PHP"),("mySql", "mySql"),
+                )
+    STATUS = (('','Select Status'),
+                ('Active','Active'),
+                ('Close','Close'))
+
+    CITY = (('','Select City'),('ahmedabad','Ahmedabad'),('agra','Agra'),('ajmer','Ajmer'),('bangalore','Bangalore'),('bopal','Bopal'),('chandigarh','Chandigarh'),('chennai','Channai'),
+            ('delhi','Delhi'),('gandhinagar','Gandhinagar'),('goa','Goa'),('gorakhpur','Gorakhpur'),('hyderabad','Hyderabad'),('indore','Indore'),('jabalpur','Jabalpur'),
+            ('jaipur', 'Jaipur'),('jammu','Jammu'),('kanpur','Kanpur'),('kolkata','Kolkata'),('kota','Kota'),('lukhnow','Lukhnow'),('mumbai','Mumbai'),('nagpur','Nagpur'),
+            ('patna','Patna'),('pune','Pune'),('raipur','Raipur'),('ranchi','Ranchi'),('ratlam','Ratlam'),('shimla','Shimla'),('surat','Surat'),('vadodara','Vadodara'),
+            )
+
     CHOICES1 = [('', 'select'),
                 ('Public', 'Public'),
                 ('Private', 'Private')]
@@ -117,15 +127,14 @@ class ProjectForm(forms.ModelForm):
                                        choices=Project.OPTIONS)
     p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description', }))
     no_of_contrib = forms.CharField(label='No. of Contributors Needed',
-                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib',
-                                                                  'placeholder': 'No. of Contributors Needed'}))
-    p_status = forms.CharField(label='Project-Status',
-                               widget=forms.TextInput(attrs={'name': 'status', 'placeholder': 'Project Status'}))
+                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib','placeholder': 'No. of Contributors Needed'}))
+    p_status = forms.ChoiceField(label='Project-Status', choices=STATUS,
+                                 widget=forms.Select(attrs={'name': 'status', 'placeholder': 'Project Status'}))
     p_privacy = forms.ChoiceField(label='Privacy', choices=CHOICES1, required=False,
                                   widget=forms.Select(attrs={'name': 'privacy'}))
-    p_location = forms.CharField(label='Location',
-                                 widget=forms.TextInput(attrs={'name': 'location', 'placeholder': 'Location'}),
-                                 required=True)
+    p_location = forms.ChoiceField(label='Location', choices=CITY,
+                                   widget=forms.Select(attrs={'name': 'location', 'placeholder': 'Location'}),
+                                   required=True)
 
     class Meta:
         model = Project
@@ -134,12 +143,12 @@ class ProjectForm(forms.ModelForm):
 
 
 class UserProfileForm(forms.ModelForm):
-    # username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
-    OPTIONS = (
-        ("Python", "Python"),
-        ("Django", "Django"),
-        ("Java", "Java"),
-    )
+    #username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
+    OPTIONS = ((""," Select Skills"),
+                ("Python", "Python"),
+                ("Django", "Django"),
+                ("Java", "Java"),("Html", "Html"),("Css", "CSS"),("Javascript", "JavaScript"),("Bootstrap", "Bootstrap"),("Php", "PHP"),("mySql", "mySql"),
+                )
     YEAR_CHOICES = []
     for r in range((datetime.datetime.now().year - 9), (datetime.datetime.now().year + 5)):
         YEAR_CHOICES.append((r, r))
