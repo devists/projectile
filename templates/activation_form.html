@@ -16,9 +16,9 @@
         <h1>Activate your account</h1>
         <form method="post" action="{% url 'activate' %}">
             {% csrf_token %}
-            E-mail:<input type="text" name="email" value="" size="50"/>
+            E-mail:<input type="text" name="email" value="" size="30"/>
             <br>
-            Activation-key:<input type="text" name="activation-key" value="" size="50"/><br>
+            Activation-key:<input type="text" name="activation-key" value="" size="30"/><br>
             <button type="submit" class="save btn btn-default">Activate</button>
         </form>
 </body>
