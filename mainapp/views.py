@@ -199,7 +199,7 @@ def post_project(request):
     else:
         p_form = ProjectForm()
 
-    return render(request, 'tempo.html', {'p_form': p_form})
+    return render(request, 'add_project.html', {'p_form': p_form})
 
 
 def prev_posts(request):
