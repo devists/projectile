@@ -71,22 +71,24 @@
                 <th colspan="4">Posted Project</th>
                 <th class="right aligned"><a href="{% url 'prev_posts' %}"><button type="submit" class="ui basic button" value="Submit">View all</button></a></th>
             </tr>
-            <tr>
-                <th>Project Title</th>
-                <th>Applied On</th>
-                <th>No of Applications</th>
-                <th>Application Status</th>
-                <th>Action</th>
-            </tr>
+             <tr>
+                <th>Project title</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>location</th>
+                <th>Difficulty-level</th>
+             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Library</td>
-                <td>12312312</td>
-                <td>12</td>
-                <td>active</td>
-                <td>none</td>
-            </tr>
+                {% for project in projects %}
+                 <tr>
+                    <td>{{ project.p_title }}</td>
+                    <td>{{ project.p_category }}</td>
+                    <td>{{ project.p_status }}</td>
+                    <td>{{ project.p_location }}</td>
+                    <td>{{ project.diff_level }}</td>
+                </tr>
+                {% endfor %}
         </tbody>
     </table>
     <table class="ui striped table">
@@ -97,23 +99,25 @@
             </tr>
             <tr>
                 <th>Project Title</th>
-                <th>Posted On</th>
-                <th>No of applications</th>
+                <th>Category</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Location</th>
+                <th>Difficulty-level</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Projectile</td>
-                <td>qweqwreqw</td>
-                <td>10</td>
-                <td>Active</td>
-                <td>none</td>
-            </tr>
+            {% for aproject in aprojects %}
+                 <tr>
+                    <td>{{ aproject.target.p_title }}</td>
+                    <td>{{ aproject.target.p_category }}</td>
+                    <td>{{ aproject.target.p_status }}</td>
+                    <td>{{ aproject.target.p_location }}</td>
+                    <td>{{ aproject.target.diff_level }}</td>
+                </tr>
+                {% endfor %}
         </tbody>
     </table>
-    <form method="get" action="{% url 'prev_posts' %}">
+    <!--<form method="get" action="{% url 'prev_posts' %}">
         {% csrf_token %}
 
         <input type="submit" value="Posted Projects "/>
@@ -150,6 +154,6 @@
         {% csrf_token %}
 
         <input type="submit" value="GetApplied"/>
-    </form>
+    </form>-->
 </div>
 {% endblock content %}

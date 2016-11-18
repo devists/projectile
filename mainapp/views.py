@@ -27,11 +27,11 @@ from itertools import chain
 
 
 # encryption key for creating activation key
-secret_key = "96587411335"
+secret_key = "965874113"
 # sender's email address in account verification email
-email_address = "jayakishan100@gmail.com"
+email_address = "projectilehelp@gmail.com"
 # sender;s email password
-email_password = "52701021"
+email_password = "projectile@help"
 
 
 # Create your views here.
@@ -96,7 +96,12 @@ def home(request):
 
     else:
         search_form = SearchForm()
-    return render(request, "home.html", {'search_form': search_form})
+        user = request.user
+        projects = user.project_set.all()
+        aprojects = Notification.objects.filter(actor_object_id=user.id,
+                                                actor_content_type=ContentType.objects.get_for_model(user))
+    return render(request, "home.html", {'search_form': search_form,
+                                         'projects': projects, 'aprojects': aprojects})
 
 
 def user_register(request):
@@ -248,7 +253,6 @@ def post_project(request):
             return HttpResponse("Project Published")
         else:
             return HttpResponse("Error while Creating")
-
 
     else:
         p_form = ProjectForm()
