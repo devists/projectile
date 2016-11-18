@@ -661,25 +661,27 @@ footer.main-footer {
     background: #fff;
     padding: 2.5rem;
 }
-
+.home_view .ui.grid > .column{
+    text-align:center;
+}
 .contacts a:hover{
     color: #333333 !important;
 }
 
 .pie-title-center {
-            display: inline-block;
-            position: relative;
-            text-align: center;
-        }
+    display: inline-block;
+    position: relative;
+    text-align: center;
+}
 
-        .pie-value {
-            display: block;
-            position: absolute;
-            font-size: 14px;
-            height: 40px;
-            top: 50%;
-            left: 0;
-            right: 0;
-            margin-top: -20px;
-            line-height: 40px;
-        }
+.pie-value {
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    height: 40px;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-top: -20px;
+    line-height: 40px;
+}

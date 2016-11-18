@@ -118,6 +118,7 @@ def user_register(request):
 
             activation_key = encrypt(secret_key, user.email)
             # sending account verification mail
+
             message = "Your email address is" + user.email + "activation key is " + activation_key.decode("utf-8")
             # message = "Reset link is  Emahere"
             send_verification_mail(user.email, activation_key, message)
@@ -205,13 +206,9 @@ def post_project(request):
 def prev_posts(request):
 
     user = request.user
-
     projects = user.project_set.all()
-
     if projects:
-
         return render(request, 'prev_projects.html', {'projects': projects})
-
     else:
         return HttpResponse("You haven't posted any projects yet")
 
