@@ -5,6 +5,7 @@ import binascii
 from Crypto.Cipher import XOR
 from django.contrib import messages
 from django.urls import reverse
+from random import randint
 
 from .forms import RegistrationForm, ProfileForm, ProjectForm,UserProfileForm, LoginForm
 from .forms import RegistrationForm, ProfileForm, ProjectForm, SearchForm
@@ -16,7 +17,7 @@ from .models import Project
 from django.utils import timezone
 import re
 from django.db.models import Q
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .models import UserProfile,ApplyProject
 from notifications.signals import notify
 from notifications.models import Notification
@@ -56,12 +57,12 @@ def decrypt(key, ciphertext):
 
 
 def send_verification_mail(email, activation_key, msg):
-    print("send verificaion mail")
+    #print("send verificaion mail")
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    print("Helo")
+    #print("Helo")
     server.login(email_address, email_password)
-    print("world")
+    #print("world")
     server.sendmail(email_address, email, msg)
     server.quit()
 
@@ -118,6 +119,7 @@ def user_register(request):
 
             activation_key = encrypt(secret_key, user.email)
             # sending account verification mail
+            #activation_key =
             message = "Your email address is" + user.email + "activation key is " + activation_key.decode("utf-8")
             # message = "Reset link is  Emahere"
             send_verification_mail(user.email, activation_key, message)
@@ -155,12 +157,42 @@ def activate(request):
                 login(request, user)
 
                 messages.success(request, "Your Account Has been Activated..")
-                return render(request, 'Succesfull_activation.html', {})
+                return render(request, 'successfull_activation.html', {})
 
         else:
             messages.error(request, "Wrong activation key")
 
     return render(request, 'activation_form.html')
+
+
+def reset_password(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        #current_time = str(timezone.now())
+        # key_text = current_time
+        # new_password = encrypt(secret_key, key_text).decode("utf-8")
+        # new_password = new_password[10:18]
+
+        new_password = randint(10000000,99999999)
+
+        message = "Your new password is" + str(new_password)
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            user = None
+        if user is not None:
+            user.set_password(new_password)
+            user.save()
+            send_verification_mail(email, new_password, message)
+            messages.success(request, "new password has been sent to your email please login with given password")
+            return HttpResponseRedirect(reverse("login"))
+        else:
+            messages.error(request, 'Sorry no user exist with this email address')
+            return render(request, "reset_password.html")
+
+    else:
+        return render(request, "reset_password.html")
 
 
 def profile_update(request):
@@ -183,6 +215,7 @@ def post_project(request):
         p_form = ProjectForm(request.POST)
 
         if p_form.is_valid():
+           # project.p_title = form.cleaned_data['p_title']
             project = p_form.save(commit=False)
             project.user = request.user
             project.post_date = timezone.now()
@@ -202,7 +235,7 @@ def post_project(request):
     else:
         p_form = ProjectForm()
 
-    return render(request, 'tempo.html', {'p_form': p_form})
+    return render(request, 'add_project.html', {'p_form': p_form})
 
 
 def prev_posts(request):
@@ -317,7 +350,7 @@ def explore_profiles(request):
 def apply_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.method == "POST":
-        apply=ApplyProject()
+        apply = ApplyProject()
         apply.project = project
         apply.user = request.user
         apply.apply_date = timezone.now()
