@@ -99,20 +99,22 @@
             </tr>
             <tr>
                 <th>Project Title</th>
-                <th>Posted On</th>
-                <th>No of applications</th>
+                <th>Category</th>
                 <th>Status</th>
-                <th>Action</th>
+                <th>Location</th>
+                <th>Difficulty-level</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Projectile</td>
-                <td>qweqwreqw</td>
-                <td>10</td>
-                <td>Active</td>
-                <td>none</td>
-            </tr>
+            {% for aproject in aprojects %}
+                 <tr>
+                    <td>{{ aproject.target.p_title }}</td>
+                    <td>{{ aproject.target.p_category }}</td>
+                    <td>{{ aproject.target.p_status }}</td>
+                    <td>{{ aproject.target.p_location }}</td>
+                    <td>{{ aproject.target.diff_level }}</td>
+                </tr>
+                {% endfor %}
         </tbody>
     </table>
     <form method="get" action="{% url 'prev_posts' %}">
