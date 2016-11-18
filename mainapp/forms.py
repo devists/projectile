@@ -83,53 +83,72 @@ class ProjectForm(forms.ModelForm):
                ('A', 'Advanced')]
 
     OPTIONS = (
-                ("","Skills"),
-                ("python", "Python"),
-                ("django", "Django"),
-                ("java", "Java"),
-                )
+        ("", "Skills"),
+        ("python", "Python"),
+        ("django", "Django"),
+        ("java", "Java"),
+    )
+    CHOICES1 = [('', 'select'),
+                ('Public', 'Public'),
+                ('Private', 'Private')]
 
-    p_title = forms.CharField(label='Project Title', widget=forms.TextInput(attrs={'name': 'title','placeholder': 'Project Title'}))
-    p_category = forms.CharField(label='Project Category', widget=forms.TextInput(attrs={'name': 'category','placeholder': 'Project Category'}))
+    p_title = forms.CharField(label='Project Title',
+                              widget=forms.TextInput(attrs={'name': 'title', 'placeholder': 'Project Title'}))
+    p_category = forms.CharField(label='Project Category',
+                                 widget=forms.TextInput(attrs={'name': 'category', 'placeholder': 'Project Category'}))
     diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
                                    widget=forms.RadioSelect(attrs={'name': 'level'}))
-    skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class':'ui fluid dropdown'}),
-                                             choices=Project.OPTIONS)
-    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description',}))
+    skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class': 'ui fluid dropdown'}),
+                                       choices=Project.OPTIONS)
+    p_description = forms.CharField(label='Description', widget=forms.Textarea(attrs={'name': 'description', }))
     no_of_contrib = forms.CharField(label='No. of Contributors Needed',
-                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib','placeholder': 'No. of Contributors Needed'}))
-    p_status = forms.CharField(label='Project-Status', widget=forms.TextInput(attrs={'name': 'status','placeholder': 'Project Status'}))
-    p_privacy = forms.BooleanField(label='Privacy',required=False, widget=forms.CheckboxInput(attrs={'name': 'privacy'}))
+                                    widget=forms.TextInput(attrs={'type': 'number', 'name': 'contrib',
+                                                                  'placeholder': 'No. of Contributors Needed'}))
+    p_status = forms.CharField(label='Project-Status',
+                               widget=forms.TextInput(attrs={'name': 'status', 'placeholder': 'Project Status'}))
+    p_privacy = forms.ChoiceField(label='Privacy', choices=CHOICES1, required=False,
+                                  widget=forms.Select(attrs={'name': 'privacy'}))
     p_location = forms.CharField(label='Location',
                                  widget=forms.TextInput(attrs={'name': 'location', 'placeholder': 'Location'}),
                                  required=True)
+
     class Meta:
         model = Project
-        fields = ['p_title', 'p_category', 'diff_level', 'skills', 'p_description', 'p_location', 'no_of_contrib', 'p_status', 'p_privacy']
+        fields = ['p_title', 'p_category', 'diff_level', 'skills', 'p_description', 'p_location', 'no_of_contrib',
+                  'p_status', 'p_privacy']
 
 
 class UserProfileForm(forms.ModelForm):
-    #username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
+    # username = forms.CharField(label='Username', widget=forms.TextInput(attrs={'name': 'username'}))
     OPTIONS = (
-                ("Python", "Python"),
-                ("Django", "Django"),
-                ("Java", "Java"),
-                )
+        ("Python", "Python"),
+        ("Django", "Django"),
+        ("Java", "Java"),
+    )
     YEAR_CHOICES = []
     for r in range((datetime.datetime.now().year - 9), (datetime.datetime.now().year + 5)):
         YEAR_CHOICES.append((r, r))
 
-    u_github = forms.CharField(label='Github Account', widget=forms.TextInput(attrs={'name': 'github','placeholder':'GitHub Account'}),required=True)
-    u_linkedin = forms.CharField(label='LinkedIn Account', widget=forms.TextInput(attrs={'name': 'linkedin','placeholder':'LinkedIn Account'}),required=True)
+    u_github = forms.CharField(label='Github Account',
+                               widget=forms.TextInput(attrs={'name': 'github', 'placeholder': 'GitHub Account'}),
+                               required=True)
+    u_linkedin = forms.CharField(label='LinkedIn Account',
+                                 widget=forms.TextInput(attrs={'name': 'linkedin', 'placeholder': 'LinkedIn Account'}),
+                                 required=True)
     u_contact_no = forms.CharField(label='Contact Number',
-                                   widget=forms.NumberInput(attrs={'name': 'contact_no','placeholder':'Contact Number'}), required=True)
+                                   widget=forms.NumberInput(
+                                       attrs={'name': 'contact_no', 'placeholder': 'Contact Number'}), required=True)
     u_prof_title = forms.CharField(label='Professional Title',
-                                   widget=forms.TextInput(attrs={'name': 'prof_title','placeholder':'Professional Title'}), required=True)
+                                   widget=forms.TextInput(
+                                       attrs={'name': 'prof_title', 'placeholder': 'Professional Title'}),
+                                   required=True)
 
-    skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class':'ui fluid dropdown'}),
-                                             choices=UserProfile.OPTIONS)
+    skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class': 'ui fluid dropdown'}),
+                                       choices=UserProfile.OPTIONS)
 
-    u_location = forms.CharField(label='Location', widget=forms.TextInput(attrs={'name': 'location','placeholder':'Location'}), required=True)
+    u_location = forms.CharField(label='Location',
+                                 widget=forms.TextInput(attrs={'name': 'location', 'placeholder': 'Location'}),
+                                 required=True)
     u_bio = forms.TextInput()
     u_current_qualification = forms.CharField(label='Stream', widget=forms.TextInput(
         attrs={'name': 'current_qualification', 'placeholder': 'Stream'}), required=True)
@@ -143,16 +162,16 @@ class UserProfileForm(forms.ModelForm):
     u_education_start_year = forms.ChoiceField(label='Education Start Year', choices=YEAR_CHOICES,
                                                widget=forms.Select(
                                                    attrs={'name': 'education_start_year',
-                                                          'placeholder': 'Start Year'}),required=True)
+                                                          'placeholder': 'Start Year'}), required=True)
     u_education_end_year = forms.ChoiceField(label='Education End Year', choices=YEAR_CHOICES, widget=forms.Select(
-                                                 attrs={'name': 'education_end_year',
-                                                        'placeholder': 'End Year'}), required=True)
+        attrs={'name': 'education_end_year',
+               'placeholder': 'End Year'}), required=True)
 
     class Meta:
         model = UserProfile
         fields = ['u_github', 'u_linkedin', 'u_contact_no', 'u_prof_title', 'u_location', 'u_bio',
-                  'u_current_degree','u_current_qualification', 'u_current_college', 'u_education_start_year',
-                  'u_education_end_year','skills']
+                  'u_current_degree', 'u_current_qualification', 'u_current_college', 'u_education_start_year',
+                  'u_education_end_year', 'skills']
 
 
 class SearchForm(forms.Form):
