@@ -4,10 +4,11 @@
 <div class="profile_update ui container">
     <div class="">
         <h2 class="title title-deco"><span>Update Your Profile</span></h2>
-        <div class="white-space space-sm"></div>
+        <div class="white-space space-xm"></div>
         <form class="ui form" method="post" action="{% url 'profile_update' %}">
             {% csrf_token %}
-            <h4 class="ui dividing header">Education Qualification</h4>
+            <h4 class="ui dividing header m-a-0">Education Qualification</h4>
+            <div class="white-space space-xm"></div>
 
             <div class="field">
                 <label>{{form.u_current_college.label}}</label>

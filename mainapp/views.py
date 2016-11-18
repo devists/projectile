@@ -349,7 +349,8 @@ def explore_projects(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         project_list = paginator.page(paginator.num_pages)
 
-    return render(request, "projects.html", {'project_list': project_list})
+
+    return render(request, "projects.html", {'project_list': project_list,'length':len(projects)})
 
 
 def explore_profiles(request):
@@ -369,7 +370,7 @@ def explore_profiles(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         profile_list = paginator.page(paginator.num_pages)
 
-    return render(request, "profiles.html", {'profile_list': profile_list})
+    return render(request, "profiles.html", {'profile_list': profile_list,'length':len(profiles)})
 
 
 def apply_project(request, project_id):
