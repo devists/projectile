@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "view_container.html" %}
 
-{% block content %}
+{% block details %}
 
     {% load notifications_tags %}
 
@@ -8,20 +8,27 @@
     {% notifications_unread as unread_count %}
 
     {% if unread_count %}
-        You have <strong>{{ unread_count }}</strong> unread notifications.
+        <h1 class="text-center fw-300">You have <strong class="color-primary">{{ unread_count }}</strong> unread
+            notifications.</h1>
+    {% else %}
+        <h1 class="text-center fw-300">You have <strong class="color-primary">No</strong> unread
+            notifications.</h1>
     {% endif %}
 
-    <br>
-    {% for n in notice %}
-        {% if n.unread %}
-            {{ n.actor }}
-            {{ n.verb }}
-            <a class="ui button" href="/inbox/notifications/mark-as-read/{{ n.slug }}">Mark as Read</a>
-            {% if n.target %}
-                of {{ n.target }}
+    <div class="notify-container">
+        {% for n in notice %}
+            {% if n.unread %}
+                <div class="notify-list ui segment">
+                    {{ n.actor }}
+                    <span class="color-primary">{{ n.verb }}</span>
+                    {% if n.target %}
+                        on {{ n.target }}
+                    {% endif %}
+                    <a class="mini ui button" href="/inbox/notifications/mark-as-read/{{ n.slug }}"><i
+                            class="checkmark icon"></i></a>
+                </div>
             {% endif %}
-        {% endif %}
 
-        <br>
-    {% endfor %}
-{% endblock content %}
+        {% endfor %}
+    </div>
+{% endblock details %}

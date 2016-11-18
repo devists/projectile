@@ -78,10 +78,16 @@ $(document).ready(function () {
             $('.notify').addClass('color-primary').removeClass('color-g97');
             notify.find('.ui.label').text(data.unread_count);
             notify.show();
-
-            console.log(data.unread_count+" New Notification");
         }
         console.log(data);
+    });
+
+    $('.notify-list a').click(function (e) {
+        e.preventDefault();
+        var readUrl = $(this).attr('href');
+        $.get(readUrl,function () {
+            location.reload();
+        });
     })
 
 });

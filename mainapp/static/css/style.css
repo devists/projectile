@@ -727,3 +727,7 @@ footer.main-footer {
     align-items: center;
     justify-content: center;
 }
+
+.notify-container {
+    margin-top: 3rem;
+}
