@@ -92,10 +92,24 @@ class ProjectForm(forms.ModelForm):
                 ('Public', 'Public'),
                 ('Private', 'Private')]
 
+    CHOICES2 = [('', 'select'),
+                ('Web Development', 'Web Development'),
+                ('iOS Development', 'iOS Development'),
+                ('Frontend Development', 'Frontend Development'),
+                ('Backend Development', 'Backend Development'),
+                ('Machine Learning', 'Machine Learning'),
+                ('Artificial Intelligence', 'Artificial Intelligence'),
+                ('Full Stack Development', 'Full Stack Development'),
+                ('Game Development', 'Game Development'),
+                ('UI/UX Development', 'UI/UX Development'),
+                ('Image Processing', 'Image Processing'),
+                ('Software Development', 'Software Development')
+                ]
+
     p_title = forms.CharField(label='Project Title',
                               widget=forms.TextInput(attrs={'name': 'title', 'placeholder': 'Project Title'}))
-    p_category = forms.CharField(label='Project Category',
-                                 widget=forms.TextInput(attrs={'name': 'category', 'placeholder': 'Project Category'}))
+    p_category = forms.ChoiceField(label='Project Category', choices=CHOICES2,
+                                   widget=forms.Select(attrs={'name': 'category', 'placeholder': 'Project Category'}))
     diff_level = forms.ChoiceField(label='Difficulty-Level', choices=CHOICES,
                                    widget=forms.RadioSelect(attrs={'name': 'level'}))
     skills = forms.MultipleChoiceField(widget=forms.SelectMultiple(attrs={'class': 'ui fluid dropdown'}),
