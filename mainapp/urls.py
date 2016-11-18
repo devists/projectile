@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^prev_posts/$', views.prev_posts, name='prev_posts'),
     url(r'^project_detail/(?P<project_id>\d+)/$', views.project_detail, name='project_detail'),
     url(r'^profile_detail/(?P<profile_id>\d+)/$', views.profile_detail, name='profile_detail'),
+    url(r'^app_detail/(?P<app_id>\d+)/$', views.app_detail, name='app_detail'),
     url(r'^profile_update/$', views.profile_update, name='profile_update'),
     url(r'^project_edit/(?P<project_id>\d+)/$', views.project_edit, name='project_edit'),
     url(r'^profile_edit/$', views.profile_edit, name='profile_edit'),
