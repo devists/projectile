@@ -17,10 +17,16 @@ class Student(models.Model):
 
 
 class Project(models.Model):
-    OPTIONS = (
+    OPTIONS = ((""," Select Skills"),
                 ("python", "Python"),
                 ("django", "Django"),
                 ("java", "Java"),
+                ("html", "HTML"),
+                ("css", "CSS"),
+                ("javascript", "JavaScript"),
+                ("bootstrap", "Bootstrap"),
+                ("php", "PHP"),
+                ("mySql", "MySql"),
                 )
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -41,10 +47,16 @@ class Project(models.Model):
 
 
 class UserProfile(models.Model):
-    OPTIONS = (
+    OPTIONS = ((""," Select Skills"),
                 ("Python", "Python"),
                 ("Django", "Django"),
                 ("Java", "Java"),
+                ("html", "HTML"),
+                ("css", "CSS"),
+                ("javascript", "JavaScript"),
+                ("bootstrap", "Bootstrap"),
+                ("php", "PHP"),
+                ("mySql", "MySql"),
                 )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
