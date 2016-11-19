@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "view_container.html" %}
 
+{%  block details %}
 <h1>
 {% if messages %}
     {% for message in messages %}
@@ -15,8 +10,6 @@
 {% endif %}
 </h1>
 
+<div><a class="ui button green" href="{% url 'profile_update'  %} ">Create Profile</a></div>
 
-<a href="{% url 'profile_update' %}">Create Your Profile</a>
-
-</body>
-</html>
+{% endblock %}

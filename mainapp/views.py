@@ -249,10 +249,12 @@ def post_project(request):
             # for skill in skills:
             #     project_s = ProjectSkills.objects.create(project=project, skills=skill)
             #     project_s.save()
+            msg="Project Created Succesfully"
 
-            return HttpResponse("Project Published")
+            return render(request, 'responseMsg.html', {'msg': msg})
         else:
-            return HttpResponse("Error while Creating")
+            msg="Error while Creating your Project"
+            return render(request, 'responseMsg.html', {'msg': msg})
 
     else:
         p_form = ProjectForm()
