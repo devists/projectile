@@ -20,6 +20,12 @@
 {#            <div class="white-space space-mini"></div>#}
             {#             Sidebar Filter#}
             <form method="GET" action="{% url 'filter_search' %}"  class="sidebar__filter">
+
+               {% comment %} <select class="ui dropdown" name="order_by">
+                    <option value="" selected>Order by</option>
+                    <option value="inc">Newest First</option>
+                    <option value="desc">Oldest First</option>
+                </select>{% endcomment %}
                 {#                Filter Header#}
                 {% csrf_token %}
                 <h3 class="ui header"><i class="filter icon"></i>

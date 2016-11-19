@@ -3,7 +3,7 @@
 {% block details %}
     <div class="details-view">
         <h1 class="name color-primary m-b-05x">{{ project.p_title }}</h1>
-        <h3 class="profile-title color-grey m-t-0 color-g97">{{ profile.u_prof_title }}</h3>
+        <h3 class="profile-title color-grey m-t-0 color-g97">Posted by <span class="color-primary">{{ project.user.username }}</span></h3>
 
         {#                                Card Meta#}
         <div class="meta fw-300">
