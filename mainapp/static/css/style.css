@@ -41,7 +41,7 @@ body > .grid {
 /*Helpers*/
 
 .m-t-0 {
-    margin-top: 0;
+    margin-top: 0 !important;
 }
 
 .m-a-0 {
@@ -100,6 +100,10 @@ body > .grid {
     font-size: 1rem !important;
 }
 
+.fs-4x {
+    font-size: 4rem !important;
+}
+
 .ff-rs {
     font-family: 'Roboto Slab', serif !important;
 }
@@ -110,6 +114,9 @@ body > .grid {
 
 .ff-si {
     font-style: italic !important;
+}
+.lh-n {
+    line-height: normal !important;
 }
 
 .white-space {
@@ -741,4 +748,10 @@ footer.main-footer {
 .user-dropdown a{
     display: block;
     padding: 0.5rem 1rem;
+}
+
+.statistics-container {
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 0 !important;
 }

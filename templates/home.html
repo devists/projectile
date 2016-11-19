@@ -14,33 +14,77 @@
     {% endfor %}
 
 {% endif %}
-    <div class="ui two column grid">
-        <div class="column">
+    {% comment %}<div class="ui two column grid">
+        <div class="column lh-n">
             <div class="ui green segment">
-                <div class="ui three column grid">
-                    <div class="column">
-                        <div id="demo-pie-1" class="pie-title-center" data-percent="100" >
-                            <span class="pie-value">20</span>
+                <div class="ui three column grid statistics-container">
+                    <div class="column ui statistics">
+                        <div class="green statistic">
+                            <div class="value fs-4x">
+                                {{ projects | length }}
+                            </div>
+                            <div class="label">
+                                Posted Project
+                            </div>
                         </div>
-                        <div><strong>Posted Project</strong></div>
                     </div>
-                    <div class="column">
-                        <div id="demo-pie-6" class="pie-title-center" data-percent="100">
-                            <span class="pie-value">40</span>
+                    <div class="column ui statistics m-t-0">
+                        <div class="purple statistic">
+                            <div class="value fs-4x">
+                                22
+                            </div>
+                            <div class="label">
+                                Application Received
+                            </div>
                         </div>
-                        <div><strong>Application Recived</strong></div>
                     </div>
-                    <div class="column">
-                        <div id="demo-pie-3" class="pie-title-center" data-percent="35">
-                            <span class="pie-value">40</span>
+                    <div class="column ui statistics m-t-0">
+                        <div class="purple statistic">
+                            <div class="value fs-4x">
+                                {{ aprojects | length }}
+                            </div>
+                            <div class="label">
+                                Posted Project Rate
+                            </div>
                         </div>
-                        <div><strong>Posted Project Rate</strong></div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="column">
             <div class="ui green segment">
+                <div class="ui three column grid statistics-container">
+                    <div class="column ui statistics">
+                        <div class="teal statistic">
+                            <div class="value fs-4x">
+                                {{ aprojects | length }}
+                            </div>
+                            <div class="label">
+                                Applied Project
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ui statistics m-t-0">
+                        <div class="purple statistic">
+                            <div class="value fs-4x">
+                                22
+                            </div>
+                            <div class="label">
+                                Accepted Project
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column ui statistics m-t-0">
+                        <div class="purple statistic">
+                            <div class="value fs-4x">
+                                {{ aprojects | length }}
+                            </div>
+                            <div class="label">
+                                Posted Project Rate
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="ui three column grid">
                     <div class="column">
                         <div id="demo-pie-4" class="pie-title-center" data-percent="100">
@@ -63,20 +107,61 @@
                 </div>
             </div>
         </div>
+    </div>{% endcomment %}
+
+    <div class="white-space space-xm"></div>
+
+    <div class="ui green segment">
+        <div class="ui three column grid statistics-container">
+            <div class="column ui statistics">
+                <div class="green statistic">
+                    <div class="value fs-4x">
+                        {{ projects | length }}
+                    </div>
+                    <div class="label">
+                        Posted Projects
+                    </div>
+                </div>
+            </div>
+            <div class="column ui statistics m-t-0">
+                <div class="purple statistic">
+                    <div class="value fs-4x">
+                        {{ aprojects | length }}
+                    </div>
+                    <div class="label">
+                        Applied Projects
+                    </div>
+                </div>
+            </div>
+            <div class="column ui statistics m-t-0">
+                <div class="pink statistic">
+                    <div class="value fs-4x">
+                        {{ projvsapll }}
+                    </div>
+                    <div class="label">
+                        Posted vs Applied Ratio
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+    <div class="white-space space-md"></div>
 
     <table class="ui striped table">
         <thead>
             <tr>
-                <th colspan="4">Posted Project</th>
-                <th class="right aligned"><a href="{% url 'prev_posts' %}"><button type="submit" class="ui basic button" value="Submit">View all</button></a></th>
+                <th colspan="4" class="ui header">Recent Posted Project</th>
+                <th class="right aligned"><a href="{% url 'prev_posts' %}"><button type="submit" class="ui button green" value="Submit">View all</button></a></th>
             </tr>
              <tr>
-                <th>Project title</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th>location</th>
-                <th>Difficulty-level</th>
+                <th class="ui header">Project title</th>
+                <th class="ui header">Category</th>
+                <th class="ui header">Status</th>
+                <th class="ui header">location</th>
+                <th class="ui header">Difficulty-level</th>
              </tr>
         </thead>
         <tbody>
@@ -91,18 +176,20 @@
                 {% endfor %}
         </tbody>
     </table>
+
+    <div class="white-space space-md"></div>
     <table class="ui striped table">
         <thead>
             <tr>
-                <th colspan="4">Apply Project</th>
-                <th class="right aligned"><a href="{% url 'list_applied' %}"><button type="submit" class="ui basic button" value="Submit">View all</button></a></th>
+                <th class="ui header" colspan="4">Recent Applied Project</th>
+                <th class="right aligned"><a href="{% url 'list_applied' %}"><button type="submit" class="ui button green" value="Submit">View all</button></a></th>
             </tr>
             <tr>
-                <th>Project Title</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th>Location</th>
-                <th>Difficulty-level</th>
+                <th class="ui header">Project Title</th>
+                <th class="ui header">Category</th>
+                <th class="ui header">Status</th>
+                <th class="ui header">Location</th>
+                <th class="ui header">Difficulty-level</th>
             </tr>
         </thead>
         <tbody>

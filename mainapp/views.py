@@ -99,9 +99,10 @@ def home(request):
         user = request.user
         projects = user.project_set.all()
         aprojects = Notification.objects.filter(actor_object_id=user.id,
-                                                actor_content_type=ContentType.objects.get_for_model(user))
+                                                 actor_content_type=ContentType.objects.get_for_model(user))
+        projvsapll = len(projects) / float(len(aprojects))
     return render(request, "home.html", {'search_form': search_form,
-                                         'projects': projects, 'aprojects': aprojects})
+                                         'projects': projects, 'aprojects': aprojects, 'projvsapll':projvsapll})
 
 
 def user_register(request):
