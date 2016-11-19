@@ -100,7 +100,10 @@ def home(request):
         projects = user.project_set.all()
         aprojects = Notification.objects.filter(actor_object_id=user.id,
                                                  actor_content_type=ContentType.objects.get_for_model(user))
-        projvsapll = len(projects) / float(len(aprojects))
+        if float(len(aprojects)):
+            projvsapll = len(projects) / float(len(aprojects))
+        else:
+            projvsapll =0;
     return render(request, "home.html", {'search_form': search_form,
                                          'projects': projects, 'aprojects': aprojects, 'projvsapll':projvsapll})
 
