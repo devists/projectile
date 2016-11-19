@@ -86,7 +86,13 @@ class ProjectForm(forms.ModelForm):
                 ("","Skills"),
                 ("python", "Python"),
                 ("django", "Django"),
-                ("java", "Java"),("html", "Html"),("css", "CSS"),("javascript", "JavaScript"),("bootstrap", "Bootstrap"),("php", "PHP"),("mySql", "mySql"),
+                ("java", "Java"),
+                ("html", "HTML"),
+                ("css", "CSS"),
+                ("javascript", "JavaScript"),
+                ("bootstrap", "Bootstrap"),
+                ("php", "PHP"),
+                ("mySql", "MySql"),
                 )
     STATUS = (('','Select Status'),
                 ('Active','Active'),
@@ -147,7 +153,13 @@ class UserProfileForm(forms.ModelForm):
     OPTIONS = ((""," Select Skills"),
                 ("Python", "Python"),
                 ("Django", "Django"),
-                ("Java", "Java"),("Html", "Html"),("Css", "CSS"),("Javascript", "JavaScript"),("Bootstrap", "Bootstrap"),("Php", "PHP"),("mySql", "mySql"),
+                ("Java", "Java"),
+                ("Html", "HTML"),
+                ("Css", "CSS"),
+                ("Javascript", "JavaScript"),
+                ("Bootstrap", "Bootstrap"),
+                ("Php", "PHP"),
+                ("mySql", "MySql"),
                 )
     YEAR_CHOICES = []
     for r in range((datetime.datetime.now().year - 9), (datetime.datetime.now().year + 5)):

@@ -4,27 +4,27 @@
 
 
             {#            Sidebar Search#}
-            <div class="sidebar__search">
-                <h3 class="ui header"><i class="search icon"></i>
-                    Keyword Search</h3>
-                <div class="ui search">
-                    <div class="ui icon input">
-                        <input class="prompt" type="text" placeholder="Search Keyword...">
-                        <i class="search icon"></i>
-                    </div>
-                    <div class="results"></div>
-                </div>
-            </div>
-            <div class="white-space space-mini"></div>
-            <div class="sidebar__or text-center color-g125"><span>OR</span></div>
-            <div class="white-space space-mini"></div>
+{#            <div class="sidebar__search">#}
+{#                <h3 class="ui header"><i class="search icon"></i>#}
+{#                    Keyword Search</h3>#}
+{#                <div class="ui search">#}
+{#                    <div class="ui icon input">#}
+{#                        <input class="prompt" type="text" placeholder="Search Keyword...">#}
+{#                        <i class="search icon"></i>#}
+{#                    </div>#}
+{#                    <div class="results"></div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="white-space space-mini"></div>#}
+{#            <div class="sidebar__or text-center color-g125"><span>OR</span></div>#}
+{#            <div class="white-space space-mini"></div>#}
             {#             Sidebar Filter#}
             <form method="GET" action="{% url 'filter_search' %}"  class="sidebar__filter">
                 {#                Filter Header#}
                 {% csrf_token %}
                 <h3 class="ui header"><i class="filter icon"></i>
                     Filter</h3>
-                <div class="white-space space-xm"></div>
+{#                <div class="white-space space-xm"></div>#}
 
                 {#                Filter:level#}
                 <div class="sidebar__filter__level">
@@ -57,17 +57,17 @@
                 <div class="white-space space-mini"></div>
 
                 {#                Filter:Location#}
-                <div class="sidebar__filter__location">
-                    <h4 class="title-deco title-deco--sm"><span>Location</span></h4>
-                    <div class="ui search">
-                        <div class="ui icon input">
-                            <input class="prompt" type="text" placeholder="Filter by Location...">
-                            <i class="search icon"></i>
-                        </div>
-                        <div class="results"></div>
-                    </div>
-                </div>
-                <div class="white-space space-sm"></div>
+{#                <div class="sidebar__filter__location">#}
+{#                    <h4 class="title-deco title-deco--sm"><span>Location</span></h4>#}
+{#                    <div class="ui search">#}
+{#                        <div class="ui icon input">#}
+{#                            <input class="prompt" type="text" placeholder="Filter by Location...">#}
+{#                            <i class="search icon"></i>#}
+{#                        </div>#}
+{#                        <div class="results"></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="white-space space-sm"></div>#}
 
                 {#                Filter Category#}
                 <div class="sidebar__filter__categories">
