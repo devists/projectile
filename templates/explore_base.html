@@ -14,6 +14,18 @@
                         class="content-counter color-primary">{{ length }}</span> result
                 </h3>
                 <div class="white-space space-mini"></div>
+                {% if action %}
+                <div class="ui selection dropdown">
+                    <input type="hidden" name="order_by">
+                    <i class="dropdown icon"></i>
+                    <div class="default text">Order By</div>
+                    <div class="menu">
+                        <a href="{% url 'sort_search' sort_id='1' %}" class="item" >Newest First</a>
+                        <a href="{% url 'sort_search' sort_id='2' %}" class="item" >Oldest First</a>
+                    </div>
+                 </div>
+                <div class="white-space space-sm"></div>
+                {% endif %}
 
                 {#                Results#}
                 <div class="result-container">

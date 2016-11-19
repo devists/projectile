@@ -353,7 +353,7 @@ def explore_projects(request):
         project_list = paginator.page(paginator.num_pages)
 
 
-    return render(request, "projects.html", {'project_list': project_list,'length':len(projects)})
+    return render(request, "projects.html", {'project_list': project_list,'length':len(projects),'action':1})
 
 
 def explore_profiles(request):
@@ -425,11 +425,17 @@ def filter_search(request):
         return render(request, "projects.html", {'project_list': project_list})
 
 
+def sort_search(request, sort_id):
 
+    if sort_id == '1':
+        print("new")
+        project_list = Project.objects.exclude(user=request.user).order_by('-post_date')
+    else:
+        print("old")
+        project_list = Project.objects.exclude(user=request.user).order_by('post_date')
 
-        #
-        # q2=Q()
-        # q2 = q2 | Q(p_title__icontains=query) | Q(p_category__icontains=query) | Q(skills__icontains=query)
+    return render(request, "projects.html", {'project_list': project_list, 'action':1})
+
 
 
 
