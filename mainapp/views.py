@@ -81,8 +81,8 @@ def home(request):
             q=Q()
             if domain == 'Student':
                 for query in queries:
-                    q = q | Q(username__icontains=query)
-                profile_list= User.objects.filter(q)
+                    q = q | Q(user__username__icontains=query)
+                profile_list = UserProfile.objects.filter(q)
                 return render(request, "profiles.html", {'profile_list': profile_list})
 
             elif domain == 'Project':
