@@ -1,0 +1,9 @@
+{% extends "view_container.html" %}
+
+{%  block details %}
+    <div class="white-space space-sm"></div>
+    <h3 class="ui header fw-300">{{ msg }}</h3>
+     <div class="white-space space-sm"></div>
+    <div><a class="ui button green" href="{% url 'home'  %} ">Back To Home</a></div>
+    <div class="white-space space-sm"></div>
+{%  endblock %}
