@@ -109,18 +109,18 @@ class ProjectForm(forms.ModelForm):
                 ('Private', 'Private')]
 
     CHOICES2 = [('', 'select'),
-                ('Android Development', 'Android Development'),
-                ('Web Development', 'Web Development'),
-                ('iOS Development', 'iOS Development'),
-                ('Frontend Development', 'Frontend Development'),
-                ('Backend Development', 'Backend Development'),
-                ('Machine Learning', 'Machine Learning'),
-                ('Artificial Intelligence', 'Artificial Intelligence'),
-                ('Full Stack Development', 'Full Stack Development'),
-                ('Game Development', 'Game Development'),
-                ('UI/UX Development', 'UI/UX Development'),
-                ('Image Processing', 'Image Processing'),
-                ('Software Development', 'Software Development')
+                ('android-development', 'Android Development'),
+                ('web-development', 'Web Development'),
+                ('ios-development', 'iOS Development'),
+                ('frontend-development', 'Frontend Development'),
+                ('backend-development', 'Backend Development'),
+                ('machine-learning', 'Machine Learning'),
+                ('artificial-intelligence', 'Artificial Intelligence'),
+                ('fullstack-development', 'Full Stack Development'),
+                ('game-development', 'Game Development'),
+                ('ui-ux-development', 'UI/UX Development'),
+                ('image-processing', 'Image Processing'),
+                ('software-development', 'Software Development')
                 ]
 
     p_title = forms.CharField(label='Project Title',

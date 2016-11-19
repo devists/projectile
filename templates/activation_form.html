@@ -1,3 +1,53 @@
+{%extends "base.html" %}
+
+{% block content %}
+    <div class="ui middle aligned center aligned grid h-vh login login--cust">
+        <div class="column login__card">
+            <h2 class="ui teal image header"></h2>
+            <div class="login__card-header-circle">
+                <div class="ui login__card-header">
+                    <i class="user icon"></i>
+                </div>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message}}
+                {% endfor %}
+
+            {% endif %}
+            <form method="post" class="ui large form {% if form.errors or next %}error{% endif %}"
+                  action="{% url 'activate' %}">
+                {% csrf_token %}
+                <div class="ui form">
+                    <div class="ui error message">
+                        {{errors}}
+                    </div>
+                    <div class="field">
+                        <div class="ui huge left input">
+                            <input class="border-gradient" type="email" name="email" value="" size="30" placeholder="Email Address"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui huge left input">
+                            <input class="border-gradient" type="text" name="activation-key" value="" size="30" placeholder="Activation Key"/>
+                        </div>
+                    </div>
+                    <input class="ui fluid huge green submit button fw-100" type="submit" value="Activate"/>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock content %}
+
+
+
+
+
+<!--
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,4 +72,4 @@
             <button type="submit" class="save btn btn-default">Activate</button>
         </form>
 </body>
-</html>
+</html>-->
