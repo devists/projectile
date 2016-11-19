@@ -365,7 +365,7 @@ def explore_profiles(request):
         profiles = UserProfile.objects.exclude(user=request.user)
     else:
         profiles = UserProfile.objects.all()
-    paginator = Paginator(profiles, 6) # Show 5 contacts per page
+    paginator = Paginator(profiles, 4) # Show 5 contacts per page
 
     page = request.GET.get('page')
     try:
