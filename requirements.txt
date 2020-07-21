@@ -1,4 +1,4 @@
 pycrypto
-Django==1.10.2
+Django==1.11.29
 django-notifications-hq==1.2
 django-multiselectfield
